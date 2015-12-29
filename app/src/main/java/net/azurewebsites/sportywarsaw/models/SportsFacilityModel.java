@@ -1,6 +1,7 @@
 package net.azurewebsites.sportywarsaw.models;
 
 /**
+ * Represents the basic properties of a sports facility
  * @author Marcin Chudy
  */
 public class SportsFacilityModel {
