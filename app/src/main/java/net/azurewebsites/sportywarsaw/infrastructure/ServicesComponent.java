@@ -1,6 +1,6 @@
 package net.azurewebsites.sportywarsaw.infrastructure;
 
-import net.azurewebsites.sportywarsaw.MainActivity;
+import net.azurewebsites.sportywarsaw.activities.MainActivity;
 
 import javax.inject.Singleton;
 
