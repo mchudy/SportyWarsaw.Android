@@ -1,6 +1,9 @@
 package net.azurewebsites.sportywarsaw.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +14,7 @@ import android.widget.Toast;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
+import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.SportsFacilityModel;
 import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;
 
@@ -23,6 +27,11 @@ import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 
+/**
+ * Main activity of the application
+ *
+ * @author Marcin Chudy
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Inject SportsFacilitiesService service;
@@ -33,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         ((MyApplication) getApplication()).getServicesComponent().inject(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -40,24 +50,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Call<SportsFacilityModel> call = service.getSportsFacility(1);
-                call.enqueue(new Callback<SportsFacilityModel>() {
+                call.enqueue(new CustomCallback<SportsFacilityModel>(MainActivity.this) {
                     @Override
-                    public void onResponse(Response<SportsFacilityModel> response, Retrofit retrofit) {
-                        if (response.isSuccess()) {
-                            SportsFacilityModel result = response.body();
-                            Toast.makeText(MainActivity.this, result.getDescription(), Toast.LENGTH_LONG).show();
-                        } else {
-                            try {
-                                String errorMessage = response.errorBody().string();
-                                Toast.makeText(MainActivity.this, response.code() + errorMessage, Toast.LENGTH_LONG).show();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                    @Override
-                    public void onFailure(Throwable t) {
-                        Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                    public void onSuccess(SportsFacilityModel model) {
+                        Toast.makeText(MainActivity.this, model.getDescription(), Toast.LENGTH_LONG).show();
                     }
                 });
             }

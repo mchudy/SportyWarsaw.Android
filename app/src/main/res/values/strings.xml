@@ -10,4 +10,9 @@
     <string name="error_field_required">This field is required</string>
     <string name="action_register">Register</string>
     <string name="incorrect_username_or_password">Incorrect username or password</string>
+    <string name="incorrect_credentials">Incorrect credentials</string>
+    <string name="incorrect_credentials_message">The username or password you entered is incorrect. Please try again.</string>
+
+    <string name="connection_error_title">Connection error</string>
+    <string name="connection_error_message">An error occurred while connecting to the server. Please make sure the phone is connected to the Internet.</string>
 </resources>

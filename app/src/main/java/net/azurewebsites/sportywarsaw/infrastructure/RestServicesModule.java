@@ -22,6 +22,10 @@ import dagger.Provides;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 
+/**
+ * Module registering REST API services
+ * @author Marcin Chudy
+ */
 @Module(
         includes = {ApplicationModule.class}
 )

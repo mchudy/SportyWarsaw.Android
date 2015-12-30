@@ -1,5 +1,7 @@
 package net.azurewebsites.sportywarsaw.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
+import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.AccessTokenModel;
 import net.azurewebsites.sportywarsaw.services.AccountService;
 
@@ -28,7 +31,9 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login via username and password.
+ *
+ * @author Marcin Chudy
  */
 public class LoginActivity extends AppCompatActivity  {
 
@@ -45,6 +50,7 @@ public class LoginActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         ((MyApplication) getApplication()).getServicesComponent().inject(this);
 
         if(!TextUtils.isEmpty(preferences.getString(ACCESS_TOKEN_KEY, null))){
@@ -101,30 +107,40 @@ public class LoginActivity extends AppCompatActivity  {
 
     private void getToken(String username, String password) {
         Call<AccessTokenModel> call = service.getToken(username, password, GRANT_TYPE);
-        call.enqueue(new Callback<AccessTokenModel>() {
+        call.enqueue(new CustomCallback<AccessTokenModel>(this) {
+            @Override
+            public void onSuccess(AccessTokenModel model) {
+                String token = model.getAccessToken();
+                if(!TextUtils.isEmpty(token)) {
+                    SharedPreferences.Editor edit = preferences.edit();
+                    edit.putString(ACCESS_TOKEN_KEY, token);
+                    edit.commit();
+                    showMainActivity();
+                }
+            }
+
             @Override
             public void onResponse(Response<AccessTokenModel> response, Retrofit retrofit) {
-                boolean success = false;
-                if (response.isSuccess()) {
-                    AccessTokenModel result = response.body();
-                    String token = result.getAccessToken();
-                    if(!TextUtils.isEmpty(token)) {
-                        success = true;
-                        SharedPreferences.Editor edit = preferences.edit();
-                        edit.putString(ACCESS_TOKEN_KEY, token);
-                        edit.commit();
-                        showMainActivity();
-                    }
+                if(!response.isSuccess() && response.code() == 400) {
+                    showIncorrectCredentialsDialog();
+                } else{
+                    super.onResponse(response, retrofit);
                 }
-                if(!success) {
-                    Toast.makeText(LoginActivity.this, R.string.incorrect_username_or_password, Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onFailure(Throwable t) {
-                //TODO
             }
         });
+    }
+
+    private void showIncorrectCredentialsDialog() {
+        new AlertDialog.Builder(LoginActivity.this)
+            .setTitle(R.string.incorrect_credentials)
+            .setMessage(R.string.incorrect_credentials_message)
+            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            })
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .show();
     }
 
     private void showMainActivity() {

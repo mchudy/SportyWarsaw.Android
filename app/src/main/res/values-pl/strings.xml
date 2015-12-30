@@ -10,4 +10,9 @@
     <string name="error_field_required">To pole jest wymagane</string>
     <string name="action_register">Rejestracja</string>
     <string name="incorrect_username_or_password">Niepoprawna nazwa użytkownika lub hasło</string>
+    <string name="incorrect_credentials">Niepoprawne dane</string>
+    <string name="incorrect_credentials_message">Wprowadzona nazwa użytkownika lub hasło jest niepoprawne. Spróbuj ponownie.</string>
+
+    <string name="connection_error_title">Błąd połączenia</string>
+    <string name="connection_error_message">Wystąpił błąd podczas połączenia z serwerem. Upewnij się, że telefon jest podłączony do Internetu.</string>
 </resources>
