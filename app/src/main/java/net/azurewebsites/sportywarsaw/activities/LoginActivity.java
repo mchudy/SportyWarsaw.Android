@@ -18,6 +18,8 @@ import net.azurewebsites.sportywarsaw.R;
 import net.azurewebsites.sportywarsaw.models.AccessTokenModel;
 import net.azurewebsites.sportywarsaw.services.AccountService;
 
+import org.w3c.dom.Text;
+
 import javax.inject.Inject;
 
 import retrofit.Call;
@@ -30,12 +32,11 @@ import retrofit.Retrofit;
  */
 public class LoginActivity extends AppCompatActivity  {
 
-    private static String grantType = "password";
+    private static final String GRANT_TYPE = "password";
+    private static final String ACCESS_TOKEN_KEY = "accessToken";
 
     private EditText usernameView;
     private EditText passwordView;
-    private View progressView;
-    private View loginFormView;
 
     @Inject AccountService service;
     @Inject SharedPreferences preferences;
@@ -45,6 +46,10 @@ public class LoginActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ((MyApplication) getApplication()).getServicesComponent().inject(this);
+
+        if(!TextUtils.isEmpty(preferences.getString(ACCESS_TOKEN_KEY, null))){
+            showMainActivity();
+        }
 
         usernameView = (EditText) findViewById(R.id.username);
         passwordView = (EditText) findViewById(R.id.password);
@@ -64,9 +69,6 @@ public class LoginActivity extends AppCompatActivity  {
                 //TODO show RegisterActivity
             }
         });
-
-        loginFormView = findViewById(R.id.login_form);
-        progressView = findViewById(R.id.login_progress);
     }
 
     private void attemptLogin() {
@@ -98,7 +100,7 @@ public class LoginActivity extends AppCompatActivity  {
     }
 
     private void getToken(String username, String password) {
-        Call<AccessTokenModel> call = service.getToken(username, password, grantType);
+        Call<AccessTokenModel> call = service.getToken(username, password, GRANT_TYPE);
         call.enqueue(new Callback<AccessTokenModel>() {
             @Override
             public void onResponse(Response<AccessTokenModel> response, Retrofit retrofit) {
@@ -109,10 +111,9 @@ public class LoginActivity extends AppCompatActivity  {
                     if(!TextUtils.isEmpty(token)) {
                         success = true;
                         SharedPreferences.Editor edit = preferences.edit();
-                        edit.putString("accessToken", token);
+                        edit.putString(ACCESS_TOKEN_KEY, token);
                         edit.commit();
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
+                        showMainActivity();
                     }
                 }
                 if(!success) {
@@ -124,6 +125,11 @@ public class LoginActivity extends AppCompatActivity  {
                 //TODO
             }
         });
+    }
+
+    private void showMainActivity() {
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
 
