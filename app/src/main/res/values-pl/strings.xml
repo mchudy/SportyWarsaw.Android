@@ -15,4 +15,12 @@
 
     <string name="connection_error_title">Błąd połączenia</string>
     <string name="connection_error_message">Wystąpił błąd podczas połączenia z serwerem. Upewnij się, że telefon jest podłączony do Internetu.</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_confirm_password">Potwierdź hasło</string>
+    <string name="error_invalid_email">Adres email nie jest poprawny</string>
+    <string name="error_too_short_password">Hasło musi składać się z minimum 6 znaków</string>
+    <string name="error_passwords_do_not_match">Podane hasła są różne</string>
+    <string name="success_account_registered">Konto zostało utworzone</string>
+    <string name="error">Błąd</string>
+    <string name="message_error_occurred">Wystąpił błąd. Spróbuj ponownie za chwilę.</string>
 </resources>

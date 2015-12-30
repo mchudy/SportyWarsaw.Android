@@ -35,14 +35,14 @@ public abstract class CustomCallback<T> implements Callback<T> {
     public void onResponse(Response<T> response, Retrofit retrofit) {
         if(response.isSuccess()){
             T body = response.body();
-            if(body != null){
-               onSuccess(body);
-            }
+            onSuccess(body);
         } else {
             switch (response.code()){
                 case 401:
                     handle401();
                     break;
+                default:
+                    showAlertDialog(context.getString(R.string.error), context.getString(R.string.message_error_occurred));
             }
         }
     }

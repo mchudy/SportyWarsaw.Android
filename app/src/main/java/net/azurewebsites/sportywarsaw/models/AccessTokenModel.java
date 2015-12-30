@@ -2,8 +2,6 @@ package net.azurewebsites.sportywarsaw.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class AccessTokenModel {
 
     @SerializedName("access_token")

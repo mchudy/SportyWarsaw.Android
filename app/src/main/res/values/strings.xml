@@ -15,4 +15,12 @@
 
     <string name="connection_error_title">Connection error</string>
     <string name="connection_error_message">An error occurred while connecting to the server. Please make sure the phone is connected to the Internet.</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_confirm_password">Confirm password</string>
+    <string name="error_invalid_email">Enter a valid email address</string>
+    <string name="error_too_short_password">Password must be at least 6 characters</string>
+    <string name="error_passwords_do_not_match">Passwords do not match</string>
+    <string name="success_account_registered">Account registered successfully</string>
+    <string name="error">Error</string>
+    <string name="message_error_occurred">An error occurred. Please try again.</string>
 </resources>

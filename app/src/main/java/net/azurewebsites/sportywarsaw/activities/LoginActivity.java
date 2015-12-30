@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_login);
 
         ((MyApplication) getApplication()).getServicesComponent().inject(this);
-
+        preferences.edit().clear().apply();
         if(!TextUtils.isEmpty(preferences.getString(ACCESS_TOKEN_KEY, null))){
             showMainActivity();
         }
@@ -72,7 +73,8 @@ public class LoginActivity extends AppCompatActivity  {
         registerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO show RegisterActivity
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -100,7 +102,6 @@ public class LoginActivity extends AppCompatActivity  {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            //showProgress(true);
             getToken(username, password);
         }
     }
