@@ -3,6 +3,7 @@ package net.azurewebsites.sportywarsaw.infrastructure;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
+import net.azurewebsites.sportywarsaw.services.AccountService;
 import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;
 
 import javax.inject.Singleton;
@@ -46,6 +47,13 @@ public class RestServicesModule {
     @Singleton
     SportsFacilitiesService provideSportsFacilitiesService(Retrofit retrofit) {
         SportsFacilitiesService service = retrofit.create(SportsFacilitiesService.class);
+        return service;
+    }
+
+    @Provides
+    @Singleton
+    AccountService provideAccountService(Retrofit retrofit) {
+        AccountService service = retrofit.create(AccountService.class);
         return service;
     }
 
