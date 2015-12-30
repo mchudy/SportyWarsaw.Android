@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Sporty Warsaw</string>
+    <string name="action_settings">Ustawienia</string>
+
+    <!-- Strings related to login -->
+    <string name="title_activity_login">Zaloguj</string>
+    <string name="prompt_username">Nazwa użytkownika</string>
+    <string name="prompt_password">Hasło</string>
+    <string name="action_sign_in">Zaloguj</string>
+    <string name="error_field_required">To pole jest wymagane</string>
+    <string name="action_register">Rejestracja</string>
+    <string name="incorrect_username_or_password">Niepoprawna nazwa użytkownika lub hasło</string>
+</resources>
