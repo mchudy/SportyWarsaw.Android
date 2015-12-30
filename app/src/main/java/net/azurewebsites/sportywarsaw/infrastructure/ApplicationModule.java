@@ -1,6 +1,8 @@
 package net.azurewebsites.sportywarsaw.infrastructure;
 
 import android.app.Application;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import javax.inject.Singleton;
 
@@ -19,5 +21,11 @@ public class ApplicationModule {
     @Singleton
     Application provideApplication() {
         return application;
+    }
+
+    @Provides
+    @Singleton
+    SharedPreferences provideSharedPreferences() {
+        return PreferenceManager.getDefaultSharedPreferences(application);
     }
 }

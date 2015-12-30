@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity  {
     private View progressView;
     private View loginFormView;
 
-    @Inject
-    AccountService service;
+    @Inject AccountService service;
+    @Inject SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +108,6 @@ public class LoginActivity extends AppCompatActivity  {
                     String token = result.getAccessToken();
                     if(!TextUtils.isEmpty(token)) {
                         success = true;
-                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
                         SharedPreferences.Editor edit = preferences.edit();
                         edit.putString("accessToken", token);
                         edit.commit();
