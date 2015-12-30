@@ -5,8 +5,6 @@ import com.squareup.okhttp.ResponseBody;
 import net.azurewebsites.sportywarsaw.models.AccessTokenModel;
 import net.azurewebsites.sportywarsaw.models.RegisterAccountModel;
 
-import java.util.Objects;
-
 import retrofit.Call;
 import retrofit.http.Body;
 import retrofit.http.Field;

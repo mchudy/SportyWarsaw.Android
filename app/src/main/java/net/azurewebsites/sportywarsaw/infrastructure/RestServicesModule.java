@@ -14,6 +14,7 @@ import net.azurewebsites.sportywarsaw.services.AccountService;
 import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import javax.inject.Singleton;
 
@@ -47,13 +48,13 @@ public class RestServicesModule {
         client.networkInterceptors().add(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
+                Request.Builder builder = chain.request().newBuilder();
+                builder.addHeader("Accept-Language", Locale.getDefault().getLanguage());
                 String token = preferences.getString("accessToken", null);
                 if(!TextUtils.isEmpty(token)) {
-                    Request.Builder builder = chain.request().newBuilder();
                     builder.addHeader("Authorization", "Bearer " + token);
-                    return chain.proceed(builder.build());
                 }
-                return chain.proceed(chain.request());
+                return chain.proceed(builder.build());
             }
         });
         return client;

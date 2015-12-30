@@ -88,13 +88,9 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onResponse(Response<ResponseBody> response, Retrofit retrofit) {
                     if (response.code() == 400) {
                         try {
-                            String json = response.errorBody().string();
-                            Gson gson = new Gson();
-                            ErrorResponse errorResponse = gson.fromJson(json, ErrorResponse.class);
-
                             new AlertDialog.Builder(RegisterActivity.this)
                                     .setTitle(getString(R.string.error))
-                                    .setMessage(errorResponse.getErrorsMessage())
+                                    .setMessage(extractErrorMessage(response))
                                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.cancel();
@@ -111,6 +107,14 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private String extractErrorMessage(Response<ResponseBody> response) throws IOException {
+        String json = response.errorBody().string();
+        Gson gson = new Gson();
+        ErrorResponse errorResponse = gson.fromJson(json, ErrorResponse.class);
+        String errorMessage = TextUtils.join(" ", errorResponse.getErrorsMessages());
+        return errorMessage;
     }
 
     private boolean validateInput(String username, String password, String email, String confirmPassword) {
@@ -155,8 +159,8 @@ public class RegisterActivity extends AppCompatActivity {
             return message;
         }
 
-        public String getErrorsMessage() {
-            return TextUtils.join(" ", modelState.getErrors());
+        public String[] getErrorsMessages() {
+            return modelState.getErrors();
         }
 
         private class ModelState
