@@ -39,7 +39,8 @@ import retrofit.Retrofit;
 public class LoginActivity extends AppCompatActivity  {
 
     private static final String GRANT_TYPE = "password";
-    private static final String ACCESS_TOKEN_KEY = "accessToken";
+    public static final String ACCESS_TOKEN_KEY = "accessToken";
+    public static final String USERNAME_KEY = "username";
 
     private EditText usernameView;
     private EditText passwordView;
@@ -115,8 +116,8 @@ public class LoginActivity extends AppCompatActivity  {
                 if(!TextUtils.isEmpty(token)) {
                     SharedPreferences.Editor edit = preferences.edit();
                     edit.putString(ACCESS_TOKEN_KEY, token);
-                    edit.putString("username", username);
-                    edit.commit();
+                    edit.putString(USERNAME_KEY, username);
+                    edit.apply();
                     showMainActivity();
                 }
             }

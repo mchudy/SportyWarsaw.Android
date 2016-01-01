@@ -1,5 +1,6 @@
 package net.azurewebsites.sportywarsaw.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-
+        setupDrawerNavigation();
     }
 
     @Override
@@ -96,6 +98,34 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setupDrawerNavigation() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                selectDrawerItem(item);
+                return true;
+            }
+        });
+    }
+
+    private void selectDrawerItem(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_log_out:
+                logOut();
+                break;
+        }
+    }
+
+    private void logOut() {
+        preferences.edit()
+            .remove(LoginActivity.USERNAME_KEY)
+            .remove(LoginActivity.ACCESS_TOKEN_KEY)
+            .apply();
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
 }

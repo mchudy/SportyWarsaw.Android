@@ -8,7 +8,8 @@
             android:id="@+id/nav_second_fragment"
             android:title="Second" />
         <item
-            android:id="@+id/nav_third_fragment"
-            android:title="Third" />
+            android:id="@+id/nav_log_out"
+            android:icon="@drawable/ic_settings_power_grey_500_18dp"
+            android:title="@string/log_out" />
     </group>
 </menu>

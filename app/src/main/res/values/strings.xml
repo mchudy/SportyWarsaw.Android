@@ -25,4 +25,5 @@
     <string name="message_error_occurred">An error occurred. Please try again.</string>
     <string name="drawer_close">Close</string>
     <string name="drawer_open">Open</string>
+    <string name="log_out">Log out</string>
 </resources>
