@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity  {
         }
     }
 
-    private void getToken(String username, String password) {
+    private void getToken(final String username, String password) {
         Call<AccessTokenModel> call = service.getToken(username, password, GRANT_TYPE);
         call.enqueue(new CustomCallback<AccessTokenModel>(this) {
             @Override
@@ -115,6 +115,7 @@ public class LoginActivity extends AppCompatActivity  {
                 if(!TextUtils.isEmpty(token)) {
                     SharedPreferences.Editor edit = preferences.edit();
                     edit.putString(ACCESS_TOKEN_KEY, token);
+                    edit.putString("username", username);
                     edit.commit();
                     showMainActivity();
                 }

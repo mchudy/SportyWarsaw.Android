@@ -23,4 +23,6 @@
     <string name="success_account_registered">Account registered successfully</string>
     <string name="error">Error</string>
     <string name="message_error_occurred">An error occurred. Please try again.</string>
+    <string name="drawer_close">Close</string>
+    <string name="drawer_open">Open</string>
 </resources>
