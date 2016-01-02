@@ -14,8 +14,10 @@ import net.azurewebsites.sportywarsaw.R;
 import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.MeetingModel;
 import net.azurewebsites.sportywarsaw.services.MeetingsService;
+import net.azurewebsites.sportywarsaw.utils.DividerItemDecoration;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -48,6 +50,7 @@ public class MeetingsFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.meetings_list);
         Context context = view.getContext();
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
         loadMeetings(recyclerView);
 
         return view;
@@ -55,15 +58,25 @@ public class MeetingsFragment extends Fragment {
 
     //TODO
     private void loadMeetings(final RecyclerView recyclerView) {
+        final List<MeetingModel> meetings = new ArrayList<>();
+
         Call<MeetingModel> call = service.getMeeting(1);
         call.enqueue(new CustomCallback<MeetingModel>(getActivity()) {
             @Override
             public void onSuccess(MeetingModel model) {
-                recyclerView.setAdapter(new MeetingsRecyclerViewAdapter(Collections.singletonList(model), listener));
+                meetings.add(model);
+                Call<MeetingModel> call = service.getMeeting(2);
+                call.enqueue(new CustomCallback<MeetingModel>(getActivity()) {
+                    @Override
+                    public void onSuccess(MeetingModel model) {
+                        meetings.add(model);
+                        recyclerView.setAdapter(new MeetingsRecyclerViewAdapter(
+                                meetings, listener, getActivity()));
+                    }
+                });
             }
         });
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -86,3 +99,4 @@ public class MeetingsFragment extends Fragment {
         void onListFragmentInteraction(MeetingModel item);
     }
 }
+

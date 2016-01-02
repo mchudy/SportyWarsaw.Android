@@ -57,5 +57,4 @@ public class StartupFragment extends Fragment {
 
         return view;
     }
-
 }
