@@ -2,7 +2,6 @@
     <string name="app_name">Sporty Warsaw</string>
     <string name="action_settings">Settings</string>
 
-    <!-- Strings related to login -->
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
@@ -26,4 +25,10 @@
     <string name="drawer_close">Close</string>
     <string name="drawer_open">Open</string>
     <string name="log_out">Log out</string>
+
+    <string name="meetings">Meetings</string>
+    <string name="sports_facilities">Sports facilities</string>
+    <string name="please_wait">Please wait</string>
+    <string name="authenticating">Authenticating</string>
+    <string name="registering">Registering</string>
 </resources>

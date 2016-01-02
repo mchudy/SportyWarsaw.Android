@@ -1,9 +1,10 @@
 package net.azurewebsites.sportywarsaw.infrastructure;
 
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -11,6 +12,7 @@ import com.squareup.okhttp.Response;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import net.azurewebsites.sportywarsaw.services.AccountService;
+import net.azurewebsites.sportywarsaw.services.MeetingsService;
 import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;
 
 import java.io.IOException;
@@ -25,6 +27,7 @@ import retrofit.Retrofit;
 
 /**
  * Module registering REST API services
+ *
  * @author Marcin Chudy
  */
 @Module(
@@ -62,13 +65,21 @@ public class RestServicesModule {
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit(OkHttpClient client) {
+    Retrofit provideRetrofit(OkHttpClient client, Gson gson) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build();
         return retrofit;
+    }
+
+    @Provides
+    @Singleton
+    Gson provideGson() {
+        return new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")
+                .create();
     }
 
     @Provides
@@ -82,6 +93,14 @@ public class RestServicesModule {
     @Singleton
     AccountService provideAccountService(Retrofit retrofit) {
         AccountService service = retrofit.create(AccountService.class);
+        return service;
+    }
+
+
+    @Provides
+    @Singleton
+    MeetingsService provideMeetingsService(Retrofit retrofit) {
+        MeetingsService service = retrofit.create(MeetingsService.class);
         return service;
     }
 

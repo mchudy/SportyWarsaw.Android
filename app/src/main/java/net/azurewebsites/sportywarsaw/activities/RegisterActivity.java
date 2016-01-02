@@ -1,10 +1,11 @@
 package net.azurewebsites.sportywarsaw.activities;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
@@ -38,13 +39,14 @@ import retrofit.Retrofit;
  */
 public class RegisterActivity extends AppCompatActivity {
 
-    @Inject
-    AccountService service;
+    @Inject AccountService service;
 
     private EditText usernameView;
     private EditText emailView;
     private EditText passwordView;
     private EditText confirmPasswordView;
+
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         boolean valid = validateInput(username, password, email, confirmPassword);
         if (valid) {
+            progressDialog = ProgressDialog.show(this, getString(R.string.please_wait), getString(R.string.registering));
             RegisterAccountModel model = new RegisterAccountModel(username, email, password, confirmPassword);
             Call<ResponseBody> call = service.registerAccount(model);
             call.enqueue(new CustomCallback<ResponseBody>(RegisterActivity.this) {
@@ -87,25 +90,35 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Response<ResponseBody> response, Retrofit retrofit) {
                     if (response.code() == 400) {
-                        try {
-                            new AlertDialog.Builder(RegisterActivity.this)
-                                    .setTitle(getString(R.string.error))
-                                    .setMessage(extractErrorMessage(response))
-                                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    })
-                                    .setIcon(android.R.drawable.ic_dialog_alert)
-                                    .show();
-                        } catch (IOException e) {
-                            Log.e("Register", e.getMessage());
-                        }
+                        handleBadRequest(response);
                     } else {
                         super.onResponse(response, retrofit);
                     }
                 }
+
+                @Override
+                public void always() {
+                    progressDialog.dismiss();
+                }
             });
+        }
+    }
+
+    private void handleBadRequest(Response<ResponseBody> response) {
+        progressDialog.dismiss();
+        try {
+            new AlertDialog.Builder(RegisterActivity.this)
+                    .setTitle(getString(R.string.error))
+                    .setMessage(extractErrorMessage(response))
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        } catch (IOException e) {
+            Log.e("Register", e.getMessage());
         }
     }
 

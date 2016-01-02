@@ -4,43 +4,38 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
-import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
-import net.azurewebsites.sportywarsaw.models.SportsFacilityModel;
-import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;
-
+import net.azurewebsites.sportywarsaw.fragments.MeetingsFragment;
+import net.azurewebsites.sportywarsaw.fragments.listeners.OnMeetingsListFragmentInteractionListener;
+import net.azurewebsites.sportywarsaw.fragments.SportsFacilitiesFragment;
+import net.azurewebsites.sportywarsaw.models.MeetingModel;
 
 import javax.inject.Inject;
-
-import retrofit.Call;
 
 /**
  * Main activity of the application
  *
  * @author Marcin Chudy
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnMeetingsListFragmentInteractionListener {
 
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
     private NavigationView navigationView;
     private TextView usernameTextView;
 
-    @Inject SportsFacilitiesService service;
     @Inject SharedPreferences preferences;
 
     @Override
@@ -62,20 +57,13 @@ public class MainActivity extends AppCompatActivity {
         usernameTextView = (TextView) navigationView.getHeaderView(0)
                 .findViewById(R.id.drawer_username);
         usernameTextView.setText(preferences.getString("username", ""));
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Call<SportsFacilityModel> call = service.getSportsFacility(1);
-                call.enqueue(new CustomCallback<SportsFacilityModel>(MainActivity.this) {
-                    @Override
-                    public void onSuccess(SportsFacilityModel model) {
-                        Toast.makeText(MainActivity.this, model.getDescription(), Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        });
+
         setupDrawerNavigation();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.main_content, MeetingsFragment.newInstance())
+                .disallowAddToBackStack()
+                .commit();
     }
 
     @Override
@@ -115,7 +103,17 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_log_out:
                 logOut();
                 break;
+            case R.id.nav_meetings:
+                switchFragment(MeetingsFragment.newInstance());
+                break;
+            case R.id.nav_sports_facilities:
+                switchFragment(SportsFacilitiesFragment.newInstance());
+                break;
         }
+
+        item.setChecked(true);
+        setTitle(item.getTitle());
+        drawer.closeDrawers();
     }
 
     private void logOut() {
@@ -128,4 +126,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void switchFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_content, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void onMeetingsListFragmentInteraction(MeetingModel item) {
+        Toast.makeText(this, "Selected item " + item.getTitle(), Toast.LENGTH_SHORT).show();
+    }
 }
