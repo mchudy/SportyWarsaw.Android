@@ -7,16 +7,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.azurewebsites.sportywarsaw.R;
-import net.azurewebsites.sportywarsaw.fragments.dummy.DummyContent.DummyItem;
+import net.azurewebsites.sportywarsaw.models.MeetingModel;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> values;
+    private final List<MeetingModel> values;
     private final MeetingsFragment.OnMeetingsListFragmentInteractionListener listener;
 
-    public MeetingsRecyclerViewAdapter(List<DummyItem> items, MeetingsFragment.OnMeetingsListFragmentInteractionListener listener) {
+    public MeetingsRecyclerViewAdapter(List<MeetingModel> items, MeetingsFragment.OnMeetingsListFragmentInteractionListener listener) {
         values = items;
         this.listener = listener;
     }
@@ -30,9 +32,11 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        MeetingModel item = values.get(position);
         holder.item = values.get(position);
-        holder.idView.setText(values.get(position).id);
-        holder.contentView.setText(values.get(position).content);
+        holder.idView.setText(item.getTitle());
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        holder.contentView.setText(df.format(item.getStartTime()));
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +57,7 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
         public final View view;
         public final TextView idView;
         public final TextView contentView;
-        public DummyItem item;
+        public MeetingModel item;
 
         public ViewHolder(View view) {
             super(view);

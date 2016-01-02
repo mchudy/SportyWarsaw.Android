@@ -13,11 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
 import net.azurewebsites.sportywarsaw.fragments.MeetingsFragment;
 import net.azurewebsites.sportywarsaw.fragments.StartupFragment;
+import net.azurewebsites.sportywarsaw.models.MeetingModel;
 
 import javax.inject.Inject;
 
@@ -26,7 +28,7 @@ import javax.inject.Inject;
  *
  * @author Marcin Chudy
  */
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements MeetingsFragment.OnMeetingsListFragmentInteractionListener {
 
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity{
                 logOut();
                 break;
             case R.id.nav_meetings:
-                switchFragment(MeetingsFragment.newInstance(1));
+                switchFragment(MeetingsFragment.newInstance());
                 break;
             case R.id.nav_first_fragment:
                 switchFragment(StartupFragment.newInstance());
@@ -127,6 +129,12 @@ public class MainActivity extends AppCompatActivity{
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_content, fragment)
+                .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void onListFragmentInteraction(MeetingModel item) {
+        Toast.makeText(this, "Selected item " + item.getTitle(), Toast.LENGTH_SHORT).show();
     }
 }
