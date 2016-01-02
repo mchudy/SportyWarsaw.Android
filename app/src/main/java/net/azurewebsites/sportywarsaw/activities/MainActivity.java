@@ -18,7 +18,8 @@ import android.widget.Toast;
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
 import net.azurewebsites.sportywarsaw.fragments.MeetingsFragment;
-import net.azurewebsites.sportywarsaw.fragments.StartupFragment;
+import net.azurewebsites.sportywarsaw.fragments.listeners.OnMeetingsListFragmentInteractionListener;
+import net.azurewebsites.sportywarsaw.fragments.SportsFacilitiesFragment;
 import net.azurewebsites.sportywarsaw.models.MeetingModel;
 
 import javax.inject.Inject;
@@ -28,7 +29,7 @@ import javax.inject.Inject;
  *
  * @author Marcin Chudy
  */
-public class MainActivity extends AppCompatActivity implements MeetingsFragment.OnMeetingsListFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements OnMeetingsListFragmentInteractionListener {
 
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements MeetingsFragment.
         setupDrawerNavigation();
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.main_content, new StartupFragment())
+                .add(R.id.main_content, MeetingsFragment.newInstance())
                 .disallowAddToBackStack()
                 .commit();
     }
@@ -105,8 +106,8 @@ public class MainActivity extends AppCompatActivity implements MeetingsFragment.
             case R.id.nav_meetings:
                 switchFragment(MeetingsFragment.newInstance());
                 break;
-            case R.id.nav_first_fragment:
-                switchFragment(StartupFragment.newInstance());
+            case R.id.nav_sports_facilities:
+                switchFragment(SportsFacilitiesFragment.newInstance());
                 break;
         }
 
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements MeetingsFragment.
     }
 
     @Override
-    public void onListFragmentInteraction(MeetingModel item) {
+    public void onMeetingsListFragmentInteraction(MeetingModel item) {
         Toast.makeText(this, "Selected item " + item.getTitle(), Toast.LENGTH_SHORT).show();
     }
 }

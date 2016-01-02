@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
+import net.azurewebsites.sportywarsaw.adapters.MeetingsRecyclerViewAdapter;
+import net.azurewebsites.sportywarsaw.fragments.listeners.OnMeetingsListFragmentInteractionListener;
 import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.MeetingModel;
 import net.azurewebsites.sportywarsaw.services.MeetingsService;
@@ -29,8 +31,7 @@ public class MeetingsFragment extends Fragment {
 
     @Inject MeetingsService service;
 
-    public MeetingsFragment() {
-    }
+    public MeetingsFragment() {}
 
     public static MeetingsFragment newInstance() {
         return new MeetingsFragment();
@@ -45,7 +46,7 @@ public class MeetingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_meeting_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_meetings, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.meetings_list);
         Context context = view.getContext();
@@ -94,9 +95,6 @@ public class MeetingsFragment extends Fragment {
         super.onDetach();
         listener = null;
     }
-
-    public interface OnMeetingsListFragmentInteractionListener {
-        void onListFragmentInteraction(MeetingModel item);
-    }
 }
+
 

@@ -2,11 +2,11 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_first_fragment"
-            android:title="First" />
-        <item
             android:id="@+id/nav_meetings"
             android:title="@string/meetings" />
+        <item
+            android:id="@+id/nav_sports_facilities"
+            android:title="@string/sports_facilities" />
         <item
             android:id="@+id/nav_log_out"
             android:icon="@drawable/ic_settings_power_grey_500_18dp"

@@ -27,6 +27,7 @@ import retrofit.Retrofit;
 
 /**
  * Module registering REST API services
+ *
  * @author Marcin Chudy
  */
 @Module(

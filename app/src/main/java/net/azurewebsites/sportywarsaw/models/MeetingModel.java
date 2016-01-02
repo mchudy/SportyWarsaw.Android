@@ -27,9 +27,7 @@ public class MeetingModel {
         return cost;
     }
 
-    public Date getStartTime() {
-        return startTime;
-    }
+    public Date getStartTime() {return startTime;}
 
     public Date getEndTime() {
         return endTime;

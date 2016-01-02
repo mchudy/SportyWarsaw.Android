@@ -1,4 +1,4 @@
-package net.azurewebsites.sportywarsaw.fragments;
+package net.azurewebsites.sportywarsaw.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,18 +9,24 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.azurewebsites.sportywarsaw.R;
+import net.azurewebsites.sportywarsaw.fragments.listeners.OnMeetingsListFragmentInteractionListener;
 import net.azurewebsites.sportywarsaw.models.MeetingModel;
 
 import java.util.List;
 
-public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRecyclerViewAdapter.ViewHolder> {
+/**
+ * Adapter for the meetings {@link RecyclerView}
+ *
+ * @author Marcin Chudy
+ */
+public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRecyclerViewAdapter.MeetingViewHolder> {
 
     private final List<MeetingModel> values;
-    private final MeetingsFragment.OnMeetingsListFragmentInteractionListener listener;
+    private final OnMeetingsListFragmentInteractionListener listener;
     private Context context;
 
     public MeetingsRecyclerViewAdapter(List<MeetingModel> items,
-                                       MeetingsFragment.OnMeetingsListFragmentInteractionListener listener,
+                                       OnMeetingsListFragmentInteractionListener listener,
                                        Context context) {
         values = items;
         this.listener = listener;
@@ -28,14 +34,14 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MeetingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_meeting_item, parent, false);
-        return new ViewHolder(view);
+        return new MeetingViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final MeetingViewHolder holder, int position) {
         MeetingModel item = values.get(position);
         holder.item = values.get(position);
         holder.titleView.setText(item.getTitle());
@@ -51,7 +57,7 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
             @Override
             public void onClick(View v) {
                 if (null != listener) {
-                    listener.onListFragmentInteraction(holder.item);
+                    listener.onMeetingsListFragmentInteraction(holder.item);
                 }
             }
         });
@@ -62,13 +68,13 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
         return values.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class MeetingViewHolder extends RecyclerView.ViewHolder {
         public final View view;
         public final TextView titleView;
         public final TextView startDateView;
         public MeetingModel item;
 
-        public ViewHolder(View view) {
+        public MeetingViewHolder(View view) {
             super(view);
             this.view = view;
             titleView = (TextView) view.findViewById(R.id.meeting_title);
