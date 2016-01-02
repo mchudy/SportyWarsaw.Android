@@ -2,7 +2,6 @@
     <string name="app_name">Sporty Warsaw</string>
     <string name="action_settings">Ustawienia</string>
 
-    <!-- Strings related to login -->
     <string name="title_activity_login">Zaloguj</string>
     <string name="prompt_username">Nazwa użytkownika</string>
     <string name="prompt_password">Hasło</string>
@@ -29,4 +28,7 @@
 
     <string name="meetings">Spotkania</string>
     <string name="sports_facilities">Obiekty sportowe</string>
+    <string name="please_wait">Proszę czekać</string>
+    <string name="authenticating">Uwierzytelnianie</string>
+    <string name="registering">Rejestrowanie</string>
 </resources>

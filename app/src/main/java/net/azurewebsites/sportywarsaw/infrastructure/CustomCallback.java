@@ -31,8 +31,18 @@ public abstract class CustomCallback<T> implements Callback<T> {
 
     public abstract void onSuccess(T model);
 
+    /**
+     * Gets called before responding to a request or reacting to a failure and before
+     * {@link #onSuccess(Object) onSuccess} method
+     *
+     * Override to add logic which needs to be executed always regardless of
+     * success or failure of a request (i.e. hiding a progress bar).
+     */
+    public void always() {}
+
     @Override
     public void onResponse(Response<T> response, Retrofit retrofit) {
+        always();
         if(response.isSuccess()){
             T body = response.body();
             onSuccess(body);
@@ -49,6 +59,7 @@ public abstract class CustomCallback<T> implements Callback<T> {
 
     @Override
     public void onFailure(Throwable t) {
+        always();
         showAlertDialog(context.getString(R.string.connection_error_title),
                 context.getString(R.string.connection_error_message));
     }
