@@ -1,7 +1,6 @@
 package net.azurewebsites.sportywarsaw.infrastructure;
 
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
 import com.squareup.okhttp.Interceptor;

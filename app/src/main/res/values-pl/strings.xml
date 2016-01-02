@@ -24,4 +24,5 @@
     <string name="error">Błąd</string>
     <string name="message_error_occurred">Wystąpił błąd. Spróbuj ponownie za chwilę.</string>
     <string name="log_out">Wyloguj</string>
+    <string name="meetings">Spotkania</string>
 </resources>
