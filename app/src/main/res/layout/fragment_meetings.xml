@@ -31,11 +31,11 @@
         app:layout_anchor="@id/meetings_view_pager"
         app:layout_anchorGravity="bottom|right|end"
         android:layout_margin="@dimen/fab_margin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         app:borderWidth="0dp"
         android:tint="@android:color/white"
-        android:src="@android:drawable/ic_input_add"
+        android:src="@drawable/ic_add"
         app:fabSize="normal" />
 
 </android.support.design.widget.CoordinatorLayout>
