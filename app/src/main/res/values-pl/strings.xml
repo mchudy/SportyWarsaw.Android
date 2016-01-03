@@ -31,4 +31,5 @@
     <string name="please_wait">Proszę czekać</string>
     <string name="authenticating">Uwierzytelnianie</string>
     <string name="registering">Rejestrowanie</string>
+    <string name="view_profile">Zobacz profil</string>
 </resources>

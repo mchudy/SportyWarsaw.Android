@@ -39,4 +39,5 @@
     <string name="please_wait">Please wait</string>
     <string name="authenticating">Authenticating</string>
     <string name="registering">Registering</string>
+    <string name="view_profile">View profile</string>
 </resources>

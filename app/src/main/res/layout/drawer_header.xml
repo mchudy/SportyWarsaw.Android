@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_header"
     android:layout_width="match_parent"
     android:layout_height="192dp"
     android:background="?attr/colorPrimaryDark"
@@ -8,11 +9,30 @@
     android:orientation="vertical"
     android:gravity="bottom">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#F0F0F0"
+        android:src="@drawable/ic_person_white_48dp"/>
+
     <TextView
         android:id="@+id/drawer_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:layout_marginTop="5dp"
+        android:text="username"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="@string/view_profile"
+        android:textSize="12sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
 </LinearLayout>
