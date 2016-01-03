@@ -1,35 +1,23 @@
 package net.azurewebsites.sportywarsaw.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
-import net.azurewebsites.sportywarsaw.adapters.MeetingsRecyclerViewAdapter;
-import net.azurewebsites.sportywarsaw.fragments.listeners.OnMeetingsListFragmentInteractionListener;
-import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
-import net.azurewebsites.sportywarsaw.models.MeetingModel;
-import net.azurewebsites.sportywarsaw.services.MeetingsService;
-import net.azurewebsites.sportywarsaw.utils.DividerItemDecoration;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
-import retrofit.Call;
-
+/**
+ * Base fragment for showing lists of meetings
+ *
+ * @author Marcin Chudy
+ */
 public class MeetingsFragment extends Fragment {
-
-    private OnMeetingsListFragmentInteractionListener listener;
-
-    @Inject MeetingsService service;
 
     public MeetingsFragment() {}
 
@@ -38,62 +26,55 @@ public class MeetingsFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ((MyApplication) getActivity().getApplication()).getServicesComponent().inject(this);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meetings, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.meetings_list);
-        Context context = view.getContext();
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
-        loadMeetings(recyclerView);
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.meetings_tab_layout);
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.meetings_view_pager);
+        MeetingsPagerAdapter pagerAdapter = new MeetingsPagerAdapter(getChildFragmentManager());
+        viewPager.setAdapter(pagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
 
         return view;
     }
 
-    //TODO
-    private void loadMeetings(final RecyclerView recyclerView) {
-        final List<MeetingModel> meetings = new ArrayList<>();
+    //TODO: show different types of meetings
+    private class MeetingsPagerAdapter extends FragmentStatePagerAdapter {
+        private static final int TABS_COUNT = 2;
 
-        Call<MeetingModel> call = service.getMeeting(1);
-        call.enqueue(new CustomCallback<MeetingModel>(getActivity()) {
-            @Override
-            public void onSuccess(MeetingModel model) {
-                meetings.add(model);
-                Call<MeetingModel> call = service.getMeeting(2);
-                call.enqueue(new CustomCallback<MeetingModel>(getActivity()) {
-                    @Override
-                    public void onSuccess(MeetingModel model) {
-                        meetings.add(model);
-                        recyclerView.setAdapter(new MeetingsRecyclerViewAdapter(
-                                meetings, listener, getActivity()));
-                    }
-                });
-            }
-        });
-    }
+        public static final int TAB_MY_MEETINGS = 0;
+        public static final int TAB_ALL_MEETINGS = 1;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnMeetingsListFragmentInteractionListener) {
-            listener = (OnMeetingsListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnMeetingsListFragmentInteractionListener");
+        public MeetingsPagerAdapter(FragmentManager fragmentManager) {
+            super(fragmentManager);
         }
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        listener = null;
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case TAB_MY_MEETINGS:
+                    return MeetingsTabFragment.newInstance();
+                default:
+                    return MeetingsTabFragment.newInstance();
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return TABS_COUNT;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position){
+                case TAB_MY_MEETINGS:
+                    return "My meetings";
+                case TAB_ALL_MEETINGS:
+                    return "All meetings";
+            }
+            return null;
+        }
     }
 }
 

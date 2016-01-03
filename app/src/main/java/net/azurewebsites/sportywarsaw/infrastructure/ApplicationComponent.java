@@ -3,7 +3,7 @@ package net.azurewebsites.sportywarsaw.infrastructure;
 import net.azurewebsites.sportywarsaw.activities.LoginActivity;
 import net.azurewebsites.sportywarsaw.activities.MainActivity;
 import net.azurewebsites.sportywarsaw.activities.RegisterActivity;
-import net.azurewebsites.sportywarsaw.fragments.MeetingsFragment;
+import net.azurewebsites.sportywarsaw.fragments.MeetingsTabFragment;
 import net.azurewebsites.sportywarsaw.fragments.SportsFacilitiesFragment;
 
 import javax.inject.Singleton;
@@ -23,5 +23,5 @@ public interface ApplicationComponent {
     void inject(LoginActivity activity);
     void inject(RegisterActivity activity);
     void inject(SportsFacilitiesFragment startupFragment);
-    void inject(MeetingsFragment meetingsFragment);
+    void inject(MeetingsTabFragment meetingsFragment);
 }
