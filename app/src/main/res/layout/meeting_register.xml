@@ -39,8 +39,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prompt_description"
-                android:inputType="text"
-                android:maxLines="1"
+                android:inputType="textMultiLine"
+                android:maxLines="10"
+                android:lines="5"
                 android:singleLine="false" />
 
         </android.support.design.widget.TextInputLayout>
@@ -49,11 +50,12 @@
 
         <Button
             android:id="@+id/add_meeting_button"
-            style="?android:textAppearanceSmall"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@color/colorAccent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/action_register"
+            android:text="Add meeting"
             android:textStyle="bold" />
 
     </LinearLayout>

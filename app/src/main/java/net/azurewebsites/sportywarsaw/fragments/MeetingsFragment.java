@@ -1,6 +1,7 @@
 package net.azurewebsites.sportywarsaw.fragments;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import net.azurewebsites.sportywarsaw.R;
 
@@ -29,6 +31,15 @@ public class MeetingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meetings, container, false);
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.meetings_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: notify activity via interface
+                Toast.makeText(getActivity(), "New meeting", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.meetings_tab_layout);
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.meetings_view_pager);
