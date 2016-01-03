@@ -12,6 +12,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ import net.azurewebsites.sportywarsaw.fragments.SportsFacilitiesFragment;
 import net.azurewebsites.sportywarsaw.models.MeetingModel;
 
 import javax.inject.Inject;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Main activity of the application
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements OnMeetingsListFra
     private TextView usernameTextView;
 
     @Inject SharedPreferences preferences;
+    private LinearLayout drawerHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements OnMeetingsListFra
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.drawer_view);
 
+        View headerView = navigationView.getHeaderView(0);
+        drawerHeader = (LinearLayout) headerView.findViewById(R.id.drawer_header);
+
         drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.drawer_open, R.string.drawer_close);
         drawer.setDrawerListener(drawerToggle);
 
@@ -58,12 +66,12 @@ public class MainActivity extends AppCompatActivity implements OnMeetingsListFra
                 .findViewById(R.id.drawer_username);
         usernameTextView.setText(preferences.getString("username", ""));
 
+        //TODO: show user's image
+        CircleImageView profileImageView = (CircleImageView) headerView.findViewById(R.id.profile_image);
+        //profileImageView.setImageBitmap();
+
         setupDrawerNavigation();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.main_content, MeetingsFragment.newInstance())
-                .disallowAddToBackStack()
-                .commit();
+        showInitialFragment();
     }
 
     @Override
@@ -94,6 +102,12 @@ public class MainActivity extends AppCompatActivity implements OnMeetingsListFra
             public boolean onNavigationItemSelected(MenuItem item) {
                 selectDrawerItem(item);
                 return true;
+            }
+        });
+        drawerHeader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Your profile", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -131,6 +145,14 @@ public class MainActivity extends AppCompatActivity implements OnMeetingsListFra
                 .beginTransaction()
                 .replace(R.id.main_content, fragment)
                 .addToBackStack(null)
+                .commit();
+    }
+
+    private void showInitialFragment() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.main_content, MeetingsFragment.newInstance())
+                .disallowAddToBackStack()
                 .commit();
     }
 
