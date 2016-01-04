@@ -15,7 +15,7 @@ public class SportFacilityPlusModel {
     private String phoneNumber;
     private String website;
     private List<String> emails;// = new List<String>();
-    // // TODO: 04.01.2016
+    // // TODO: add position class
    // private Position Position { get; set; } = new Position();
     private SportsFacilityType type;
 

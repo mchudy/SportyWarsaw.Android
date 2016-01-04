@@ -10,8 +10,12 @@ public class UserPlusModel {
     private String lastName;
     private byte[] picture;
     private String userName;
+    private List<MeetingPlusModel> Meetings;
 
-    // // TODO: 04.01.2016
+    private List<FriendshipModel> friendshipsInitiated;
+
+    private List<FriendshipModel> friendshipsRequested;
+
 
     public String getFirstName() {
         return firstName;
@@ -61,9 +65,11 @@ public class UserPlusModel {
         this.friendshipsRequested = friendshipsRequested;
     }
 
-    // public IList<MeetingPlusModel> Meetings { get; set; }
+    public List<MeetingPlusModel> getMeetings() {
+        return Meetings;
+    }
 
-    private List<FriendshipModel> friendshipsInitiated;
-
-    private List<FriendshipModel> friendshipsRequested;
+    public void setMeetings(List<MeetingPlusModel> meetings) {
+        Meetings = meetings;
+    }
 }
