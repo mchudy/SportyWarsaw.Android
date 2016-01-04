@@ -41,13 +41,61 @@
                 android:hint="@string/prompt_description"
                 android:inputType="textMultiLine"
                 android:maxLines="10"
-                android:lines="5"
+                android:lines="3"
                 android:singleLine="false" />
 
         </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0">
+
+        </android.support.design.widget.TextInputLayout>
 
 
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:layout_weight="0"
+            android:layerType="none"
+            android:background="@color/colorSpinner"/>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0">
+
+            <EditText
+                android:id="@+id/cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_cost"
+                android:inputType="textMultiLine"
+                android:maxLines="2"
+                android:lines="2"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0">
+
+            <EditText
+                android:id="@+id/maxparticipants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_maxparticipants"
+                android:inputType="textMultiLine"
+                android:maxLines="2"
+                android:lines="2"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
         <Button
             android:id="@+id/add_meeting_button"
             style="?android:attr/borderlessButtonStyle"

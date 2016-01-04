@@ -16,6 +16,7 @@
     <string name="error_field_required">This field is required</string>
     <string name="action_register">Register</string>
     <string name="action_addmeeting">Add</string>
+    <string name="action_savemeeting">Save</string>
     <string name="incorrect_username_or_password">Incorrect username or password</string>
     <string name="incorrect_credentials">Incorrect credentials</string>
     <string name="incorrect_credentials_message">The username or password you entered is incorrect. Please try again.</string>

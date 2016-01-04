@@ -13,6 +13,8 @@
     <string name="prompt_maxparticipants">Maksymalna ilość uczestników</string>
     <string name="prompt_sporttype">Dyscyplina</string>
     <string name="action_sign_in">Zaloguj</string>
+    <string name="action_addmeeting">/Dodaj</string>
+    <string name="action_savemeeting">Zapisz</string>
     <string name="error_field_required">To pole jest wymagane</string>
     <string name="action_register">Rejestracja</string>
     <string name="incorrect_username_or_password">Niepoprawna nazwa użytkownika lub hasło</string>
