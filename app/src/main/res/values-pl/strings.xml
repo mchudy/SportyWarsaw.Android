@@ -5,6 +5,13 @@
     <string name="title_activity_login">Zaloguj</string>
     <string name="prompt_username">Nazwa użytkownika</string>
     <string name="prompt_password">Hasło</string>
+    <string name="prompt_title">Tytuł</string>
+    <string name="prompt_description">Opis</string>
+    <string name="prompt_cost">Koszt</string>
+    <string name="prompt_starttime">Czas rozpoczęcia</string>
+    <string name="prompt_endtime">Czas zakończenia</string>
+    <string name="prompt_maxparticipants">Maksymalna ilość uczestników</string>
+    <string name="prompt_sporttype">Dyscyplina</string>
     <string name="action_sign_in">Zaloguj</string>
     <string name="error_field_required">To pole jest wymagane</string>
     <string name="action_register">Rejestracja</string>
