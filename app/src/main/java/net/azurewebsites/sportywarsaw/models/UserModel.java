@@ -6,22 +6,31 @@ package net.azurewebsites.sportywarsaw.models;
  * Created by Jan Kierzkowski on 04.01.2016.
  */
 public class UserModel {
-    private String FirstName;
-    private String LastName;
+    private String firstName;
+    private String lastName;
+    private String userName;
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        lastName = lastName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

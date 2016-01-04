@@ -1,5 +1,7 @@
 package net.azurewebsites.sportywarsaw.models;
 
+import net.azurewebsites.sportywarsaw.enums.SportType;
+
 import java.util.Date;
 
 //TODO: not complete yet
@@ -10,6 +12,7 @@ public class MeetingModel {
     private double cost;
     private Date startTime;
     private Date endTime;
+    private SportType sportType;
 
     public int getId() {
         return id;
@@ -31,5 +34,9 @@ public class MeetingModel {
 
     public Date getEndTime() {
         return endTime;
+    }
+
+    public SportType getSportType() {
+        return sportType;
     }
 }

@@ -10,40 +10,40 @@ import java.util.Date;
 
 
 public class FriendshipModel {
-    private String InviterId;
-    private String FriendId;
-    private boolean IsConfirmed;
-    private Date CreatedTime;
+    private String inviterId;
+    private String friendId;
+    private boolean isConfirmed;
+    private Date createdTime;
 
     public String getInviterId() {
-        return InviterId;
+        return inviterId;
     }
 
     public void setInviterId(String inviterId) {
-        InviterId = inviterId;
+        inviterId = inviterId;
     }
 
     public String getFriendId() {
-        return FriendId;
+        return friendId;
     }
 
     public void setFriendId(String friendId) {
-        FriendId = friendId;
+        friendId = friendId;
     }
 
     public boolean isConfirmed() {
-        return IsConfirmed;
+        return isConfirmed;
     }
 
     public void setIsConfirmed(boolean isConfirmed) {
-        IsConfirmed = isConfirmed;
+        isConfirmed = isConfirmed;
     }
 
     public Date getCreatedTime() {
-        return CreatedTime;
+        return createdTime;
     }
 
     public void setCreatedTime(Date createdTime) {
-        CreatedTime = createdTime;
+        createdTime = createdTime;
     }
 }
