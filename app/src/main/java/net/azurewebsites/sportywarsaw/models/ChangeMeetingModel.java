@@ -10,7 +10,6 @@ public class ChangeMeetingModel {
     private String title;
     private int maxParticipants;
     private Date startTime;
-    //TODO check if after StartTime
     private Date endTime;
     private SportType sportType;
     private double cost;

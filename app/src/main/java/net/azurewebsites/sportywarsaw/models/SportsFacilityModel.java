@@ -1,5 +1,7 @@
 package net.azurewebsites.sportywarsaw.models;
 
+import net.azurewebsites.sportywarsaw.enums.SportsFacilityType;
+
 /**
  * Represents the basic properties of a sports facility
  *
@@ -11,6 +13,7 @@ public class SportsFacilityModel {
     private String street;
     private String number;
     private String district;
+    private SportsFacilityType type;
 
     public int getId() {
         return id;
@@ -51,4 +54,8 @@ public class SportsFacilityModel {
     public void setDistrict(String district) {
         this.district = district;
     }
+
+    public SportsFacilityType getType() {return type;}
+
+    public void setType(SportsFacilityType type) {this.type = type;}
 }

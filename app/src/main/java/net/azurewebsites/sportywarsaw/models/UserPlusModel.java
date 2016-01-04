@@ -1,5 +1,6 @@
 package net.azurewebsites.sportywarsaw.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,11 +11,9 @@ public class UserPlusModel {
     private String lastName;
     private byte[] picture;
     private String userName;
-    private List<MeetingPlusModel> Meetings;
-
-    private List<FriendshipModel> friendshipsInitiated;
-
-    private List<FriendshipModel> friendshipsRequested;
+    private List<MeetingModel> meetings = new ArrayList<>();
+    private List<FriendshipModel> friendshipsInitiated = new ArrayList<>();
+    private List<FriendshipModel> friendshipsRequested = new ArrayList<>();
 
 
     public String getFirstName() {
@@ -65,11 +64,7 @@ public class UserPlusModel {
         this.friendshipsRequested = friendshipsRequested;
     }
 
-    public List<MeetingPlusModel> getMeetings() {
-        return Meetings;
-    }
-
-    public void setMeetings(List<MeetingPlusModel> meetings) {
-        Meetings = meetings;
+    public List<MeetingModel> getMeetings() {
+        return meetings;
     }
 }

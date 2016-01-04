@@ -10,25 +10,25 @@ import java.util.Date;
 
 
 public class FriendshipModel {
-    private String inviterId;
-    private String friendId;
+    private String inviterUsername;
+    private String friendUsername;
     private boolean isConfirmed;
     private Date createdTime;
 
-    public String getInviterId() {
-        return inviterId;
+    public String getInviterUsername() {
+        return inviterUsername;
     }
 
-    public void setInviterId(String inviterId) {
-        inviterId = inviterId;
+    public void setInviterUsername(String inviterUsername) {
+        this.inviterUsername = inviterUsername;
     }
 
-    public String getFriendId() {
-        return friendId;
+    public String getFriendUsername() {
+        return friendUsername;
     }
 
-    public void setFriendId(String friendId) {
-        friendId = friendId;
+    public void setFriendUsername(String friendUsername) {
+        this.friendUsername = friendUsername;
     }
 
     public boolean isConfirmed() {
@@ -36,7 +36,7 @@ public class FriendshipModel {
     }
 
     public void setIsConfirmed(boolean isConfirmed) {
-        isConfirmed = isConfirmed;
+        this.isConfirmed = isConfirmed;
     }
 
     public Date getCreatedTime() {
@@ -44,6 +44,6 @@ public class FriendshipModel {
     }
 
     public void setCreatedTime(Date createdTime) {
-        createdTime = createdTime;
+        this.createdTime = createdTime;
     }
 }

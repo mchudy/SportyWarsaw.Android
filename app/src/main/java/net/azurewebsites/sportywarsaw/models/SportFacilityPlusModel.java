@@ -1,6 +1,7 @@
 package net.azurewebsites.sportywarsaw.models;
 import net.azurewebsites.sportywarsaw.enums.SportsFacilityType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,8 +15,8 @@ public class SportFacilityPlusModel {
     private String district;
     private String phoneNumber;
     private String website;
-    private List<String> emails;// = new List<String>();
-    // // TODO: add position class
+    private List<String> emails = new ArrayList<>();
+    // // TODO: add position clas
    // private Position Position { get; set; } = new Position();
     private SportsFacilityType type;
 
@@ -77,10 +78,6 @@ public class SportFacilityPlusModel {
 
     public List<String> getEmails() {
         return emails;
-    }
-
-    public void setEmails(List<String> emails) {
-        this.emails = emails;
     }
 
     public SportsFacilityType getType() {
