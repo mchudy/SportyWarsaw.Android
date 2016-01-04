@@ -12,11 +12,13 @@
     <string name="prompt_endtime">End Time</string>
     <string name="prompt_maxparticipants">Max Participants</string>
     <string name="prompt_sporttype">Sport Type</string>
+    <string name="prompt_addcomment">Comment</string>
     <string name="action_sign_in">Sign in</string>
     <string name="error_field_required">This field is required</string>
     <string name="action_register">Register</string>
     <string name="action_addmeeting">Add</string>
     <string name="action_savemeeting">Save</string>
+    <string name="action_addcomment">Add comment</string>
     <string name="incorrect_username_or_password">Incorrect username or password</string>
     <string name="incorrect_credentials">Incorrect credentials</string>
     <string name="incorrect_credentials_message">The username or password you entered is incorrect. Please try again.</string>
