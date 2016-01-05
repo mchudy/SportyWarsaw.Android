@@ -41,7 +41,7 @@ public interface UserService {
     Call<ResponseBody> acceptFriendRequest(@Path("username") String username);
 
     @POST("Users/RemoveFriend/{username}")
-    Call<ResponseBody> rejectFriendRequest(@Path("username") String username);
+    Call<ResponseBody> removeFriend(@Path("username") String username);
 
     //// TODO: w serwerze jest post, nie powinien byc put? 
     @POST("Users/UpdateProfile")

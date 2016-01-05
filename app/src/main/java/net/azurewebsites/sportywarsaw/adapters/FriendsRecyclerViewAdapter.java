@@ -1,9 +1,11 @@
 package net.azurewebsites.sportywarsaw.adapters;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import net.azurewebsites.sportywarsaw.R;
@@ -13,8 +15,11 @@ import java.util.List;
 
 
 public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserModel> {
-    public FriendsRecyclerViewAdapter(List<UserModel> items, RecyclerView recyclerView) {
+    private Fragment fragment;
+
+    public FriendsRecyclerViewAdapter(List<UserModel> items, RecyclerView recyclerView, Fragment fragment) {
         super(items, recyclerView);
+        this.fragment = fragment;
     }
 
     @Override
@@ -29,7 +34,7 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if(holder instanceof  FriendViewHolder) {
             FriendViewHolder viewHolder = (FriendViewHolder) holder;
             final UserModel item = items.get(position);
@@ -42,6 +47,14 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
                     //TODO: show profile
                 }
             });
+            viewHolder.removeFriendButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(fragment instanceof RemoveFriendCallback) {
+                        ((RemoveFriendCallback) fragment).removeFriend(item.getUsername(), position);
+                    }
+                }
+            });
         }
     }
 
@@ -49,6 +62,7 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
         public final View view;
         public final TextView usernameView;
         public final TextView fullNameView;
+        public final Button removeFriendButton;
         public UserModel item;
 
         public FriendViewHolder(View view) {
@@ -56,7 +70,12 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
             this.view = view;
             usernameView = (TextView) view.findViewById(R.id.friend_username);
             fullNameView = (TextView) view.findViewById(R.id.friend_full_name);
+            removeFriendButton = (Button) view.findViewById(R.id.remove_friend_button);
         }
+    }
+
+    public interface RemoveFriendCallback {
+        void removeFriend(String username, int position);
     }
 
 }

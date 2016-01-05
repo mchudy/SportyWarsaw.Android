@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.squareup.okhttp.ResponseBody;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
@@ -25,7 +28,7 @@ import javax.inject.Inject;
 
 import retrofit.Call;
 
-public class FriendsFragment extends Fragment{
+public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdapter.RemoveFriendCallback{
     private FriendsRecyclerViewAdapter adapter;
     private List<UserModel> items = new ArrayList<>();
     private ProgressBar progressBar;
@@ -58,17 +61,10 @@ public class FriendsFragment extends Fragment{
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
-        adapter = new FriendsRecyclerViewAdapter(items, recyclerView);
+        adapter = new FriendsRecyclerViewAdapter(items, recyclerView, this);
         recyclerView.setAdapter(adapter);
         //TODO: pagination
-//        adapter.setOnLoadMoreListener(new SportsFacilitiesRecyclerViewAdapter.OnLoadMoreListener() {
-//            @Override
-//            public void onLoadMore() {
-//                loadFriends(adapter);
-//            }
-//        });
-        recyclerView.setVisibility(View.GONE);
-        progressBar.setVisibility(View.VISIBLE);
+        showProgressBar();
         loadFriends(adapter);
         return view;
     }
@@ -89,8 +85,36 @@ public class FriendsFragment extends Fragment{
 
             @Override
             public void always() {
-                recyclerView.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
+                hideProgressBar();
+            }
+        });
+    }
+
+    private void hideProgressBar() {
+        recyclerView.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+    }
+
+    private void showProgressBar() {
+        recyclerView.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void removeFriend(final String username, final int position) {
+        showProgressBar();
+        Call<ResponseBody> call = service.removeFriend(username);
+        call.enqueue(new CustomCallback<ResponseBody>(getActivity()) {
+            @Override
+            public void onSuccess(ResponseBody model) {
+                Toast.makeText(getActivity(), getString(R.string.message_friend_removed, username),
+                        Toast.LENGTH_LONG).show();
+                items.remove(position);
+                adapter.notifyItemRemoved(position);
+            }
+            @Override
+            public void always() {
+                hideProgressBar();
             }
         });
     }

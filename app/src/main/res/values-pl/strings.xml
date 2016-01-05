@@ -55,4 +55,5 @@
     <string name="details">Szczegóły</string>
     <string name="friends">Znajomi</string>
     <string name="remove_friend">Usuń ze znajomych</string>
+    <string name="message_friend_removed">Usunięto użytkownika %1$s ze znajomych</string>
 </resources>
