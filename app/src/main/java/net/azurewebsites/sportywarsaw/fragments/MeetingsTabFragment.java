@@ -30,11 +30,13 @@ public class MeetingsTabFragment extends Fragment {
 
     private OnMeetingsListFragmentInteractionListener listener;
 
-    @Inject MeetingsService service;
+    @Inject
+    MeetingsService service;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
 
-    public MeetingsTabFragment() {}
+    public MeetingsTabFragment() {
+    }
 
     //TODO: take value indicating which meetings should be loaded
     public static MeetingsTabFragment newInstance() {
@@ -66,24 +68,13 @@ public class MeetingsTabFragment extends Fragment {
         return view;
     }
 
-    //TODO
     private void loadMeetings(final RecyclerView recyclerView) {
-        final List<MeetingModel> meetings = new ArrayList<>();
-
-        Call<MeetingModel> call = service.getMeeting(1);
-        call.enqueue(new CustomCallback<MeetingModel>(getActivity()) {
+        Call<List<MeetingModel>> call = service.getMyMeetings();
+        call.enqueue(new CustomCallback<List<MeetingModel>>(getActivity()) {
             @Override
-            public void onSuccess(MeetingModel model) {
-                meetings.add(model);
-                Call<MeetingModel> call = service.getMeeting(2);
-                call.enqueue(new CustomCallback<MeetingModel>(getActivity()) {
-                    @Override
-                    public void onSuccess(MeetingModel model) {
-                        meetings.add(model);
-                        recyclerView.setAdapter(new MeetingsRecyclerViewAdapter(
-                                meetings, listener, getActivity()));
-                    }
-                });
+            public void onSuccess(List<MeetingModel> models) {
+                recyclerView.setAdapter(new MeetingsRecyclerViewAdapter(
+                        models, listener, getActivity()));
             }
             @Override
             public void always() {
