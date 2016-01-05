@@ -1,14 +1,11 @@
 package net.azurewebsites.sportywarsaw.services;
 
-import android.text.style.ReplacementSpan;
-
 import com.squareup.okhttp.ResponseBody;
 
 import net.azurewebsites.sportywarsaw.models.AddMeetingModel;
 import net.azurewebsites.sportywarsaw.models.ChangeMeetingModel;
 import net.azurewebsites.sportywarsaw.models.MeetingModel;
 import net.azurewebsites.sportywarsaw.models.MeetingPlusModel;
-import net.azurewebsites.sportywarsaw.models.RegisterAccountModel;
 import net.azurewebsites.sportywarsaw.models.UserModel;
 
 import java.util.List;
@@ -33,6 +30,9 @@ public interface MeetingsService {
 
     @GET("meetings/MyMeetings")
     Call<List<MeetingModel>> getMyMeetings();
+
+    @GET("meetings/NotMyMeetings")
+    Call<List<MeetingModel>> getNotMyMeetings();
 
     @POST("meetings/Join/{id}")
     Call<ResponseBody> joinMeeting(@Path("id") int id);

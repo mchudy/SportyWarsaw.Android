@@ -69,4 +69,6 @@
     <string name="badminton" translatable="false">Badminton</string>
     <string name="squash" translatable="false">Squash</string>
     <string name="message_meeting_added">Meeting has been added</string>
+    <string name="my_meetings">My meetings</string>
+    <string name="other_meetings">Other meetings</string>
 </resources>

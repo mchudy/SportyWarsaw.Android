@@ -28,24 +28,31 @@ import retrofit.Call;
 
 public class MeetingsTabFragment extends Fragment {
 
-    private OnMeetingsListFragmentInteractionListener listener;
+    public static final int MY_MEETINGS = 0;
+    public static final int OTHER_MEETINGS = 1;
 
-    @Inject
-    MeetingsService service;
+    private OnMeetingsListFragmentInteractionListener listener;
+    private int type;
+
+    @Inject MeetingsService service;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
 
     public MeetingsTabFragment() {
     }
 
-    //TODO: take value indicating which meetings should be loaded
-    public static MeetingsTabFragment newInstance() {
-        return new MeetingsTabFragment();
+    public static MeetingsTabFragment newInstance(int type) {
+        MeetingsTabFragment fragment = new MeetingsTabFragment();
+        Bundle args = new Bundle();
+        args.putInt("type", type);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        type = getArguments().getInt("type");
         ((MyApplication) getActivity().getApplication()).getServicesComponent().inject(this);
     }
 
@@ -69,7 +76,16 @@ public class MeetingsTabFragment extends Fragment {
     }
 
     private void loadMeetings(final RecyclerView recyclerView) {
-        Call<List<MeetingModel>> call = service.getMyMeetings();
+        Call<List<MeetingModel>> call;
+        switch (type) {
+            case MY_MEETINGS:
+                call = service.getMyMeetings();
+                break;
+            case OTHER_MEETINGS:
+            default:
+                call = service.getNotMyMeetings();
+                break;
+        }
         call.enqueue(new CustomCallback<List<MeetingModel>>(getActivity()) {
             @Override
             public void onSuccess(List<MeetingModel> models) {

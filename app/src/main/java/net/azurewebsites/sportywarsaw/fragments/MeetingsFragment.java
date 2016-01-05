@@ -56,9 +56,6 @@ public class MeetingsFragment extends Fragment {
     private class MeetingsPagerAdapter extends FragmentStatePagerAdapter {
         private static final int TABS_COUNT = 2;
 
-        public static final int TAB_MY_MEETINGS = 0;
-        public static final int TAB_ALL_MEETINGS = 1;
-
         public MeetingsPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
         }
@@ -66,10 +63,10 @@ public class MeetingsFragment extends Fragment {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case TAB_MY_MEETINGS:
-                    return MeetingsTabFragment.newInstance();
+                case MeetingsTabFragment.MY_MEETINGS:
+                    return MeetingsTabFragment.newInstance(MeetingsTabFragment.MY_MEETINGS);
                 default:
-                    return MeetingsTabFragment.newInstance();
+                    return MeetingsTabFragment.newInstance(MeetingsTabFragment.OTHER_MEETINGS);
             }
         }
 
@@ -81,10 +78,10 @@ public class MeetingsFragment extends Fragment {
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position){
-                case TAB_MY_MEETINGS:
-                    return "My meetings";
-                case TAB_ALL_MEETINGS:
-                    return "All meetings";
+                case MeetingsTabFragment.MY_MEETINGS:
+                    return getActivity().getString(R.string.my_meetings);
+                case MeetingsTabFragment.OTHER_MEETINGS:
+                    return getActivity().getString(R.string.other_meetings);
             }
             return null;
         }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -171,7 +172,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         try {
             date = df.parse(text);
         } catch (ParseException e) {
-            e.printStackTrace();
+            Log.e("Parse", e.getMessage());
         }
         return date;
     }

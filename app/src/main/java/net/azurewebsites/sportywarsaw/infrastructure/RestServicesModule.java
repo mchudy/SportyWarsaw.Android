@@ -82,7 +82,7 @@ public class RestServicesModule {
     Gson provideGson() {
         return new GsonBuilder()
                 .registerTypeAdapterFactory(new NullStringToEmptyAdapterFactory())
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
                 .create();
     }
 
