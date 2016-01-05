@@ -17,6 +17,8 @@
     <string name="action_addmeeting">/Dodaj</string>
     <string name="action_savemeeting">Zapisz</string>
     <string name="action_addcomment">Dodaj komentarz</string>
+    <string name="action_changeprofile">Zmień</string>
+    <string name="action_closemeetingdetails">Zamknij</string>
     <string name="error_field_required">To pole jest wymagane</string>
     <string name="action_register">Rejestracja</string>
     <string name="incorrect_username_or_password">Niepoprawna nazwa użytkownika lub hasło</string>
