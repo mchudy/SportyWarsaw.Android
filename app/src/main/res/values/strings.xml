@@ -19,6 +19,8 @@
     <string name="promp_friend">Friend</string>
     <string name="action_sign_in">Sign in</string>
     <string name="error_field_required">This field is required</string>
+    <string name="search_hint">Friend name</string>
+    <string name="action_searchfriends">Search friends</string>
     <string name="action_register">Register</string>
     <string name="action_add_meeting">Add meeting</string>
     <string name="action_savemeeting">Save</string>

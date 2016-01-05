@@ -75,6 +75,7 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
         call.enqueue(new CustomCallback<List<UserModel>>(getActivity()) {
             @Override
             public void onSuccess(List<UserModel> models) {
+                // w razie sukcesu dodawanie przyjaciół
                 adapter.hideProgressBar();
                 for (UserModel model : models) {
                     items.add(model);
