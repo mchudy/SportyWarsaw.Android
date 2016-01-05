@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
+import net.azurewebsites.sportywarsaw.fragments.FriendsFragment;
 import net.azurewebsites.sportywarsaw.fragments.MeetingsFragment;
 import net.azurewebsites.sportywarsaw.fragments.listeners.OnMeetingsListFragmentInteractionListener;
 import net.azurewebsites.sportywarsaw.fragments.SportsFacilitiesFragment;
@@ -122,6 +123,9 @@ public class MainActivity extends AppCompatActivity implements OnMeetingsListFra
                 break;
             case R.id.nav_sports_facilities:
                 switchFragment(SportsFacilitiesFragment.newInstance());
+                break;
+            case R.id.nav_friends:
+                switchFragment(FriendsFragment.newInstance());
                 break;
         }
 

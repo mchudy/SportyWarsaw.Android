@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -7,15 +7,28 @@
     android:paddingBottom="8dp">
 
     <TextView
-        android:id="@+id/friend_firstname"
+        android:id="@+id/friend_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/friend_lastname"
+        android:id="@+id/friend_full_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/friend_username"
         android:layout_marginTop="4dp"
         android:textSize="12sp" />
-</LinearLayout>
+
+    <Button
+        android:id="@+id/remove_friend_button"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/colorAccent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:text="@string/remove_friend" />
+
+</RelativeLayout>

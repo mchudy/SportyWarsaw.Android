@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
@@ -37,7 +38,9 @@ public class SportsFacilitiesFragment extends Fragment {
     private boolean allPagesLoaded = false;
 
     @Inject SportsFacilitiesService service;
-    SportsFacilitiesRecyclerViewAdapter adapter;
+    private SportsFacilitiesRecyclerViewAdapter adapter;
+    private RecyclerView recyclerView;
+    private ProgressBar progressBar;
 
     public SportsFacilitiesFragment() {
     }
@@ -59,7 +62,8 @@ public class SportsFacilitiesFragment extends Fragment {
 
         Context context = view.getContext();
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.sports_facilities_list);
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+        recyclerView = (RecyclerView) view.findViewById(R.id.sports_facilities_list);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
 
@@ -71,6 +75,8 @@ public class SportsFacilitiesFragment extends Fragment {
                 loadNextPage(adapter);
             }
         });
+        recyclerView.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
         loadNextPage(adapter);
         return view;
     }
@@ -91,6 +97,11 @@ public class SportsFacilitiesFragment extends Fragment {
                     adapter.notifyItemInserted(list.size());
                 }
                 adapter.setLoaded();
+                if(currentPage == 1) {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                }
+                currentPage++;
             }
         });
     }
