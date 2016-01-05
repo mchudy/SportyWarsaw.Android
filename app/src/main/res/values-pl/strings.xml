@@ -53,4 +53,6 @@
     <string name="registering">Rejestrowanie</string>
     <string name="view_profile">Zobacz profil</string>
     <string name="details">Szczegóły</string>
+    <string name="friends">Znajomi</string>
+    <string name="remove_friend">Usuń ze znajomych</string>
 </resources>

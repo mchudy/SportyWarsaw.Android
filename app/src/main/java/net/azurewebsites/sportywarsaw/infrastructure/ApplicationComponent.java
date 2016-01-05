@@ -4,6 +4,7 @@ import net.azurewebsites.sportywarsaw.activities.LoginActivity;
 import net.azurewebsites.sportywarsaw.activities.MainActivity;
 import net.azurewebsites.sportywarsaw.activities.RegisterActivity;
 import net.azurewebsites.sportywarsaw.activities.SportsFacilityDetailsActivity;
+import net.azurewebsites.sportywarsaw.fragments.FriendsFragment;
 import net.azurewebsites.sportywarsaw.fragments.MeetingsTabFragment;
 import net.azurewebsites.sportywarsaw.fragments.SportsFacilitiesFragment;
 
@@ -26,4 +27,5 @@ public interface ApplicationComponent {
     void inject(SportsFacilitiesFragment startupFragment);
     void inject(MeetingsTabFragment meetingsFragment);
     void inject(SportsFacilityDetailsActivity sportsFacilityDetailsActivity);
+    void inject(FriendsFragment friendsFragment);
 }

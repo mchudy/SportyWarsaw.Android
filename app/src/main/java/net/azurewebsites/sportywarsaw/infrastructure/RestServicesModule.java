@@ -11,9 +11,11 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
+import net.azurewebsites.sportywarsaw.models.UserModel;
 import net.azurewebsites.sportywarsaw.services.AccountService;
 import net.azurewebsites.sportywarsaw.services.MeetingsService;
 import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;
+import net.azurewebsites.sportywarsaw.services.UserService;
 import net.azurewebsites.sportywarsaw.utils.NullStringToEmptyAdapterFactory;
 
 import java.io.IOException;
@@ -102,6 +104,13 @@ public class RestServicesModule {
     @Singleton
     MeetingsService provideMeetingsService(Retrofit retrofit) {
         MeetingsService service = retrofit.create(MeetingsService.class);
+        return service;
+    }
+
+    @Provides
+    @Singleton
+    UserService provideUserService(Retrofit retrofit) {
+        UserService service = retrofit.create(UserService.class);
         return service;
     }
 

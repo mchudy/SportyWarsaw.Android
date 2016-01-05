@@ -53,4 +53,6 @@
     <string name="registering">Registering</string>
     <string name="view_profile">View profile</string>
     <string name="details">Details</string>
+    <string name="friends">Friends</string>
+    <string name="remove_friend">Remove friend</string>
 </resources>
