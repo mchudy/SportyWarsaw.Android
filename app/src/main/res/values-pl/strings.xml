@@ -8,13 +8,11 @@
     <string name="prompt_title">Tytuł</string>
     <string name="prompt_description">Opis</string>
     <string name="prompt_cost">Koszt</string>
-    <string name="prompt_starttime">Czas rozpoczęcia</string>
-    <string name="prompt_endtime">Czas zakończenia</string>
     <string name="prompt_maxparticipants">Maksymalna ilość uczestników</string>
     <string name="prompt_sporttype">Dyscyplina</string>
     <string name="prompt_addcomment">Komentarz</string>
     <string name="action_sign_in">Zaloguj</string>
-    <string name="action_addmeeting">/Dodaj</string>
+    <string name="action_add_meeting">Dodaj spotkanie</string>
     <string name="action_savemeeting">Zapisz</string>
     <string name="action_addcomment">Dodaj komentarz</string>
     <string name="promp_district">Dzielnica</string>
@@ -56,4 +54,9 @@
     <string name="friends">Znajomi</string>
     <string name="remove_friend">Usuń ze znajomych</string>
     <string name="message_friend_removed">Usunięto użytkownika %1$s ze znajomych</string>
+    <string name="prompt_start_date">Data rozpoczęcia</string>
+    <string name="prompt_start_time">Czas rozpoczęcia</string>
+    <string name="prompt_end_date">Data zakończenia</string>
+    <string name="prompt_end_time">Czas zakończenia</string>
+    <string name="error_start_date_after_end_date">Data rozpoczęcia musi być wcześniejsza niż data zakończenia</string>
 </resources>

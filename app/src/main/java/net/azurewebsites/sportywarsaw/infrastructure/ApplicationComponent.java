@@ -1,5 +1,6 @@
 package net.azurewebsites.sportywarsaw.infrastructure;
 
+import net.azurewebsites.sportywarsaw.activities.AddMeetingActivity;
 import net.azurewebsites.sportywarsaw.activities.LoginActivity;
 import net.azurewebsites.sportywarsaw.activities.MainActivity;
 import net.azurewebsites.sportywarsaw.activities.RegisterActivity;
@@ -28,4 +29,5 @@ public interface ApplicationComponent {
     void inject(MeetingsTabFragment meetingsFragment);
     void inject(SportsFacilityDetailsActivity sportsFacilityDetailsActivity);
     void inject(FriendsFragment friendsFragment);
+    void inject(AddMeetingActivity addMeetingActivity);
 }

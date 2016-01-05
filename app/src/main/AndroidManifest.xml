@@ -28,6 +28,10 @@
             android:name=".activities.SportsFacilityDetailsActivity"
             android:label="@string/details"
             android:parentActivityName=".activities.MainActivity"></activity>
+        <activity
+            android:name=".activities.AddMeetingActivity"
+            android:label="@string/action_add_meeting"
+            android:parentActivityName=".activities.MainActivity"></activity>
     </application>
 
 </manifest>

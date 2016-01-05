@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -77,25 +78,30 @@ public class LoginActivity extends AppCompatActivity  {
     }
 
     private void attemptLogin() {
-        usernameView.setError(null);
-        passwordView.setError(null);
-
         String username = usernameView.getText().toString();
         String password = passwordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
+        TextInputLayout layout = (TextInputLayout) findViewById(R.id.password_layout);
         if (TextUtils.isEmpty(password)) {
-            passwordView.setError(getString(R.string.error_field_required));
+            layout.setError(getString(R.string.error_field_required));
             focusView = passwordView;
             cancel = true;
+        } else {
+            layout.setError(null);
         }
+
+        layout = (TextInputLayout) findViewById(R.id.username_layout);
         if (TextUtils.isEmpty(username)) {
-            usernameView.setError(getString(R.string.error_field_required));
+            layout.setError(getString(R.string.error_field_required));
             focusView = usernameView;
             cancel = true;
+        } else {
+            layout.setError(null);
         }
+
         if (cancel) {
             focusView.requestFocus();
         } else {

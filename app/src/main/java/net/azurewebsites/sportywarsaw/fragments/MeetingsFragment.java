@@ -1,5 +1,6 @@
 package net.azurewebsites.sportywarsaw.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import net.azurewebsites.sportywarsaw.R;
+import net.azurewebsites.sportywarsaw.activities.AddMeetingActivity;
 
 /**
  * Base fragment for showing lists of meetings
@@ -36,8 +38,8 @@ public class MeetingsFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: notify activity via interface
-                Toast.makeText(getActivity(), "New meeting", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), AddMeetingActivity.class);
+                startActivity(intent);
             }
         });
 

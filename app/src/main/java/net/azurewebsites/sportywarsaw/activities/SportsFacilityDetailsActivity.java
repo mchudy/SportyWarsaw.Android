@@ -20,9 +20,6 @@ public class SportsFacilityDetailsActivity extends AppCompatActivity {
 
     private int sportsFacilityId;
 
-
-
-
     @Inject SportsFacilitiesService service;
 
     @Override

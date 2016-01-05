@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -133,32 +134,36 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean validateInput(String username, String password, String email, String confirmPassword) {
         boolean valid = true;
 
+        TextInputLayout layout = (TextInputLayout) findViewById(R.id.username_layout);
         if (username.isEmpty()) {
-            usernameView.setError(getString(R.string.error_field_required));
+            layout.setError(getString(R.string.error_field_required));
             valid = false;
         } else {
-            usernameView.setError(null);
+            layout.setError(null);
         }
 
+        layout = (TextInputLayout) findViewById(R.id.email_layout);
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailView.setError(getString(R.string.error_invalid_email));
+            layout.setError(getString(R.string.error_invalid_email));
             valid = false;
         } else {
-            emailView.setError(null);
+            layout.setError(null);
         }
 
+        layout = (TextInputLayout) findViewById(R.id.password_layout);
         if (password.isEmpty() || password.length() < 6) {
-            passwordView.setError(getString(R.string.error_too_short_password));
+            layout.setError(getString(R.string.error_too_short_password));
             valid = false;
         } else {
-            usernameView.setError(null);
+            layout.setError(null);
         }
 
+        layout = (TextInputLayout) findViewById(R.id.confirm_password_layout);
         if (!confirmPassword.equals(password)) {
-            confirmPasswordView.setError(getString(R.string.error_passwords_do_not_match));
+            layout.setError(getString(R.string.error_passwords_do_not_match));
             valid = false;
         } else {
-            confirmPasswordView.setError(null);
+            layout.setError(null);
         }
 
         return valid;
