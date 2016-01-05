@@ -49,8 +49,4 @@ public interface MeetingsService {
     @DELETE("meetings/{id}")
     Call<ResponseBody> delete(@Path("id") int id);
 
-
-
-
-
 }
