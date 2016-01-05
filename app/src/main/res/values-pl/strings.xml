@@ -17,8 +17,14 @@
     <string name="action_addmeeting">/Dodaj</string>
     <string name="action_savemeeting">Zapisz</string>
     <string name="action_addcomment">Dodaj komentarz</string>
+    <string name="promp_district">Dzielnica</string>
+    <string name="prompt_street">Ulica</string>
+    <string name="prompt_number">Numer</string>
+    <string name="prompt_website">Strona</string>
+    <string name="prompt_phoneNumber">Numer telefonu</string>
     <string name="action_changeprofile">Zmień</string>
     <string name="action_closemeetingdetails">Zamknij</string>
+    <string name="action_closesportfacilitydetails">Zamknij szczegóły</string>
     <string name="error_field_required">To pole jest wymagane</string>
     <string name="action_register">Rejestracja</string>
     <string name="incorrect_username_or_password">Niepoprawna nazwa użytkownika lub hasło</string>
