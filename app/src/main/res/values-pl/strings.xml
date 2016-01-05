@@ -25,6 +25,8 @@
     <string name="action_closemeetingdetails">Zamknij</string>
     <string name="action_closesportfacilitydetails">Zamknij szczegóły</string>
     <string name="error_field_required">To pole jest wymagane</string>
+    <string name="search_hint">Imię przyjaciela</string>
+    <string name="action_searchfriends">Szukaj przyjaciół</string>
     <string name="action_register">Rejestracja</string>
     <string name="incorrect_username_or_password">Niepoprawna nazwa użytkownika lub hasło</string>
     <string name="incorrect_credentials">Niepoprawne dane</string>
