@@ -71,13 +71,8 @@ public class SportsFacilitiesFragment extends Fragment {
                 loadNextPage(adapter);
             }
         });
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         loadNextPage(adapter);
+        return view;
     }
 
     private void loadNextPage(final SportsFacilitiesRecyclerViewAdapter adapter) {
@@ -98,18 +93,5 @@ public class SportsFacilitiesFragment extends Fragment {
                 adapter.setLoaded();
             }
         });
-    }
-
-    private List<SportsFacilityModel> getFirstPage() {
-        Call<List<SportsFacilityModel>> call = service.getPage(currentPage, PAGE_SIZE);
-        call.enqueue(new CustomCallback<List<SportsFacilityModel>>(getActivity()) {
-            @Override
-            public void onSuccess(List<SportsFacilityModel> models) {
-                for(SportsFacilityModel model : models) {
-                   // list.add(model);
-                }
-            }
-        });
-        return null;
     }
 }

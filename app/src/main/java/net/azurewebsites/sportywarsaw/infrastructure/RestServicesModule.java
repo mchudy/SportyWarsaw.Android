@@ -14,6 +14,7 @@ import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 import net.azurewebsites.sportywarsaw.services.AccountService;
 import net.azurewebsites.sportywarsaw.services.MeetingsService;
 import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;
+import net.azurewebsites.sportywarsaw.utils.NullStringToEmptyAdapterFactory;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -78,6 +79,7 @@ public class RestServicesModule {
     @Singleton
     Gson provideGson() {
         return new GsonBuilder()
+                .registerTypeAdapterFactory(new NullStringToEmptyAdapterFactory())
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")
                 .create();
     }
@@ -95,7 +97,6 @@ public class RestServicesModule {
         AccountService service = retrofit.create(AccountService.class);
         return service;
     }
-
 
     @Provides
     @Singleton
