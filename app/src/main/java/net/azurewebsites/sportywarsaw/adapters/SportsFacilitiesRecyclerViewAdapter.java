@@ -1,5 +1,6 @@
 package net.azurewebsites.sportywarsaw.adapters;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.azurewebsites.sportywarsaw.R;
+import net.azurewebsites.sportywarsaw.activities.SportsFacilityDetailsActivity;
 import net.azurewebsites.sportywarsaw.models.SportsFacilityModel;
 
 import java.util.List;
@@ -37,10 +39,18 @@ public class SportsFacilitiesRecyclerViewAdapter extends EndlessScrollBaseAdapte
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof  SportsFacilityViewHolder) {
             SportsFacilityViewHolder viewHolder = (SportsFacilityViewHolder) holder;
-            SportsFacilityModel item = items.get(position);
+            final SportsFacilityModel item = items.get(position);
             viewHolder.item = items.get(position);
             viewHolder.titleView.setText(item.getDescription());
             viewHolder.addressView.setText(getAddressString(item));
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), SportsFacilityDetailsActivity.class);
+                    intent.putExtra("sportsFacilityId", item.getId());
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 

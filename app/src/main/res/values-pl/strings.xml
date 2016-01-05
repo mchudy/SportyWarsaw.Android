@@ -43,4 +43,5 @@
     <string name="authenticating">Uwierzytelnianie</string>
     <string name="registering">Rejestrowanie</string>
     <string name="view_profile">Zobacz profil</string>
+    <string name="details">Szczegóły</string>
 </resources>
