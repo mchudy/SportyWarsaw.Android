@@ -2,14 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <searchable xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:label="@string/app_name"
-        android:hint="@string/search_hint" >
-    </searchable>
-
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -22,4 +14,13 @@
         tools:listitem="@layout/fragment_friend_item" />
 
     <include layout="@layout/progress_bar" />
+
+    <Button
+        android:id="@+id/add_friendbutton"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/action_addfriend"
+        android:textStyle="bold" />
 </RelativeLayout>
