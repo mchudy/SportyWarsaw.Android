@@ -1,6 +1,7 @@
 package net.azurewebsites.sportywarsaw;
 
 import android.app.Application;
+import android.content.Context;
 
 import net.azurewebsites.sportywarsaw.infrastructure.ApplicationComponent;
 import net.azurewebsites.sportywarsaw.infrastructure.ApplicationModule;
@@ -12,10 +13,12 @@ public class MyApplication extends Application {
     private static String baseUrl = "https://sportywarsaw.azurewebsites.net/api/";
 
     private ApplicationComponent servicesComponent;
+    private static Context context;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        MyApplication.context = getApplicationContext();
         servicesComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .restServicesModule(new RestServicesModule(baseUrl))
@@ -24,6 +27,10 @@ public class MyApplication extends Application {
 
     public ApplicationComponent getServicesComponent() {
         return servicesComponent;
+    }
+
+    public static Context getContext() {
+        return MyApplication.context;
     }
 
 }

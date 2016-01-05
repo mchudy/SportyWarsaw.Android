@@ -59,4 +59,11 @@
     <string name="prompt_end_date">Data zakończenia</string>
     <string name="prompt_end_time">Czas zakończenia</string>
     <string name="error_start_date_after_end_date">Data rozpoczęcia musi być wcześniejsza niż data zakończenia</string>
+    <string name="football">Piłka nożna</string>
+    <string name="tennis">Tenis</string>
+    <string name="table_tennis">Tenis stołowy</string>
+    <string name="basketball">Koszykówka</string>
+    <string name="volleyball">Siatkówka</string>
+    <string name="swimming">Pływanie</string>
+    <string name="handball">Piłka ręczna</string>
 </resources>

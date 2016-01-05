@@ -59,4 +59,14 @@
     <string name="prompt_end_date">End date</string>
     <string name="prompt_end_time">End time</string>
     <string name="error_start_date_after_end_date">Start date must be earlier than end date</string>
+    <string name="football">Football</string>
+    <string name="tennis">Tennis</string>
+    <string name="table_tennis">Table tennis</string>
+    <string name="basketball">Basketball</string>
+    <string name="volleyball">Volleyball</string>
+    <string name="swimming">Swimming</string>
+    <string name="handball">Handball</string>
+    <string name="badminton" translatable="false">Badminton</string>
+    <string name="squash" translatable="false">Squash</string>
+    <string name="message_meeting_added">Meeting has been added</string>
 </resources>
