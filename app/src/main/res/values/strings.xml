@@ -18,6 +18,7 @@
     <string name="prompt_number">Number</string>
     <string name="prompt_website">Website</string>
     <string name="prompt_phoneNumber">Phone number</string>
+    <string name="promp_friend">Friend</string>
     <string name="action_sign_in">Sign in</string>
     <string name="error_field_required">This field is required</string>
     <string name="action_register">Register</string>

@@ -22,6 +22,7 @@
     <string name="prompt_number">Numer</string>
     <string name="prompt_website">Strona</string>
     <string name="prompt_phoneNumber">Numer telefonu</string>
+    <string name="promp_friend">Przyjaciel</string>
     <string name="action_changeprofile">Zmień</string>
     <string name="action_closemeetingdetails">Zamknij</string>
     <string name="action_closesportfacilitydetails">Zamknij szczegóły</string>
