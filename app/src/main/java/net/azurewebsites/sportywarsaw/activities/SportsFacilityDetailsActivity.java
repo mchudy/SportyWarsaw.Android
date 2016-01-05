@@ -50,6 +50,4 @@ public class SportsFacilityDetailsActivity extends AppCompatActivity {
             }
         });
     }
-
-    //private
 }
