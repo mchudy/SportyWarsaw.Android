@@ -76,14 +76,14 @@ public abstract class EndlessScrollBaseAdapter<T> extends RecyclerView.Adapter<R
     }
 
     public void showProgressBar() {
-        if(getItemViewType(items.size() - 1) != VIEW_PROGRESS_BAR) {
+        if(!items.isEmpty() && getItemViewType(items.size() - 1) != VIEW_PROGRESS_BAR) {
             items.add(null);
             notifyItemInserted(items.size() - 1);
         }
     }
 
     public void hideProgressBar() {
-        if(getItemViewType(items.size() - 1) == VIEW_PROGRESS_BAR) {
+        if(!items.isEmpty() && getItemViewType(items.size() - 1) == VIEW_PROGRESS_BAR) {
             items.remove(items.size() - 1);
             notifyItemRemoved(items.size());
         }

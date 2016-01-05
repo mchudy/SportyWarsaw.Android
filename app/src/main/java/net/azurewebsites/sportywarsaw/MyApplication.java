@@ -9,7 +9,7 @@ import net.azurewebsites.sportywarsaw.infrastructure.RestServicesModule;
 
 public class MyApplication extends Application {
 
-    private static String baseUrl = "http://192.168.1.15:81/api/";
+    private static String baseUrl = "https://sportywarsaw.azurewebsites.net/api/";
 
     private ApplicationComponent servicesComponent;
 

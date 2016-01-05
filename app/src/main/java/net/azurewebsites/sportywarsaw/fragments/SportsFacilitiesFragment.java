@@ -2,7 +2,6 @@ package net.azurewebsites.sportywarsaw.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +12,7 @@ import android.view.ViewGroup;
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
 import net.azurewebsites.sportywarsaw.adapters.SportsFacilitiesRecyclerViewAdapter;
+import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.SportsFacilityModel;
 import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;
 import net.azurewebsites.sportywarsaw.utils.DividerItemDecoration;
@@ -22,17 +22,25 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import retrofit.Call;
+
 /**
  * Fragment containing a list of sports facilities
  *
  * @author Marcin Chudy
  */
 public class SportsFacilitiesFragment extends Fragment {
-    List<SportsFacilityModel> list  = new ArrayList<>();
+    private static final int PAGE_SIZE = 20;
+
+    private List<SportsFacilityModel> list = new ArrayList<>();
+    private int currentPage = 1;
+    private boolean allPagesLoaded = false;
 
     @Inject SportsFacilitiesService service;
+    SportsFacilitiesRecyclerViewAdapter adapter;
 
-    public SportsFacilitiesFragment() {}
+    public SportsFacilitiesFragment() {
+    }
 
     public static SportsFacilitiesFragment newInstance() {
         return new SportsFacilitiesFragment();
@@ -49,54 +57,59 @@ public class SportsFacilitiesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sports_facilities, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.sports_facilities_list);
         Context context = view.getContext();
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-
-        //TODO load a page from the webservice
-        for (int i = 0; i < 15; i++) {
-            list.add(getModel(i + 1));
-        }
-
-        final SportsFacilitiesRecyclerViewAdapter adapter = new SportsFacilitiesRecyclerViewAdapter(list, recyclerView);
-
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.sports_facilities_list);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
+
+        adapter = new SportsFacilitiesRecyclerViewAdapter(list, recyclerView);
         recyclerView.setAdapter(adapter);
         adapter.setOnLoadMoreListener(new SportsFacilitiesRecyclerViewAdapter.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                loadItems(adapter);
+                loadNextPage(adapter);
             }
         });
-
         return view;
     }
 
-    private void loadItems(final SportsFacilitiesRecyclerViewAdapter adapter) {
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        loadNextPage(adapter);
+    }
+
+    private void loadNextPage(final SportsFacilitiesRecyclerViewAdapter adapter) {
+        if (allPagesLoaded) return;
         adapter.showProgressBar();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        Call<List<SportsFacilityModel>> call = service.getPage(currentPage, PAGE_SIZE);
+        call.enqueue(new CustomCallback<List<SportsFacilityModel>>(getActivity()) {
             @Override
-            public void run() {
+            public void onSuccess(List<SportsFacilityModel> models) {
                 adapter.hideProgressBar();
-                //TODO load a page from the webservice
-                for (int i = 0; i < 5; i++) {
-                    list.add(getModel(list.size() + i));
+                if (models.size() < PAGE_SIZE) {
+                    allPagesLoaded = true;
+                }
+                for (SportsFacilityModel model : models) {
+                    list.add(model);
                     adapter.notifyItemInserted(list.size());
                 }
                 adapter.setLoaded();
             }
-        }, 2000);
+        });
     }
 
-    //TODO
-    public SportsFacilityModel getModel(int i) {
-        SportsFacilityModel model = new SportsFacilityModel();
-        model.setDescription("Sports facility " + Integer.toString(i));
-        model.setStreet("Marszałkowska");
-        model.setNumber(Integer.toString(i));
-        model.setDistrict("Sródmieście");
-        return model;
+    private List<SportsFacilityModel> getFirstPage() {
+        Call<List<SportsFacilityModel>> call = service.getPage(currentPage, PAGE_SIZE);
+        call.enqueue(new CustomCallback<List<SportsFacilityModel>>(getActivity()) {
+            @Override
+            public void onSuccess(List<SportsFacilityModel> models) {
+                for(SportsFacilityModel model : models) {
+                   // list.add(model);
+                }
+            }
+        });
+        return null;
     }
 }
