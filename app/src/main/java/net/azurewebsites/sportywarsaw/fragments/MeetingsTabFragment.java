@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
@@ -30,6 +31,8 @@ public class MeetingsTabFragment extends Fragment {
     private OnMeetingsListFragmentInteractionListener listener;
 
     @Inject MeetingsService service;
+    private RecyclerView recyclerView;
+    private ProgressBar progressBar;
 
     public MeetingsTabFragment() {}
 
@@ -49,10 +52,15 @@ public class MeetingsTabFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meetings_tab, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.meetings_list);
+        recyclerView = (RecyclerView) view.findViewById(R.id.meetings_list);
         Context context = view.getContext();
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+
+        recyclerView.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+
         loadMeetings(recyclerView);
 
         return view;
@@ -76,6 +84,11 @@ public class MeetingsTabFragment extends Fragment {
                                 meetings, listener, getActivity()));
                     }
                 });
+            }
+            @Override
+            public void always() {
+                recyclerView.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         });
     }

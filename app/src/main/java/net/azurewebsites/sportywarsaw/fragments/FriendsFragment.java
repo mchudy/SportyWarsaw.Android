@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
@@ -27,8 +28,10 @@ import retrofit.Call;
 public class FriendsFragment extends Fragment{
     private FriendsRecyclerViewAdapter adapter;
     private List<UserModel> items = new ArrayList<>();
+    private ProgressBar progressBar;
 
     @Inject UserService service;
+    private RecyclerView recyclerView;
 
     public FriendsFragment() {
     }
@@ -50,9 +53,10 @@ public class FriendsFragment extends Fragment{
 
         Context context = view.getContext();
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.friends_list);
+        recyclerView = (RecyclerView) view.findViewById(R.id.friends_list);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
         adapter = new FriendsRecyclerViewAdapter(items, recyclerView);
         recyclerView.setAdapter(adapter);
@@ -63,6 +67,8 @@ public class FriendsFragment extends Fragment{
 //                loadFriends(adapter);
 //            }
 //        });
+        recyclerView.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
         loadFriends(adapter);
         return view;
     }
@@ -79,6 +85,12 @@ public class FriendsFragment extends Fragment{
                     adapter.notifyItemInserted(items.size());
                 }
                 adapter.setLoaded();
+            }
+
+            @Override
+            public void always() {
+                recyclerView.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         });
     }
