@@ -59,10 +59,11 @@ public class SearchFriendsActivity extends AppCompatActivity {
                 {
                  // wyswietlam userów po filtrowaniue
                    // editText.setText("hehe"); // zawiesza
+                    // // TODO: changeview 
                 }
                 else
                 {
-                    // wszystkich userow
+                    /// // TODO: allusers 
                 }
 
             }
