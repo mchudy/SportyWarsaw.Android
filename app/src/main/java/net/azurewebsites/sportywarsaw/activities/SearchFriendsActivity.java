@@ -88,20 +88,20 @@ public class SearchFriendsActivity extends AppCompatActivity {
     {
         // loading all users to list
        // showProgressBar();
-        Call<List<UserModel>> call = service.getMyFriends();
-        call.enqueue(new CustomCallback<ResponseBody>(getActivity()) {
-            @Override
-            public void onSuccess(ResponseBody model) {
+        //Call<List<UserModel>> call = service.getMyFriends();
+        //call.enqueue(new CustomCallback<ResponseBody>(getActivity()) {
+         //   @Override
+        //    public void onSuccess(ResponseBody model) {
                // Toast.makeText(getActivity(), getString(R.string.message_friend_removed, username),
                 //        Toast.LENGTH_LONG).show();
                // items.remove(position);
                // adapter.notifyItemRemoved(position);
-            }
-            @Override
-            public void always() {
-                //hideProgressBar();
-            }
-        });
+        //    }
+        //    @Override
+        //    public void always() {
+        //        //hideProgressBar();
+       //     }
+       // });
     }
 
 

@@ -103,15 +103,15 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
     private void loadNextPage(final FriendsRecyclerViewAdapter adapter) {
         if (allPagesLoaded) return;
         adapter.showProgressBar();
-        Call<List<SportsFacilityModel>> call = service.getPage(currentPage, PAGE_SIZE);
-        call.enqueue(new CustomCallback<List<SportsFacilityModel>>(getActivity()) {
+        Call<List<UserModel>> call = service.getPage(currentPage, PAGE_SIZE);
+        call.enqueue(new CustomCallback<List<UserModel>>(getActivity()) {
             @Override
-            public void onSuccess(List<SportsFacilityModel> models) {
+            public void onSuccess(List<UserModel> models) {
                 adapter.hideProgressBar();
                 if (models.size() < PAGE_SIZE) {
                     allPagesLoaded = true;
                 }
-                for (SportsFacilityModel model : models) {
+                for (UserModel model : models) {
                     items.add(model);
                     adapter.notifyItemInserted(items.size());
                 }
