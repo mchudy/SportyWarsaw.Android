@@ -1,82 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="net.azurewebsites.sportywarsaw.activities.RegisterActivity">
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/id"
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:singleLine="true" />
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPadding="@dimen/cardview_padding">
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/prompt_description"
-            android:maxLines="1"
-            android:singleLine="true" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/district"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/promp_district"
-            android:maxLines="1"
-            android:singleLine="true" />
+                <TextView
+                    android:id="@+id/description_prompt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/details_card_text_margin"
+                    android:layout_marginStart="@dimen/details_card_text_margin"
+                    android:text="@string/prompt_description"
+                    android:textSize="@dimen/card_header_text_size" />
 
-        <TextView
-            android:id="@+id/street"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/prompt_street"
-            android:maxLines="1"
-            android:singleLine="true" />
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/description_prompt"
+                    android:layout_marginLeft="@dimen/details_card_text_margin"
+                    android:layout_marginStart="@dimen/details_card_text_margin"
+                    android:textColor="#202020"
+                    android:textSize="@dimen/card_content_text_size" />
 
-        <TextView
-            android:id="@+id/number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/prompt_number"
-            android:maxLines="1"
-            android:singleLine="true" />
+            </RelativeLayout>
 
-        <TextView
-            android:id="@+id/website"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/prompt_website"
-            android:maxLines="1"
-            android:singleLine="true" />
+        </android.support.v7.widget.CardView>
 
-        <TextView
-            android:id="@+id/phoneNumber"
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/prompt_phoneNumber"
-            android:maxLines="1"
-            android:singleLine="true" />
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPadding="@dimen/cardview_padding">
 
-        <Button
-            android:id="@+id/close_button"
-            style="?android:textAppearanceSmall"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/type_prompt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/details_card_text_margin"
+                    android:layout_marginStart="@dimen/details_card_text_margin"
+                    android:text="@string/sports_facility_type"
+                    android:textSize="@dimen/card_header_text_size" />
+
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/type_prompt"
+                    android:layout_marginLeft="@dimen/details_card_text_margin"
+                    android:layout_marginStart="@dimen/details_card_text_margin"
+                    android:textColor="#202020"
+                    android:textSize="@dimen/card_content_text_size" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/action_closesportfacilitydetails"
-            android:textStyle="bold" />
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPadding="@dimen/cardview_padding">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/map_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_directions_grey_700_24dp" />
+
+                <TextView
+                    android:id="@+id/address_prompt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/details_card_text_margin"
+                    android:layout_marginStart="@dimen/details_card_text_margin"
+                    android:text="@string/address"
+                    android:textSize="@dimen/card_header_text_size" />
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/address_prompt"
+                    android:layout_marginLeft="@dimen/details_card_text_margin"
+                    android:layout_marginStart="@dimen/details_card_text_margin"
+                    android:textColor="#202020"
+                    android:textSize="@dimen/card_content_text_size" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPadding="@dimen/cardview_padding">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/website_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_open_in_browser_grey_700_24dp" />
+
+                <TextView
+                    android:id="@+id/website_prompt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/details_card_text_margin"
+                    android:layout_marginStart="@dimen/details_card_text_margin"
+                    android:text="@string/prompt_website"
+                    android:textSize="@dimen/card_header_text_size" />
+
+                <TextView
+                    android:id="@+id/website"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/website_prompt"
+                    android:layout_marginLeft="@dimen/details_card_text_margin"
+                    android:layout_marginStart="@dimen/details_card_text_margin"
+                    android:textColor="#202020"
+                    android:textSize="@dimen/card_content_text_size" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPadding="@dimen/cardview_padding">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/phone_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_phone_grey_700_24dp" />
+
+                <TextView
+                    android:id="@+id/phone_number_prompt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/details_card_text_margin"
+                    android:layout_marginStart="@dimen/details_card_text_margin"
+                    android:text="@string/prompt_phoneNumber"
+                    android:textSize="@dimen/card_header_text_size" />
+
+                <TextView
+                    android:id="@+id/phone_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/phone_number_prompt"
+                    android:layout_marginLeft="@dimen/details_card_text_margin"
+                    android:layout_marginStart="@dimen/details_card_text_margin"
+                    android:textColor="#202020"
+                    android:textSize="@dimen/card_content_text_size" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
 </RelativeLayout>

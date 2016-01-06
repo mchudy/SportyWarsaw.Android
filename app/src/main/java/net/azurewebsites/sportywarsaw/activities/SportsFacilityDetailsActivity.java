@@ -1,8 +1,14 @@
 package net.azurewebsites.sportywarsaw.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,6 +18,9 @@ import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.SportFacilityPlusModel;
 import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.inject.Inject;
 
 import retrofit.Call;
@@ -20,7 +29,8 @@ public class SportsFacilityDetailsActivity extends AppCompatActivity {
 
     private int sportsFacilityId;
 
-    @Inject SportsFacilitiesService service;
+    @Inject
+    SportsFacilitiesService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,30 +56,74 @@ public class SportsFacilityDetailsActivity extends AppCompatActivity {
         call.enqueue(new CustomCallback<SportFacilityPlusModel>(this) {
             @Override
             public void onSuccess(SportFacilityPlusModel model) {
-                // przepisanie wartosci do danych elementow
                 loadEverything(model);
+                setUpEvents(model);
                 Toast.makeText(SportsFacilityDetailsActivity.this, model.getWebsite(),
                         Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void loadEverything(SportFacilityPlusModel model) {
-        // załadowuje dane do odpowiednich textview
-        TextView descriptionview = (TextView)findViewById(R.id.description);
-        descriptionview.setText(model.getDescription());
-        TextView phonenumberview = (TextView)findViewById(R.id.phoneNumber);
-        phonenumberview.setText(model.getPhoneNumber());
-        TextView idview = (TextView)findViewById(R.id.id);
-        idview.setText(String.valueOf(model.getId()));
-        TextView numberview = (TextView)findViewById(R.id.number);
-        numberview.setText(model.getNumber());
-        TextView districtview = (TextView)findViewById(R.id.district);
-        districtview.setText(model.getDistrict());
-        TextView websiteview = (TextView)findViewById(R.id.website);
-        websiteview.setText(model.getWebsite());
-        TextView streetview = (TextView)findViewById(R.id.street);
-        streetview.setText(model.getStreet());
+    private void setUpEvents(final SportFacilityPlusModel model) {
+        ImageView phoneImageView = (ImageView) findViewById(R.id.phone_image);
+        phoneImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + model.getPhoneNumber()));
+                dialIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(dialIntent);
+            }
+        });
 
+        ImageView mapImageView = (ImageView) findViewById(R.id.map_image);
+        mapImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String address = getAddressString(model) + ", Warsaw, Poland";
+                try {
+                    String query = URLEncoder.encode(address, "utf-8");
+                    Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + query);
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    startActivity(mapIntent);
+                } catch (UnsupportedEncodingException e) {
+                    Log.e("Map", e.getMessage());
+                    Toast.makeText(SportsFacilityDetailsActivity.this, R.string.error_loading_map,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        ImageView websiteImageView = (ImageView) findViewById(R.id.website_image);
+        websiteImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = model.getWebsite();
+                if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                    url = "http://" + url;
+                }
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+            }
+        });
+    }
+
+    private void loadEverything(SportFacilityPlusModel model) {
+        TextView descriptionView = (TextView) findViewById(R.id.description);
+        descriptionView.setText(model.getDescription());
+        TextView phoneNumberView = (TextView) findViewById(R.id.phone_number);
+        phoneNumberView.setText(model.getPhoneNumber());
+        TextView numberView = (TextView) findViewById(R.id.phone_number);
+        numberView.setText(model.getPhoneNumber());
+        TextView websiteView = (TextView) findViewById(R.id.website);
+        websiteView.setText(model.getWebsite());
+        TextView addressView = (TextView) findViewById(R.id.address);
+        addressView.setText(getAddressString(model));
+        TextView typeView = (TextView) findViewById(R.id.type);
+        typeView.setText(model.getType().toString());
+    }
+
+    @NonNull
+    private String getAddressString(SportFacilityPlusModel model) {
+        return model.getStreet() + " " + model.getNumber() + ", " + model.getDistrict();
     }
 }

@@ -5,4 +5,8 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="progress_bar_size">45dp</dimen>
+    <dimen name="cardview_padding">16dp</dimen>
+    <dimen name="details_card_text_margin">45dp</dimen>
+    <dimen name="card_header_text_size">13sp</dimen>
+    <dimen name="card_content_text_size">15sp</dimen>
 </resources>
