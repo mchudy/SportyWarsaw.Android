@@ -57,7 +57,7 @@ public class SearchFriendsActivity extends AppCompatActivity {
         adapter = new FriendsRecyclerViewAdapter(items,recyclerView,fragment);
         editText.addTextChangedListener(new TextWatcher() {
         // przy zmianach tekstu bedzie działało
-          //  public void onTextChanged(CharSequence s, int start, int before,
+            public void onTextChanged(CharSequence s, int start, int before,
                                       int count) {
                 if(!s.equals("") )
                 {
