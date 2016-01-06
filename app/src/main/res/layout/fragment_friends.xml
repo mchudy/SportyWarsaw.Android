@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -15,12 +16,14 @@
 
     <include layout="@layout/progress_bar" />
 
-    <Button
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_friendbutton"
-        style="?android:textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/action_addfriend"
-        android:textStyle="bold" />
-</RelativeLayout>
+        app:layout_anchor="@id/friends_list"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        app:borderWidth="0dp"
+        android:src="@drawable/ic_person_add_white_24dp"
+        app:fabSize="normal" />
+</android.support.design.widget.CoordinatorLayout>

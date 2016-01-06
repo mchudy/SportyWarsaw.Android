@@ -27,7 +27,7 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
         RecyclerView.ViewHolder viewHolder = super.onCreateViewHolder(parent, viewType);
         if (viewType == VIEW_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.fragment_friend_item, parent, false);
+                    R.layout.fragment_user_item, parent, false);
             viewHolder = new FriendViewHolder(view);
 
         }

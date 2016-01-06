@@ -3,6 +3,7 @@ package net.azurewebsites.sportywarsaw.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -67,7 +68,7 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
         adapter = new FriendsRecyclerViewAdapter(items, recyclerView, this);
         recyclerView.setAdapter(adapter);
 
-        Button but = (Button) view.findViewById(R.id.add_friendbutton);
+        FloatingActionButton but = (FloatingActionButton) view.findViewById(R.id.add_friendbutton);
         but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
