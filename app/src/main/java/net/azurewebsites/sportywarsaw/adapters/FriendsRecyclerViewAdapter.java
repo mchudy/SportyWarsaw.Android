@@ -27,7 +27,7 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
         RecyclerView.ViewHolder viewHolder = super.onCreateViewHolder(parent, viewType);
         if (viewType == VIEW_ITEM) {
             View view = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.fragment_user_item, parent, false);
+                    R.layout.fragment_friend_item, parent, false);
             viewHolder = new FriendViewHolder(view);
 
         }
@@ -69,7 +69,6 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
         public final TextView fullNameView;
         public final Button removeFriendButton;
         public UserModel item;
-       // public final Button addFriendButton;
 
         public FriendViewHolder(View view) {
             super(view);
@@ -77,7 +76,6 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
             usernameView = (TextView) view.findViewById(R.id.friend_username);
             fullNameView = (TextView) view.findViewById(R.id.friend_full_name);
             removeFriendButton = (Button) view.findViewById(R.id.remove_friend_button);
-            //addFriendButton = (Button) view.findViewById(R.id.add_friendbutton);
         }
     }
 
