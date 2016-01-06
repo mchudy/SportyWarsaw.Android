@@ -51,7 +51,6 @@ public class MeetingsFragment extends Fragment {
         return view;
     }
 
-    //TODO: show different types of meetings
     private class MeetingsPagerAdapter extends FragmentStatePagerAdapter {
         private static final int TABS_COUNT = 2;
 

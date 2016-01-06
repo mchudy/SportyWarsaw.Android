@@ -2,12 +2,13 @@ package net.azurewebsites.sportywarsaw.models;
 
 import net.azurewebsites.sportywarsaw.enums.SportType;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Jan Kierzkowski on 04.01.2016.
  */
-public class MeetingPlusModel {
+public class MeetingPlusModel implements Serializable {
     private int id;
     private String title;
     private int maxParticipants;

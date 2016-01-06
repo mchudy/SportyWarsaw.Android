@@ -79,4 +79,5 @@
     <string name="other_meetings">Inne spotkania</string>
     <string name="message_meeting_added">Spotkanie zostało dodane</string>
     <string name="error_loading_map">Wystąpił błąd podczas ładowania mapy</string>
+    <string name="participants">Uczestnicy</string>
 </resources>

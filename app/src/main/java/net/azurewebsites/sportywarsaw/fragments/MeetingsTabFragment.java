@@ -13,7 +13,6 @@ import android.widget.ProgressBar;
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
 import net.azurewebsites.sportywarsaw.adapters.MeetingsRecyclerViewAdapter;
-import net.azurewebsites.sportywarsaw.fragments.listeners.OnMeetingsListFragmentInteractionListener;
 import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.MeetingModel;
 import net.azurewebsites.sportywarsaw.services.MeetingsService;
@@ -30,7 +29,6 @@ public class MeetingsTabFragment extends Fragment {
     public static final int MY_MEETINGS = 0;
     public static final int OTHER_MEETINGS = 1;
 
-    private OnMeetingsListFragmentInteractionListener listener;
     private int type;
 
     @Inject MeetingsService service;
@@ -89,7 +87,7 @@ public class MeetingsTabFragment extends Fragment {
             @Override
             public void onSuccess(List<MeetingModel> models) {
                 recyclerView.setAdapter(new MeetingsRecyclerViewAdapter(
-                        models, listener, getActivity()));
+                        models, getActivity()));
             }
             @Override
             public void always() {
@@ -97,22 +95,5 @@ public class MeetingsTabFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
             }
         });
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnMeetingsListFragmentInteractionListener) {
-            listener = (OnMeetingsListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnMeetingsListFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        listener = null;
     }
 }

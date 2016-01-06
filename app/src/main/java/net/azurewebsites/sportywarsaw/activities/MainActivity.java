@@ -22,8 +22,6 @@ import net.azurewebsites.sportywarsaw.R;
 import net.azurewebsites.sportywarsaw.fragments.FriendsFragment;
 import net.azurewebsites.sportywarsaw.fragments.MeetingsFragment;
 import net.azurewebsites.sportywarsaw.fragments.SportsFacilitiesFragment;
-import net.azurewebsites.sportywarsaw.fragments.listeners.OnMeetingsListFragmentInteractionListener;
-import net.azurewebsites.sportywarsaw.models.MeetingModel;
 
 import javax.inject.Inject;
 
@@ -34,7 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  *
  * @author Marcin Chudy
  */
-public class MainActivity extends AppCompatActivity implements OnMeetingsListFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity{
 
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
@@ -158,10 +156,5 @@ public class MainActivity extends AppCompatActivity implements OnMeetingsListFra
                 .add(R.id.main_content, MeetingsFragment.newInstance())
                 .disallowAddToBackStack()
                 .commit();
-    }
-
-    @Override
-    public void onMeetingsListFragmentInteraction(MeetingModel item) {
-        Toast.makeText(this, "Selected item " + item.getTitle(), Toast.LENGTH_SHORT).show();
     }
 }

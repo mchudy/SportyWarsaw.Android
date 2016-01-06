@@ -1,6 +1,7 @@
 package net.azurewebsites.sportywarsaw.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -9,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.azurewebsites.sportywarsaw.R;
-import net.azurewebsites.sportywarsaw.fragments.listeners.OnMeetingsListFragmentInteractionListener;
+import net.azurewebsites.sportywarsaw.activities.MeetingDetailsActivity;
 import net.azurewebsites.sportywarsaw.models.MeetingModel;
 
 import java.util.List;
@@ -22,14 +23,11 @@ import java.util.List;
 public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRecyclerViewAdapter.MeetingViewHolder> {
 
     private final List<MeetingModel> values;
-    private final OnMeetingsListFragmentInteractionListener listener;
     private Context context;
 
     public MeetingsRecyclerViewAdapter(List<MeetingModel> items,
-                                       OnMeetingsListFragmentInteractionListener listener,
                                        Context context) {
         values = items;
-        this.listener = listener;
         this.context = context;
     }
 
@@ -42,7 +40,7 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
 
     @Override
     public void onBindViewHolder(final MeetingViewHolder holder, int position) {
-        MeetingModel item = values.get(position);
+        final MeetingModel item = values.get(position);
         holder.item = values.get(position);
         holder.titleView.setText(item.getTitle());
         holder.startDateView.setText(DateUtils.getRelativeDateTimeString(
@@ -56,9 +54,9 @@ public class MeetingsRecyclerViewAdapter extends RecyclerView.Adapter<MeetingsRe
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (null != listener) {
-                    listener.onMeetingsListFragmentInteraction(holder.item);
-                }
+                Intent intent = new Intent(context, MeetingDetailsActivity.class);
+                intent.putExtra("meetingId", item.getId());
+                context.startActivity(intent);
             }
         });
     }
