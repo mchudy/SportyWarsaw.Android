@@ -23,11 +23,14 @@ import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.AddCommentModel;
 import net.azurewebsites.sportywarsaw.models.CommentModel;
 import net.azurewebsites.sportywarsaw.models.MeetingPlusModel;
+import net.azurewebsites.sportywarsaw.models.SportFacilityPlusModel;
+import net.azurewebsites.sportywarsaw.models.SportsFacilityModel;
 import net.azurewebsites.sportywarsaw.models.UserModel;
 import net.azurewebsites.sportywarsaw.services.CommentsService;
 
 import org.w3c.dom.Text;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,8 +67,10 @@ public class MeetingDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meeting_details, container, false);
+        updateDetails(view);
+
         Context context = view.getContext();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        org.solovyev.android.views.llm.LinearLayoutManager layoutManager = new org.solovyev.android.views.llm.LinearLayoutManager(getActivity());
         commentsView = (RecyclerView) view.findViewById(R.id.comments_view);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
         commentsView.setLayoutManager(layoutManager);
@@ -87,6 +92,28 @@ public class MeetingDetailsFragment extends Fragment {
         loadComments();
 
         return view;
+    }
+
+    private void updateDetails(View view) {
+        SportFacilityPlusModel facility = model.getSportsFacility();
+        String addressString = facility.getStreet() + " " + facility.getNumber() + ", " + facility.getDistrict();
+
+        TextView addressView = (TextView) view.findViewById(R.id.sports_facility_address);
+        addressView.setText(addressString);
+
+        TextView sportTypeView = (TextView) view.findViewById(R.id.sport_type);
+        sportTypeView.setText(model.getSportType().toString());
+
+        TextView costView = (TextView) view.findViewById(R.id.cost);
+        NumberFormat baseFormat = NumberFormat.getCurrencyInstance();
+        String moneyString = baseFormat.format(model.getCost());
+        if(model.getCost() == 0.0) {
+            costView.setText(R.string.free);
+        }
+
+        TextView description = (TextView) view.findViewById(R.id.sports_facility_description);
+        description.setText(facility.getDescription());
+
     }
 
     private void addComment(String text) {

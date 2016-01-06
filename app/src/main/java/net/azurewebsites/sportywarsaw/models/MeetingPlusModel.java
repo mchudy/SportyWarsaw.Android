@@ -17,8 +17,8 @@ public class MeetingPlusModel implements Serializable {
     private Date endTime;
     private SportType sportType;
     private String description;
-    private String OrganizerName;
-    private SportFacilityPlusModel SportsFacility;
+    private String organizerName;
+    private SportFacilityPlusModel sportsFacility;
 
     public int getId() {
         return id;
@@ -85,18 +85,18 @@ public class MeetingPlusModel implements Serializable {
     }
 
     public String getOrganizerName() {
-        return OrganizerName;
+        return organizerName;
     }
 
     public void setOrganizerName(String organizerName) {
-        OrganizerName = organizerName;
+        this.organizerName = organizerName;
     }
 
     public SportFacilityPlusModel getSportsFacility() {
-        return SportsFacility;
+        return sportsFacility;
     }
 
     public void setSportsFacility(SportFacilityPlusModel sportsFacility) {
-        SportsFacility = sportsFacility;
+        sportsFacility = sportsFacility;
     }
 }

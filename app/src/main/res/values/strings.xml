@@ -81,4 +81,5 @@
     <string name="sports_field">Sports field</string>
     <string name="error_loading_map">An error occured while showing the map</string>
     <string name="participants">Participants</string>
+    <string name="free">Free</string>
 </resources>

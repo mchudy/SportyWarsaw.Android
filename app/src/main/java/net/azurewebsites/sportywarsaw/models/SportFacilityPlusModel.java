@@ -1,13 +1,14 @@
 package net.azurewebsites.sportywarsaw.models;
 import net.azurewebsites.sportywarsaw.enums.SportsFacilityType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Jan Kierzkowski on 04.01.2016.
  */
-public class SportFacilityPlusModel {
+public class SportFacilityPlusModel implements Serializable{
     private int id;
     private String street;
     private String number;
