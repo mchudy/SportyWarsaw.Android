@@ -95,8 +95,28 @@ public class SearchFriendsAdapter extends ArrayAdapter<UserModel> {
                 } catch (IOException e) {
                     Log.e("Service", e.getMessage());
                 }
-                filterResults.values = items;
-                filterResults.count = items.size();
+               // filterResults.values = items;
+              //  filterResults.count = items.size();
+
+                List<UserModel> list = items;
+                int count = items.size();
+
+                // teraz przefiltrowanie
+                String filter = constraint.toString().toLowerCase();
+                List<UserModel> final_list = new ArrayList<UserModel>();
+                String filterablestring;
+                for(int i =0; i<count;i++)
+                {
+                    filterablestring = list.get(i).getUsername().toLowerCase();
+                    if(filterablestring.contains(filter))
+                    {
+                        final_list.add(list.get(i));
+                    }
+                }
+
+                filterResults.values = final_list;
+                filterResults.count = final_list.size();
+                
             }
             return filterResults;
         }
