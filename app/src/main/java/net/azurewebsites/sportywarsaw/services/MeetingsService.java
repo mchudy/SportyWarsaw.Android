@@ -17,6 +17,7 @@ import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.PUT;
 import retrofit.http.Path;
+import retrofit.http.Query;
 
 public interface MeetingsService {
     @GET("meetings/{id}")
@@ -48,5 +49,9 @@ public interface MeetingsService {
 
     @DELETE("meetings/{id}")
     Call<ResponseBody> delete(@Path("id") int id);
+
+    @GET("meetings/isParticipant")
+    Call<Boolean> isParticipant(@Query("username") String username,
+                                @Query("meetingId") int meetingId);
 
 }

@@ -82,4 +82,7 @@
     <string name="error_loading_map">An error occured while showing the map</string>
     <string name="participants">Participants</string>
     <string name="free">Free</string>
+    <string name="organizer">Organizer</string>
+    <string name="message_joined_meeting">You joined the meeting</string>
+    <string name="message_left_meeting">You left the meeting</string>
 </resources>

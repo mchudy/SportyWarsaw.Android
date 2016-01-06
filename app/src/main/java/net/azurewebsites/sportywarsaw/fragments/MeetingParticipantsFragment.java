@@ -74,7 +74,7 @@ public class MeetingParticipantsFragment extends Fragment {
 
     private void loadParticipants() {
         adapter.showProgressBar();
-        Call<List<UserModel>> call = service.getMeetingParticipants(model.getId());
+        final Call<List<UserModel>> call = service.getMeetingParticipants(model.getId());
         call.enqueue(new CustomCallback<List<UserModel>>(getActivity()) {
             @Override
             public void onSuccess(List<UserModel> models) {
@@ -85,6 +85,7 @@ public class MeetingParticipantsFragment extends Fragment {
                 }
                 adapter.setLoaded();
             }
+
             @Override
             public void always() {
                 recyclerView.setVisibility(View.VISIBLE);
