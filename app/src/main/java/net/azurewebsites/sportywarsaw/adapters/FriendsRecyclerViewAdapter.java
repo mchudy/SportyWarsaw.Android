@@ -35,6 +35,15 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
             View view = LayoutInflater.from(parent.getContext()).inflate(
                     R.layout.fragment_friend_item, parent, false);
             viewHolder = new FriendViewHolder(view);
+            ((FriendViewHolder) viewHolder).addFriendButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // pokazanie nowego widoku do wyszukiwania przyjaciół
+                    Intent intent = new Intent(context, SearchFriendsActivity.class);
+                    //intent.putExtra("meetingId", item.getId());
+                    context.startActivity(intent);
+                }
+            });
         }
         return viewHolder;
     }

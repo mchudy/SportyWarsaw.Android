@@ -51,7 +51,7 @@ public class SearchFriendsAdapter extends ArrayAdapter<UserModel> {
         View view = convertView;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.fragment_friend_item, parent, false);
+            view = inflater.inflate(R.layout.fragment_friendsfinder, parent, false);
         }
         UserModel item = items.get(position);
         if (item != null) {
