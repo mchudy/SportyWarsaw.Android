@@ -33,6 +33,11 @@ public interface SportsFacilitiesService {
     Call<List<SportsFacilityModel>> getPage( @Query("index") int index,
                                              @Query("size") int size);
 
+    @GET("sportsFacilities/Page")
+    Call<List<SportsFacilityModel>> getPageFiltered( @Query("index") int index,
+                                                     @Query("size") int size,
+                                                     @Query("nameFilter") String filter);
+
     @GET("sportsFacilities/All")
     Call<List<SportsFacilityModel>> getAll();
 
