@@ -1,5 +1,6 @@
 package net.azurewebsites.sportywarsaw.adapters;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.azurewebsites.sportywarsaw.R;
+import net.azurewebsites.sportywarsaw.activities.UserProfileActivity;
 import net.azurewebsites.sportywarsaw.models.UserModel;
 
 import java.util.List;
@@ -15,8 +17,9 @@ import java.util.List;
 public class UsersRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserModel> {
     private Fragment fragment;
 
-    public UsersRecyclerViewAdapter(List<UserModel> items, RecyclerView recyclerView) {
+    public UsersRecyclerViewAdapter(List<UserModel> items, RecyclerView recyclerView, Fragment fragment) {
         super(items, recyclerView);
+        this.fragment = fragment;
     }
 
     @Override
@@ -41,7 +44,9 @@ public class UsersRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserModel
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO: show profile
+                    Intent intent = new Intent(fragment.getActivity(), UserProfileActivity.class);
+                    intent.putExtra("username", item.getUsername());
+                    fragment.getActivity().startActivity(intent);
                 }
             });
         }

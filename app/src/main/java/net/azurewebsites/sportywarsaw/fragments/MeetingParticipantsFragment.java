@@ -12,7 +12,6 @@ import android.widget.ProgressBar;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
-import net.azurewebsites.sportywarsaw.adapters.FriendsRecyclerViewAdapter;
 import net.azurewebsites.sportywarsaw.adapters.UsersRecyclerViewAdapter;
 import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.MeetingPlusModel;
@@ -63,7 +62,7 @@ public class MeetingParticipantsFragment extends Fragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
-        adapter = new UsersRecyclerViewAdapter(participants, recyclerView);
+        adapter = new UsersRecyclerViewAdapter(participants, recyclerView, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);

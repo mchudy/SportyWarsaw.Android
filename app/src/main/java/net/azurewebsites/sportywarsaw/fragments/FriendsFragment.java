@@ -3,7 +3,6 @@ package net.azurewebsites.sportywarsaw.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +17,6 @@ import com.squareup.okhttp.ResponseBody;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
-import net.azurewebsites.sportywarsaw.activities.AddMeetingActivity;
 import net.azurewebsites.sportywarsaw.activities.SearchFriendsActivity;
 import net.azurewebsites.sportywarsaw.adapters.FriendsRecyclerViewAdapter;
 import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;

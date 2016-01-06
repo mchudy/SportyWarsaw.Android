@@ -1,7 +1,5 @@
 package net.azurewebsites.sportywarsaw.adapters;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,8 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import net.azurewebsites.sportywarsaw.R;
-import net.azurewebsites.sportywarsaw.activities.MeetingDetailsActivity;
-import net.azurewebsites.sportywarsaw.activities.SearchFriendsActivity;
 import net.azurewebsites.sportywarsaw.models.UserModel;
 
 import java.util.List;

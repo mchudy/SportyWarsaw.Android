@@ -42,7 +42,6 @@ public interface UserService {
     @POST("Users/RemoveFriend/{username}")
     Call<ResponseBody> removeFriend(@Path("username") String username);
 
-    //// TODO: w serwerze jest post, nie powinien byc put? 
     @POST("Users/UpdateProfile")
     Call<ResponseBody> put(@Body UserPlusModel userPlusModel);
 

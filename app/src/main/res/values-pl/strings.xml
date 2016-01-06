@@ -80,4 +80,8 @@
     <string name="message_meeting_added">Spotkanie zostało dodane</string>
     <string name="error_loading_map">Wystąpił błąd podczas ładowania mapy</string>
     <string name="participants">Uczestnicy</string>
+    <string name="organizer">Organizator</string>
+    <string name="message_left_meeting">Opuściłeś spotkanie</string>
+    <string name="message_joined_meeting">Dołączyłeś do spotkania</string>
+    <string name="free">Darmowe</string>
 </resources>

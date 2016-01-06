@@ -1,36 +1,22 @@
 package net.azurewebsites.sportywarsaw.activities;
 
-import android.app.Fragment;
-import android.app.SearchManager;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 
 import net.azurewebsites.sportywarsaw.R;
 import net.azurewebsites.sportywarsaw.adapters.FriendsRecyclerViewAdapter;
-import net.azurewebsites.sportywarsaw.adapters.SearchFacilityArrayAdapter;
-import net.azurewebsites.sportywarsaw.adapters.SearchFriendsAdapter;
-import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.UserModel;
-import net.azurewebsites.sportywarsaw.services.MeetingsService;
-import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;
 import net.azurewebsites.sportywarsaw.services.UserService;
-import net.azurewebsites.sportywarsaw.utils.DelayAutoCompleteTextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import retrofit.Call;
 
 public class SearchFriendsActivity extends AppCompatActivity {
 

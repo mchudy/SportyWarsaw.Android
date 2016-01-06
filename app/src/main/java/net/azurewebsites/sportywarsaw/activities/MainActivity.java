@@ -106,7 +106,9 @@ public class MainActivity extends AppCompatActivity{
         drawerHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Your profile", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
+                intent.putExtra("username", preferences.getString("username",""));
+                startActivity(intent);
             }
         });
     }

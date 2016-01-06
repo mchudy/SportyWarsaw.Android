@@ -4,7 +4,6 @@ import net.azurewebsites.sportywarsaw.enums.SportType;
 
 import java.util.Date;
 
-//TODO: not complete yet
 public class MeetingModel {
     private int id;
     private String title;

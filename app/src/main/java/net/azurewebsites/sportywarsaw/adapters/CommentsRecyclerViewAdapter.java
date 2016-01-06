@@ -1,6 +1,7 @@
 package net.azurewebsites.sportywarsaw.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.azurewebsites.sportywarsaw.R;
+import net.azurewebsites.sportywarsaw.activities.UserProfileActivity;
 import net.azurewebsites.sportywarsaw.models.CommentModel;
 
 import java.util.List;
@@ -52,7 +54,9 @@ public class CommentsRecyclerViewAdapter extends EndlessScrollBaseAdapter<Commen
             viewHolder.authorView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO: show profile page
+                    Intent intent = new Intent(context, UserProfileActivity.class);
+                    intent.putExtra("username", item.getUsername());
+                    context.startActivity(intent);
                 }
             });
         }
