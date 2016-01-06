@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
+import net.azurewebsites.sportywarsaw.fragments.MeetingDetailsFragment;
 import net.azurewebsites.sportywarsaw.fragments.MeetingParticipantsFragment;
 import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.MeetingPlusModel;
@@ -74,7 +75,7 @@ public class MeetingDetailsActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case DETAILS_TAB:
-                    //TODO
+                    return MeetingDetailsFragment.newInstance(model);
                 case PARTICIPANTS_TAB:
                 default:
                     return MeetingParticipantsFragment.newInstance(model);

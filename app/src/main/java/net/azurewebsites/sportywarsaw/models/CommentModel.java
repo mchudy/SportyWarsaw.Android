@@ -8,40 +8,40 @@ import java.util.Date;
  */
 public class CommentModel {
 
-    private int Id;
-    private String Text;
-    private Date Date;
-    private String UserId;
+    private int id;
+    private String text;
+    private Date date;
+    private String username;
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getText() {
-        return Text;
+        return text;
     }
 
     public void setText(String text) {
-        Text = text;
+        this.text = text;
     }
 
     public java.util.Date getDate() {
-        return Date;
+        return date;
     }
 
-    public String getUserId() {
-        return UserId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(String userId) {
-        UserId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setDate(java.util.Date date) {
-        Date = date;
+        this.date = date;
     }
 }
