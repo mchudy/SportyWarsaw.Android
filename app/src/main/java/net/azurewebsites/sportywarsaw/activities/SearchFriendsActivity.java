@@ -1,5 +1,6 @@
 package net.azurewebsites.sportywarsaw.activities;
 
+import android.app.Fragment;
 import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -40,6 +41,7 @@ public class SearchFriendsActivity extends AppCompatActivity {
     @Inject
     UserService service;
     private RecyclerView recyclerView;
+    private android.support.v4.app.Fragment fragment;
 
     private int selectedFacilityId = -1;
 
@@ -49,11 +51,13 @@ public class SearchFriendsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_search_friends); // powinno sie ustawic
         setContentView(R.layout.fragment_friendsfinder); // powinno sie ustawic
+        // zlapac items
 
         final EditText editText = (EditText)findViewById(R.id.friend_finder_text);
+        adapter = new FriendsRecyclerViewAdapter(items,recyclerView,fragment);
         editText.addTextChangedListener(new TextWatcher() {
         // przy zmianach tekstu bedzie działało
-            public void onTextChanged(CharSequence s, int start, int before,
+          //  public void onTextChanged(CharSequence s, int start, int before,
                                       int count) {
                 if(!s.equals("") )
                 {
