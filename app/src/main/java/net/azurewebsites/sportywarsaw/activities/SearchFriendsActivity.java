@@ -7,9 +7,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.squareup.okhttp.ResponseBody;
 
 import net.azurewebsites.sportywarsaw.R;
 import net.azurewebsites.sportywarsaw.adapters.FriendsRecyclerViewAdapter;
+import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.UserModel;
 import net.azurewebsites.sportywarsaw.services.UserService;
 
@@ -18,12 +22,15 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import retrofit.Call;
+
 public class SearchFriendsActivity extends AppCompatActivity {
 
     private FriendsRecyclerViewAdapter adapter;
     private List<UserModel> items = new ArrayList<>();
     private ProgressBar progressBar;
-
+    private List<UserModel> allUsers;
+    private List<UserModel> filteredUsers;
     @Inject
     UserService service;
     private RecyclerView recyclerView;
@@ -72,9 +79,29 @@ public class SearchFriendsActivity extends AppCompatActivity {
        // }
     }
 
-    private void Search(String query)
+    private void filterMyList(String query)
     {
-        // // TODO: searching query 
+        // filtering
+    }
+
+    private void loadAllUsers()
+    {
+        // loading all users to list
+       // showProgressBar();
+        Call<List<UserModel>> call = service.getMyFriends();
+        call.enqueue(new CustomCallback<ResponseBody>(getActivity()) {
+            @Override
+            public void onSuccess(ResponseBody model) {
+               // Toast.makeText(getActivity(), getString(R.string.message_friend_removed, username),
+                //        Toast.LENGTH_LONG).show();
+               // items.remove(position);
+               // adapter.notifyItemRemoved(position);
+            }
+            @Override
+            public void always() {
+                //hideProgressBar();
+            }
+        });
     }
 
 

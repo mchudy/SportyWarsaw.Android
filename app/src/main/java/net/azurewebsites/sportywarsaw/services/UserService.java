@@ -2,6 +2,7 @@ package net.azurewebsites.sportywarsaw.services;
 
 import com.squareup.okhttp.ResponseBody;
 
+import net.azurewebsites.sportywarsaw.models.SportsFacilityModel;
 import net.azurewebsites.sportywarsaw.models.UserModel;
 import net.azurewebsites.sportywarsaw.models.UserPlusModel;
 
@@ -13,6 +14,7 @@ import retrofit.http.DELETE;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Path;
+import retrofit.http.Query;
 
 /**
  * Created by Jan Kierzkowski on 04.01.2016.
@@ -26,6 +28,15 @@ public interface UserService {
 
     @GET("Users/MyFriends")
     Call<List<UserModel>> getMyFriends();
+
+    @GET("Users/Page")
+    Call<List<UserModel>> getPage( @Query("index") int index,
+                                             @Query("size") int size);
+
+    @GET("Users/Page")
+    Call<List<UserModel>> getPageFiltered( @Query("index") int index,
+                                                     @Query("size") int size,
+                                                     @Query("nameFilter") String filter);
 
     @GET("Users/MyPendingFriendsRequests")
     Call<List<UserModel>> getMyPendingFriendRequests();

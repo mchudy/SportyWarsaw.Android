@@ -20,7 +20,9 @@ import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
 import net.azurewebsites.sportywarsaw.activities.SearchFriendsActivity;
 import net.azurewebsites.sportywarsaw.adapters.FriendsRecyclerViewAdapter;
+import net.azurewebsites.sportywarsaw.adapters.SportsFacilitiesRecyclerViewAdapter;
 import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
+import net.azurewebsites.sportywarsaw.models.SportsFacilityModel;
 import net.azurewebsites.sportywarsaw.models.UserModel;
 import net.azurewebsites.sportywarsaw.services.UserService;
 import net.azurewebsites.sportywarsaw.utils.DividerItemDecoration;
@@ -36,6 +38,11 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
     private FriendsRecyclerViewAdapter adapter;
     private List<UserModel> items = new ArrayList<>();
     private ProgressBar progressBar;
+
+    private static final int PAGE_SIZE = 20;
+    private int currentPage = 1;
+    private boolean allPagesLoaded = false;
+
 
     @Inject UserService service;
     private RecyclerView recyclerView;
@@ -78,12 +85,45 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
         });
         //TODO: pagination
         showProgressBar();
-
+        adapter.setOnLoadMoreListener(new SportsFacilitiesRecyclerViewAdapter.OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                loadNextPage(adapter);
+            }
+        });
+        recyclerView.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+        loadNextPage(adapter);
 
         loadFriends(adapter);
         return view;
     }
 
+
+    private void loadNextPage(final FriendsRecyclerViewAdapter adapter) {
+        if (allPagesLoaded) return;
+        adapter.showProgressBar();
+        Call<List<SportsFacilityModel>> call = service.getPage(currentPage, PAGE_SIZE);
+        call.enqueue(new CustomCallback<List<SportsFacilityModel>>(getActivity()) {
+            @Override
+            public void onSuccess(List<SportsFacilityModel> models) {
+                adapter.hideProgressBar();
+                if (models.size() < PAGE_SIZE) {
+                    allPagesLoaded = true;
+                }
+                for (SportsFacilityModel model : models) {
+                    items.add(model);
+                    adapter.notifyItemInserted(items.size());
+                }
+                adapter.setLoaded();
+                if(currentPage == 1) {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                }
+                currentPage++;
+            }
+        });
+    }
     private void loadFriends(final FriendsRecyclerViewAdapter adapter) {
         adapter.showProgressBar();
         Call<List<UserModel>> call = service.getMyFriends();
