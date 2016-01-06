@@ -26,6 +26,9 @@ import javax.inject.Inject;
 
 import retrofit.Call;
 
+/**
+ * Created by Marcin Chudy on 07/01/2016.
+ */
 public class MeetingParticipantsFragment extends Fragment {
     private List<UserModel> participants = new ArrayList<>();
     private MeetingPlusModel model;

@@ -29,9 +29,6 @@ public class SearchFriendsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private android.support.v4.app.Fragment fragment;
 
-    private int selectedFacilityId = -1;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +36,9 @@ public class SearchFriendsActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_friendsfinder); // powinno sie ustawic
         // zlapac items
 
+        recyclerView = (RecyclerView) findViewById(R.id.friends_list);
         final EditText editText = (EditText)findViewById(R.id.friend_finder_text);
-        adapter = new FriendsRecyclerViewAdapter(items,recyclerView,fragment);
+        adapter = new FriendsRecyclerViewAdapter(items, recyclerView, fragment);
         editText.addTextChangedListener(new TextWatcher() {
         // przy zmianach tekstu bedzie działało
             public void onTextChanged(CharSequence s, int start, int before,

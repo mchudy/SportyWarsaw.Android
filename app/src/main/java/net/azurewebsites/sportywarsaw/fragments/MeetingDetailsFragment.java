@@ -42,15 +42,13 @@ import javax.inject.Inject;
 
 import retrofit.Call;
 
+/**
+ * Created by Marcin Chudy on 07/01/2016.
+ */
 public class MeetingDetailsFragment extends Fragment {
     private MeetingPlusModel model;
-    @Inject CommentsService service;
     @Inject MeetingsService meetingsService;
     @Inject SharedPreferences preferences;
-    private CommentsRecyclerViewAdapter adapter;
-    private List<CommentModel> comments = new ArrayList<>();
-    private ProgressBar progressBar;
-    private RecyclerView commentsView;
     private Button leaveButton;
     private Button joinButton;
     private int defaultColor;
@@ -81,28 +79,7 @@ public class MeetingDetailsFragment extends Fragment {
         leaveButton = (Button) view.findViewById(R.id.leave_button);
         joinButton = (Button) view.findViewById(R.id.join_button);
         defaultColor = leaveButton.getCurrentTextColor();
-
-        org.solovyev.android.views.llm.LinearLayoutManager layoutManager =
-                new org.solovyev.android.views.llm.LinearLayoutManager(getActivity());
-        commentsView = (RecyclerView) view.findViewById(R.id.comments_view);
-        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
-        commentsView.setLayoutManager(layoutManager);
-        adapter = new CommentsRecyclerViewAdapter(comments, commentsView, getActivity());
-        commentsView.setAdapter(adapter);
-
-        final Button addCommentButton = (Button) view.findViewById(R.id.add_comment_button);
-        final EditText newCommentText = (EditText) view.findViewById(R.id.new_comment_text);
-        addCommentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text = newCommentText.getText().toString();
-                if (!text.isEmpty()) {
-                    addComment(text);
-                }
-            }
-        });
         setButtons();
-        loadComments();
         return view;
     }
 
@@ -210,45 +187,6 @@ public class MeetingDetailsFragment extends Fragment {
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-            }
-        });
-
-    }
-
-    private void addComment(String text) {
-        AddCommentModel newComment = new AddCommentModel();
-        newComment.setMeetingId(model.getId());
-        newComment.setText(text);
-        Call<ResponseBody> call = service.post(newComment);
-        call.enqueue(new CustomCallback<ResponseBody>(getActivity()) {
-            @Override
-            public void onSuccess(ResponseBody model) {
-                comments.clear();
-                adapter.notifyDataSetChanged();
-                loadComments();
-            }
-        });
-    }
-
-    private void loadComments() {
-        commentsView.setVisibility(View.GONE);
-        progressBar.setVisibility(View.VISIBLE);
-        adapter.showProgressBar();
-        Call<List<CommentModel>> call = service.getAll(model.getId());
-        call.enqueue(new CustomCallback<List<CommentModel>>(getActivity()) {
-            @Override
-            public void onSuccess(List<CommentModel> models) {
-                adapter.hideProgressBar();
-                for (CommentModel model : models) {
-                    comments.add(model);
-                    adapter.notifyItemInserted(comments.size());
-                }
-                adapter.setLoaded();
-            }
-            @Override
-            public void always() {
-                commentsView.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
             }
         });
     }

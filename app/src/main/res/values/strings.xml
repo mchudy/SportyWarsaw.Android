@@ -92,4 +92,5 @@
     <string name="reject_friend_request">Reject friend request</string>
     <string name="profile">Profile</string>
     <string name="sent_request">Sent request</string>
+    <string name="comments">Comments</string>
 </resources>
