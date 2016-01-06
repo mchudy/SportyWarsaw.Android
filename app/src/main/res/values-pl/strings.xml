@@ -70,4 +70,13 @@
     <string name="swimming">Pływanie</string>
     <string name="handball">Piłka ręczna</string>
     <string name="sports_facility">Obiekt sportowy</string>
+    <string name="address">Adres</string>
+    <string name="badminton" translatable="false"></string>
+    <string name="swimming_pool">Basen</string>
+    <string name="sports_field">Boisko sportowe</string>
+    <string name="sports_facility_type">Typ obiektu</string>
+    <string name="my_meetings">Moje spotkania</string>
+    <string name="other_meetings">Inne spotkania</string>
+    <string name="message_meeting_added">Spotkanie zostało dodane</string>
+    <string name="error_loading_map">Wystąpił błąd podczas ładowania mapy</string>
 </resources>

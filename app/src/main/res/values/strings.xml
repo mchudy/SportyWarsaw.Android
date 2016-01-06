@@ -76,8 +76,8 @@
     <string name="other_meetings">Other meetings</string>
     <string name="sports_facility">Sports facility</string>
     <string name="address">Address</string>
-    <string name="sports_facility_type">Typ obiektu</string>
+    <string name="sports_facility_type">Type</string>
     <string name="swimming_pool">Swimming pool</string>
-    <string name="sports_field">Boisko sportowe</string>
+    <string name="sports_field">Sports field</string>
     <string name="error_loading_map">An error occured while showing the map</string>
 </resources>
