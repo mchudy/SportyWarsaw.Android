@@ -3,10 +3,7 @@ package net.azurewebsites.sportywarsaw.services;
 import com.squareup.okhttp.ResponseBody;
 
 import net.azurewebsites.sportywarsaw.models.AddCommentModel;
-import net.azurewebsites.sportywarsaw.models.AddMeetingModel;
-import net.azurewebsites.sportywarsaw.models.ChangeMeetingModel;
 import net.azurewebsites.sportywarsaw.models.CommentModel;
-import net.azurewebsites.sportywarsaw.models.MeetingModel;
 
 import java.util.List;
 

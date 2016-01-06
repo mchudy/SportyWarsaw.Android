@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,14 +33,20 @@ public class SportsFacilityDetailsActivity extends AppCompatActivity {
 
     @Inject
     SportsFacilitiesService service;
+    private ProgressBar progressBar;
+    private LinearLayout contentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sports_facility_details);
         ((MyApplication) getApplication()).getServicesComponent().inject(this);
-
+        contentLayout = (LinearLayout) findViewById(R.id.content);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         sportsFacilityId = getIntent().getIntExtra("sportsFacilityId", -1);
+
+        contentLayout.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
         loadModel();
     }
 
@@ -58,8 +66,8 @@ public class SportsFacilityDetailsActivity extends AppCompatActivity {
             public void onSuccess(SportFacilityPlusModel model) {
                 loadEverything(model);
                 setUpEvents(model);
-                Toast.makeText(SportsFacilityDetailsActivity.this, model.getWebsite(),
-                        Toast.LENGTH_SHORT).show();
+                contentLayout.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         });
     }

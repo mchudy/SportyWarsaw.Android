@@ -19,7 +19,6 @@ import net.azurewebsites.sportywarsaw.models.MeetingModel;
 import net.azurewebsites.sportywarsaw.services.MeetingsService;
 import net.azurewebsites.sportywarsaw.utils.DividerItemDecoration;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;

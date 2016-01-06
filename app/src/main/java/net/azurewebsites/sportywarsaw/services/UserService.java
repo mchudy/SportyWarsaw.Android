@@ -2,7 +2,6 @@ package net.azurewebsites.sportywarsaw.services;
 
 import com.squareup.okhttp.ResponseBody;
 
-import net.azurewebsites.sportywarsaw.models.CommentModel;
 import net.azurewebsites.sportywarsaw.models.UserModel;
 import net.azurewebsites.sportywarsaw.models.UserPlusModel;
 

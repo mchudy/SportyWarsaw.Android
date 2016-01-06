@@ -2,8 +2,8 @@ package net.azurewebsites.sportywarsaw.activities;
 
 import android.app.SearchManager;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import net.azurewebsites.sportywarsaw.R;
 

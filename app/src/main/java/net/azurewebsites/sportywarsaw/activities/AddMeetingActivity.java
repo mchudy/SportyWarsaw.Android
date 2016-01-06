@@ -8,14 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.android.internal.util.Predicate;
 import com.squareup.okhttp.ResponseBody;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
@@ -24,14 +22,11 @@ import net.azurewebsites.sportywarsaw.adapters.SearchFacilityArrayAdapter;
 import net.azurewebsites.sportywarsaw.enums.SportType;
 import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.AddMeetingModel;
-import net.azurewebsites.sportywarsaw.models.MeetingPlusModel;
 import net.azurewebsites.sportywarsaw.services.MeetingsService;
 import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;
 import net.azurewebsites.sportywarsaw.utils.DelayAutoCompleteTextView;
 import net.azurewebsites.sportywarsaw.utils.EditTextDatePicker;
 import net.azurewebsites.sportywarsaw.utils.EditTextTimePicker;
-
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

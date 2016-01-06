@@ -11,7 +11,6 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
-import net.azurewebsites.sportywarsaw.models.UserModel;
 import net.azurewebsites.sportywarsaw.services.AccountService;
 import net.azurewebsites.sportywarsaw.services.MeetingsService;
 import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;

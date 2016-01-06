@@ -10,9 +10,7 @@ import android.widget.Filter;
 import android.widget.TextView;
 
 import net.azurewebsites.sportywarsaw.R;
-import net.azurewebsites.sportywarsaw.models.SportsFacilityModel;
 import net.azurewebsites.sportywarsaw.models.UserModel;
-import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;
 import net.azurewebsites.sportywarsaw.services.UserService;
 
 import java.io.IOException;

@@ -21,8 +21,8 @@ import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
 import net.azurewebsites.sportywarsaw.fragments.FriendsFragment;
 import net.azurewebsites.sportywarsaw.fragments.MeetingsFragment;
-import net.azurewebsites.sportywarsaw.fragments.listeners.OnMeetingsListFragmentInteractionListener;
 import net.azurewebsites.sportywarsaw.fragments.SportsFacilitiesFragment;
+import net.azurewebsites.sportywarsaw.fragments.listeners.OnMeetingsListFragmentInteractionListener;
 import net.azurewebsites.sportywarsaw.models.MeetingModel;
 
 import javax.inject.Inject;

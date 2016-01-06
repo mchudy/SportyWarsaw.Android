@@ -2,7 +2,6 @@ package net.azurewebsites.sportywarsaw.models;
 
 import net.azurewebsites.sportywarsaw.enums.SportType;
 
-import java.text.DecimalFormat;
 import java.util.Date;
 /**
  * Created by Jan Kierzkowski on 04.01.2016.

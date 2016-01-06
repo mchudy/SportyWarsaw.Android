@@ -2,8 +2,6 @@ package net.azurewebsites.sportywarsaw.services;
 
 import com.squareup.okhttp.ResponseBody;
 
-import net.azurewebsites.sportywarsaw.models.AddMeetingModel;
-import net.azurewebsites.sportywarsaw.models.ChangeMeetingModel;
 import net.azurewebsites.sportywarsaw.models.SportFacilityPlusModel;
 import net.azurewebsites.sportywarsaw.models.SportsFacilityModel;
 
