@@ -9,7 +9,7 @@
     <string name="prompt_description">Description</string>
     <string name="prompt_cost">Cost</string>
     <string name="prompt_maxparticipants">Max Participants</string>
-    <string name="prompt_sporttype">Sport Type</string>
+    <string name="prompt_sporttype">Sport type</string>
     <string name="prompt_addcomment">Comment</string>
     <string name="promp_district">District</string>
     <string name="prompt_street">Street</string>

@@ -84,4 +84,11 @@
     <string name="message_left_meeting">Opuściłeś spotkanie</string>
     <string name="message_joined_meeting">Dołączyłeś do spotkania</string>
     <string name="free">Darmowe</string>
+    <string name="accept_friend_request">Akceptuj prośbę</string>
+    <string name="comments">Komentarze</string>
+    <string name="send_friend_request">Wyślij prośbę o znajomość</string>
+    <string name="sent_request">Wyślij prośbę o znajomość</string>
+    <string name="reject_friend_request">Odrzuć prośbę</string>
+    <string name="profile">Profil</string>
+    <string name="last_name">Nazwisko</string>
 </resources>
