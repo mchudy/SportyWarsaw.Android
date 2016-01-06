@@ -45,6 +45,7 @@
     <string name="drawer_close">Zamknij</string>
     <string name="drawer_open">Otwórz</string>
     <string name="log_out">Wyloguj</string>
+    <string name="action_addfriend">Dodaj przyjaciela</string>
 
     <string name="meetings">Spotkania</string>
     <string name="sports_facilities">Obiekty sportowe</string>
