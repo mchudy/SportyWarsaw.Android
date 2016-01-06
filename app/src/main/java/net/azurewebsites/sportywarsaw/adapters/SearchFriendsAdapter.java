@@ -116,7 +116,7 @@ public class SearchFriendsAdapter extends ArrayAdapter<UserModel> {
 
                 filterResults.values = final_list;
                 filterResults.count = final_list.size();
-                
+
             }
             return filterResults;
         }

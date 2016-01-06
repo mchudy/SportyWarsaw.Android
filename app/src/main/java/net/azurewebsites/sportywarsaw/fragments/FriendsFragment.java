@@ -61,7 +61,7 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
-        adapter = new FriendsRecyclerViewAdapter(items, recyclerView, this);
+        adapter = new FriendsRecyclerViewAdapter(items, recyclerView, this,view.getContext());
         recyclerView.setAdapter(adapter);
         //TODO: pagination
         showProgressBar();
