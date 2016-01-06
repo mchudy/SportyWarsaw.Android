@@ -7,6 +7,7 @@ import net.azurewebsites.sportywarsaw.activities.MeetingDetailsActivity;
 import net.azurewebsites.sportywarsaw.activities.RegisterActivity;
 import net.azurewebsites.sportywarsaw.activities.SportsFacilityDetailsActivity;
 import net.azurewebsites.sportywarsaw.fragments.FriendsFragment;
+import net.azurewebsites.sportywarsaw.fragments.MeetingDetailsFragment;
 import net.azurewebsites.sportywarsaw.fragments.MeetingParticipantsFragment;
 import net.azurewebsites.sportywarsaw.fragments.MeetingsTabFragment;
 import net.azurewebsites.sportywarsaw.fragments.SportsFacilitiesFragment;
@@ -34,4 +35,5 @@ public interface ApplicationComponent {
     void inject(AddMeetingActivity addMeetingActivity);
     void inject(MeetingDetailsActivity meetingDetailsActivity);
     void inject(MeetingParticipantsFragment meetingParticipantsFragment);
+    void inject(MeetingDetailsFragment meetingDetailsFragment);
 }

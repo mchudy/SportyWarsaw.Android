@@ -12,6 +12,7 @@ import com.squareup.okhttp.Response;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import net.azurewebsites.sportywarsaw.services.AccountService;
+import net.azurewebsites.sportywarsaw.services.CommentsService;
 import net.azurewebsites.sportywarsaw.services.MeetingsService;
 import net.azurewebsites.sportywarsaw.services.SportsFacilitiesService;
 import net.azurewebsites.sportywarsaw.services.UserService;
@@ -110,6 +111,13 @@ public class RestServicesModule {
     @Singleton
     UserService provideUserService(Retrofit retrofit) {
         UserService service = retrofit.create(UserService.class);
+        return service;
+    }
+
+    @Provides
+    @Singleton
+    CommentsService provideCommentsService(Retrofit retrofit) {
+        CommentsService service = retrofit.create(CommentsService.class);
         return service;
     }
 

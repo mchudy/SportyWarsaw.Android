@@ -22,7 +22,7 @@ public interface CommentsService {
     @GET("comments/{id}")
     Call<CommentModel> get(@Path("id") int id);
 
-    @GET("comments/meetings/{meetingid}")
+    @GET("comments/meeting/{meetingid}")
     Call<List<CommentModel>> getAll(@Path("meetingid") int meetingid);
 
     @POST("comments")
