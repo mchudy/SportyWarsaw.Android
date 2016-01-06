@@ -1,13 +1,16 @@
 package net.azurewebsites.sportywarsaw.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -15,6 +18,8 @@ import com.squareup.okhttp.ResponseBody;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
+import net.azurewebsites.sportywarsaw.activities.AddMeetingActivity;
+import net.azurewebsites.sportywarsaw.activities.SearchFriendsActivity;
 import net.azurewebsites.sportywarsaw.adapters.FriendsRecyclerViewAdapter;
 import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.UserModel;
@@ -54,17 +59,28 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
-        Context context = view.getContext();
+        final Context context = view.getContext();
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView = (RecyclerView) view.findViewById(R.id.friends_list);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
-        adapter = new FriendsRecyclerViewAdapter(items, recyclerView, this,view.getContext());
+        adapter = new FriendsRecyclerViewAdapter(items, recyclerView, this);
         recyclerView.setAdapter(adapter);
+
+        Button but = (Button) view.findViewById(R.id.add_friendbutton);
+        but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchFriendsActivity.class);
+                startActivity(intent);
+            }
+        });
         //TODO: pagination
         showProgressBar();
+
+
         loadFriends(adapter);
         return view;
     }

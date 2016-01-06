@@ -20,12 +20,10 @@ import java.util.List;
 
 public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserModel> {
     private Fragment fragment;
-    private Context context;
 
-    public FriendsRecyclerViewAdapter(List<UserModel> items, RecyclerView recyclerView, Fragment fragment,Context context) {
+    public FriendsRecyclerViewAdapter(List<UserModel> items, RecyclerView recyclerView, Fragment fragment) {
         super(items, recyclerView);
         this.fragment = fragment;
-        this.context = context;
     }
 
     @Override
@@ -35,15 +33,7 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
             View view = LayoutInflater.from(parent.getContext()).inflate(
                     R.layout.fragment_friend_item, parent, false);
             viewHolder = new FriendViewHolder(view);
-            ((FriendViewHolder) viewHolder).addFriendButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // pokazanie nowego widoku do wyszukiwania przyjaciół
-                    Intent intent = new Intent(context, SearchFriendsActivity.class);
-                    //intent.putExtra("meetingId", item.getId());
-                    context.startActivity(intent);
-                }
-            });
+
         }
         return viewHolder;
     }
@@ -63,15 +53,7 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
                 }
             });
 
-            ((FriendViewHolder) holder).addFriendButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // pokazanie nowego widoku do wyszukiwania przyjaciół
-                    Intent intent = new Intent(context, SearchFriendsActivity.class);
-                    //intent.putExtra("meetingId", item.getId());
-                    context.startActivity(intent);
-                }
-            });
+
 
 
             viewHolder.removeFriendButton.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +73,7 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
         public final TextView fullNameView;
         public final Button removeFriendButton;
         public UserModel item;
-        public final Button addFriendButton;
+       // public final Button addFriendButton;
 
         public FriendViewHolder(View view) {
             super(view);
@@ -99,7 +81,7 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
             usernameView = (TextView) view.findViewById(R.id.friend_username);
             fullNameView = (TextView) view.findViewById(R.id.friend_full_name);
             removeFriendButton = (Button) view.findViewById(R.id.remove_friend_button);
-            addFriendButton = (Button) view.findViewById(R.id.add_friendbutton);
+            //addFriendButton = (Button) view.findViewById(R.id.add_friendbutton);
         }
     }
 
