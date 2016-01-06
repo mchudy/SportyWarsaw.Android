@@ -19,7 +19,7 @@ public enum SportType {
 
     private int resourceId;
 
-    private SportType(int id) {
+    SportType(int id) {
         resourceId = id;
     }
 

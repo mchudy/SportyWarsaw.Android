@@ -1,168 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawer_header"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="225dp"
-        android:layout_gravity="center"
-        android:background="?attr/colorPrimaryDark">
-
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_person_white_48dp"
-            app:civ_border_color="#F0F0F0"
-            app:civ_border_width="1dp" />
-
-        <TextView
-            android:id="@+id/username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/profile_image"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="10dp"
-            android:textColor="@android:color/white"
-            android:textSize="26sp" />
-
-    </RelativeLayout>
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="225dp"
+            android:layout_gravity="center"
+            android:background="?attr/colorPrimaryDark">
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_person_white_48dp"
+                app:civ_border_color="#F0F0F0"
+                app:civ_border_width="1dp" />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_image"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/white"
+                android:textSize="26sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            card_view:cardUseCompatPadding="true"
-            card_view:contentPadding="@dimen/cardview_padding">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/details_card_text_margin"
-                    android:layout_marginStart="@dimen/details_card_text_margin"
-                    android:text="@string/first_name"
-                    android:textSize="@dimen/card_header_text_size" />
-
-                <TextView
-                    android:id="@+id/first_name"
-                    android:layout_marginBottom="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/details_card_text_margin"
-                    android:layout_marginStart="@dimen/details_card_text_margin"
-                    android:layout_marginTop="2dp"
-                    android:textColor="#202020"
-                    android:textSize="@dimen/card_content_text_size" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/details_card_text_margin"
-                    android:layout_marginStart="@dimen/details_card_text_margin"
-                    android:text="@string/last_name"
-                    android:textSize="@dimen/card_header_text_size" />
-
-                <TextView
-                    android:id="@+id/last_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/details_card_text_margin"
-                    android:layout_marginStart="@dimen/details_card_text_margin"
-                    android:layout_marginTop="2dp"
-                    android:textColor="#202020"
-                    android:textSize="@dimen/card_content_text_size" />
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            card_view:cardUseCompatPadding="true"
-            card_view:contentPadding="@dimen/cardview_padding">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/friends_message"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="16sp"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                    android:text="@string/friends"/>
+                card_view:cardUseCompatPadding="true"
+                card_view:contentPadding="@dimen/cardview_padding">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="right"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <Button
-                        android:id="@+id/send_request_button"
-                        style="?android:attr/borderlessButtonStyle"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/details_card_text_margin"
+                        android:layout_marginStart="@dimen/details_card_text_margin"
+                        android:text="@string/first_name"
+                        android:textSize="@dimen/card_header_text_size" />
+
+                    <TextView
+                        android:id="@+id/first_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/send_friend_request"
-                        android:visibility="gone"
-                        android:textColor="@color/colorAccent"
-                        />
-                    <Button
-                        android:id="@+id/accept_request_button"
-                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginLeft="@dimen/details_card_text_margin"
+                        android:layout_marginStart="@dimen/details_card_text_margin"
+                        android:layout_marginTop="2dp"
+                        android:textColor="#202020"
+                        android:textSize="@dimen/card_content_text_size" />
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/accept_friend_request"
-                        android:visibility="gone"
-                        android:textColor="@color/colorAccent"
-                        />
-                    <Button
-                        android:id="@+id/reject_request_button"
-                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_marginLeft="@dimen/details_card_text_margin"
+                        android:layout_marginStart="@dimen/details_card_text_margin"
+                        android:text="@string/last_name"
+                        android:textSize="@dimen/card_header_text_size" />
+
+                    <TextView
+                        android:id="@+id/last_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/reject_friend_request"
-                        android:visibility="gone"
-                        android:textColor="@color/colorAccent"
-                        />
-                    <Button
-                        android:id="@+id/remove_friend_button"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/remove_friend"
-                        android:visibility="gone"
-                        android:textColor="@color/colorAccent"
-                        />
+                        android:layout_marginLeft="@dimen/details_card_text_margin"
+                        android:layout_marginStart="@dimen/details_card_text_margin"
+                        android:layout_marginTop="2dp"
+                        android:textColor="#202020"
+                        android:textSize="@dimen/card_content_text_size" />
+
                 </LinearLayout>
 
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-        </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardUseCompatPadding="true"
+                card_view:contentPadding="@dimen/cardview_padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/friends_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/friends"
+                        android:textAllCaps="true"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/send_request_button"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/send_friend_request"
+                            android:textColor="@color/colorAccent"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/accept_request_button"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/accept_friend_request"
+                            android:textColor="@color/colorAccent"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/reject_request_button"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/reject_friend_request"
+                            android:textColor="@color/colorAccent"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/remove_friend_button"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/remove_friend"
+                            android:textColor="@color/colorAccent"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
 
     </LinearLayout>
 
+    <include layout="@layout/progress_bar" />
 
-</LinearLayout>
+</RelativeLayout>

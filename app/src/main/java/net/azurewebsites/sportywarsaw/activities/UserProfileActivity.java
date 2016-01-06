@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,12 +34,19 @@ public class UserProfileActivity extends AppCompatActivity {
     private Button rejectRequestButton;
     private Button removeFriendButton;
     private TextView friendsView;
+    private ProgressBar progressBar;
+    private LinearLayout content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         ((MyApplication) getApplication()).getServicesComponent().inject(this);
+
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        content = (LinearLayout) findViewById(R.id.content);
+        progressBar.setVisibility(View.VISIBLE);
+        content.setVisibility(View.GONE);
 
         username = getIntent().getStringExtra("username");
         loggedUsername = preferences.getString("username", "");
@@ -73,6 +81,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 removeFriend();
             }
         });
+
         loadData();
     }
 
@@ -144,6 +153,11 @@ public class UserProfileActivity extends AppCompatActivity {
 
                 TextView usernameView = (TextView) findViewById(R.id.username);
                 usernameView.setText(model.getUsername());
+            }
+            @Override
+            public void always() {
+                progressBar.setVisibility(View.GONE);
+                content.setVisibility(View.VISIBLE);
             }
         });
     }
