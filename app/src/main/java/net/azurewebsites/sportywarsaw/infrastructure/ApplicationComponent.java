@@ -5,6 +5,7 @@ import net.azurewebsites.sportywarsaw.activities.LoginActivity;
 import net.azurewebsites.sportywarsaw.activities.MainActivity;
 import net.azurewebsites.sportywarsaw.activities.MeetingDetailsActivity;
 import net.azurewebsites.sportywarsaw.activities.RegisterActivity;
+import net.azurewebsites.sportywarsaw.activities.SearchFriendsActivity;
 import net.azurewebsites.sportywarsaw.activities.SportsFacilityDetailsActivity;
 import net.azurewebsites.sportywarsaw.activities.UserProfileActivity;
 import net.azurewebsites.sportywarsaw.fragments.FriendsFragment;
@@ -28,6 +29,7 @@ import dagger.Component;
 @Component(modules = {RestServicesModule.class, ApplicationModule.class})
 public interface ApplicationComponent {
     void inject(MainActivity activity);
+    void inject(SearchFriendsActivity activity);
     void inject(LoginActivity activity);
     void inject(RegisterActivity activity);
     void inject(SportsFacilitiesFragment startupFragment);

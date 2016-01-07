@@ -65,7 +65,7 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
 
-        final Context context = view.getContext();
+        Context context = view.getContext();
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView = (RecyclerView) view.findViewById(R.id.friends_list);
         recyclerView.setLayoutManager(layoutManager);
@@ -83,7 +83,6 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
                 startActivity(intent);
             }
         });
-        //TODO: pagination
         showProgressBar();
         adapter.setOnLoadMoreListener(new SportsFacilitiesRecyclerViewAdapter.OnLoadMoreListener() {
             @Override
@@ -95,7 +94,7 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
         progressBar.setVisibility(View.VISIBLE);
         loadNextPage(adapter);
 
-        loadFriends(adapter);
+       // loadFriends(adapter);
         return view;
     }
 
@@ -159,6 +158,7 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
     @Override
     public void removeFriend(final String username, final int position) {
         showProgressBar();
+        // // TODO: nie dziala
         Call<ResponseBody> call = service.removeFriend(username);
         call.enqueue(new CustomCallback<ResponseBody>(getActivity()) {
             @Override
