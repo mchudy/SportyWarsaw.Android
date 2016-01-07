@@ -20,6 +20,7 @@ import net.azurewebsites.sportywarsaw.utils.NullStringToEmptyAdapterFactory;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
@@ -63,6 +64,9 @@ public class RestServicesModule {
                 return chain.proceed(builder.build());
             }
         });
+        client.setConnectTimeout(20, TimeUnit.SECONDS);
+        client.setReadTimeout(20, TimeUnit.SECONDS);
+        client.setWriteTimeout(20, TimeUnit.SECONDS);
         return client;
     }
 
