@@ -112,7 +112,7 @@ public class SearchFriendsActivity extends AppCompatActivity {
         if(!valid) return;
 
         // dodaj przyjaciela
-        addMeeting(selectedUserName);
+        addFriend(selectedUserName);
     }
 
    // private boolean validateRequired(boolean valid, String startDateString, TextInputLayout layout) {
@@ -126,11 +126,12 @@ public class SearchFriendsActivity extends AppCompatActivity {
     //}
 
 
-    private void addMeeting(String userName) {
+    private void addFriend(String userName) {
         Call<ResponseBody> call = service.sendFriendRequest(userName);
         call.enqueue(new CustomCallback<ResponseBody>(SearchFriendsActivity.this) {
             @Override
             public void onSuccess(ResponseBody model) {
+                // change this
                 Toast.makeText(SearchFriendsActivity.this, getString(R.string.message_meeting_added),
                         Toast.LENGTH_SHORT).show();
                 finish();
