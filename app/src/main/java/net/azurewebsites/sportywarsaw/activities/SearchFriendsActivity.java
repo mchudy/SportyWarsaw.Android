@@ -88,6 +88,7 @@ public class SearchFriendsActivity extends AppCompatActivity {
         friendView.setThreshold(0);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar_friend_autocomplete);
         friendView.setProgressBar(progressBar);
+        // ma byc fragment_user_item
         adapter = new SearchFriendsAdapter(this, R.layout.fragment_friend_item, service);
         friendView.setAdapter(adapter);
         friendView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -102,12 +103,12 @@ public class SearchFriendsActivity extends AppCompatActivity {
 
     private void attemptAddFriend() {
         boolean valid = true;
-        TextInputLayout layout = (TextInputLayout) findViewById(R.id.title_layout);
+        //TextInputLayout layout = (TextInputLayout) findViewById(R.id.title_layout);
         if(selectedUserName!="") {
-            layout.setError(getString(R.string.error_field_required));
+            //layout.setError(getString(R.string.error_field_required));
             valid = false;
         } else {
-            layout.setError(null);
+            //layout.setError(null);
         }
         if(!valid) return;
 
