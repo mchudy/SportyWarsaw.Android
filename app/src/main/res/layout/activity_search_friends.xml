@@ -9,8 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="net.azurewebsites.sportywarsaw.activities.SearchFriendsActivity">
 
-
-
     <FrameLayout android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -18,7 +16,7 @@
             android:id="@+id/friend_auto_complete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/friends" />
+            android:hint="@string/search_users" />
 
         <ProgressBar
             android:id="@+id/progress_bar_friend_autocomplete"
@@ -28,14 +26,6 @@
             android:layout_gravity="center_vertical|end"
             android:visibility="gone" />
 
-        <Button
-            android:id="@+id/add_friend_button_good"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/action_addfriend"
-            android:textColor="@color/colorAccent" />
     </FrameLayout>
 
 </RelativeLayout>

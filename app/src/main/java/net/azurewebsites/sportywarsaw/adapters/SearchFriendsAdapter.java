@@ -24,10 +24,10 @@ import retrofit.Response;
 public class SearchFriendsAdapter extends ArrayAdapter<UserModel> {
 
     private static final int MAX_ITEMS = 25;
-    Context context;
-    int textViewResourceId;
+    private Context context;
+    private int textViewResourceId;
     private UserService service;
-    List<UserModel> items;
+    private List<UserModel> items;
 
     public SearchFriendsAdapter(Context context, int textViewResourceId, UserService service) {
         super(context, textViewResourceId);
@@ -52,7 +52,7 @@ public class SearchFriendsAdapter extends ArrayAdapter<UserModel> {
         View view = convertView;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.fragment_friend_item, parent, false);
+            view = inflater.inflate(R.layout.fragment_user_item, parent, false);
         }
         UserModel item = items.get(position);
         if (item != null) {
@@ -62,7 +62,7 @@ public class SearchFriendsAdapter extends ArrayAdapter<UserModel> {
                 userNameView.setText(item.getUsername());
             if(fullNameView!=null)
             {
-                fullNameView.setText(item.getFirstName() +""+item.getLastName()); // konkatenacja??
+                fullNameView.setText(item.getFirstName() + " " + item.getLastName());
             }
         }
         return view;
@@ -85,7 +85,6 @@ public class SearchFriendsAdapter extends ArrayAdapter<UserModel> {
             FilterResults filterResults = new FilterResults();
             if(constraint != null) {
                 Call<List<UserModel>> call = service.getPageFiltered(1, MAX_ITEMS, constraint.toString());
-                //Call<List<UserModel>> call = service.getMyFriends();
                 try {
                     Response<List<UserModel>> response = call.execute();
                     if(response.isSuccess()){
@@ -98,31 +97,9 @@ public class SearchFriendsAdapter extends ArrayAdapter<UserModel> {
                 }
                 filterResults.values = items;
                 filterResults.count = items.size();
-
-              //  List<UserModel> list = items;
-              //  int count = items.size();
-
-                // teraz przefiltrowanie
-               // String filter = constraint.toString().toLowerCase();
-                //List<UserModel> final_list = new ArrayList<UserModel>();
-               // String filterablestring;
-               // for(int i =0; i<count;i++)
-              //  {
-               //     filterablestring = list.get(i).getUsername().toLowerCase();
-                //    if(filterablestring.contains(filter))
-               //     {
-               //         final_list.add(list.get(i));
-                //    }
-              //  }
-
-              //  filterResults.values = final_list;
-              //  filterResults.count = final_list.size();
-
             }
             return filterResults;
         }
-
-
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {

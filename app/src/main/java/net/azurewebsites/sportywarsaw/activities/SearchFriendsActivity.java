@@ -1,5 +1,6 @@
 package net.azurewebsites.sportywarsaw.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -48,39 +49,17 @@ import retrofit.Call;
 
 public class SearchFriendsActivity extends AppCompatActivity {
 
-    //@Inject
-    //Friend service;
-
     @Inject
     UserService service;
-    //private EditText endDateView;
-    //private EditText startDateView;
-    //private EditText startTimeView;
-    //private EditText endTimeView;
-    //private Spinner typeSpinner;
     private SearchFriendsAdapter adapter;
     private DelayAutoCompleteTextView friendView;
-
-    private String selectedUserName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_friends);
         ((MyApplication) getApplication()).getServicesComponent().inject(this);
-        Button addFriendButton = (Button) findViewById(R.id.add_friend_button_good);
-        addFriendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                attemptAddFriend();
-            }
-        });
-
-        //typeSpinner = (Spinner) findViewById(R.id.type_spinner);
-        //typeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, SportType.values()));
-
         setupAutoCompleteFacilities();
-       // setupDateTimeListeners();
     }
 
     private void setupAutoCompleteFacilities() {
@@ -89,57 +68,17 @@ public class SearchFriendsActivity extends AppCompatActivity {
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar_friend_autocomplete);
         friendView.setProgressBar(progressBar);
         // ma byc fragment_user_item
-        adapter = new SearchFriendsAdapter(this, R.layout.fragment_friend_item, service);
+        adapter = new SearchFriendsAdapter(this, R.layout.fragment_user_item, service);
         friendView.setAdapter(adapter);
         friendView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedUserName = adapter.getItem(position).getUsername();
+                String selectedUserName = adapter.getItem(position).getUsername();
+                Intent intent = new Intent(SearchFriendsActivity.this, UserProfileActivity. class);
+                intent.putExtra("username", selectedUserName);
+                startActivity(intent);
             }
         });
     }
-
-
-
-    private void attemptAddFriend() {
-        boolean valid = true;
-        //TextInputLayout layout = (TextInputLayout) findViewById(R.id.title_layout);
-        if(selectedUserName!="") {
-            //layout.setError(getString(R.string.error_field_required));
-            valid = false;
-        } else {
-            //layout.setError(null);
-        }
-        if(!valid) return;
-
-        // dodaj przyjaciela
-        addFriend(selectedUserName);
-    }
-
-   // private boolean validateRequired(boolean valid, String startDateString, TextInputLayout layout) {
-        //if(startDateString.isEmpty()) {
-         //   layout.setError(getString(R.string.error_field_required));
-          //  valid = false;
-       // } else {
-           // layout.setError(null);
-        //}
-      //  return valid;
-    //}
-
-
-    private void addFriend(String userName) {
-        Call<ResponseBody> call = service.sendFriendRequest(userName);
-        call.enqueue(new CustomCallback<ResponseBody>(SearchFriendsActivity.this) {
-            @Override
-            public void onSuccess(ResponseBody model) {
-                // change this
-                Toast.makeText(SearchFriendsActivity.this, getString(R.string.message_meeting_added),
-                        Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        });
-    }
-
-
 
 }
