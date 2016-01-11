@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,8 +24,6 @@ import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
 import net.azurewebsites.sportywarsaw.adapters.CommentsRecyclerViewAdapter;
 import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
-import net.azurewebsites.sportywarsaw.models.AddCommentModel;
-import net.azurewebsites.sportywarsaw.models.CommentModel;
 import net.azurewebsites.sportywarsaw.models.MeetingPlusModel;
 import net.azurewebsites.sportywarsaw.models.SportFacilityPlusModel;
 import net.azurewebsites.sportywarsaw.services.CommentsService;
@@ -75,6 +74,12 @@ public class MeetingDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meeting_details, container, false);
         updateDetails(view);
+
+        MeetingCommentsFragment commentsFragment = MeetingCommentsFragment.newInstance(model);
+        getChildFragmentManager()
+                .beginTransaction()
+                .add(R.id.comments_layout, commentsFragment)
+                .commit();
 
         leaveButton = (Button) view.findViewById(R.id.leave_button);
         joinButton = (Button) view.findViewById(R.id.join_button);
