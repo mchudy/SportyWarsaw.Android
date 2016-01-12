@@ -94,4 +94,12 @@
     <string name="sent_request">Sent request</string>
     <string name="comments">Comments</string>
     <string name="search_users">Search user</string>
+    <string name="change_image">Change photo</string>
+    <string name="friend_request_sent">Friend request sent</string>
+    <string name="message_profile_picture_changed">Your profile picture has been changed</string>
+    <string name="error_loading_image">Could not load the image</string>
+    <string name="request_sent">Request has been sent</string>
+    <string name="request_rejected">Request has been rejected</string>
+    <string name="removed_friend">Removed friend</string>
+    <string name="accepted_request">Accepted request</string>
 </resources>

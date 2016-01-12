@@ -13,6 +13,7 @@ import retrofit.http.Body;
 import retrofit.http.DELETE;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.PUT;
 import retrofit.http.Path;
 import retrofit.http.Query;
 
@@ -53,14 +54,10 @@ public interface UserService {
     @POST("Users/RemoveFriend/{username}")
     Call<ResponseBody> removeFriend(@Path("username") String username);
 
-    @POST("Users/UpdateProfile")
+    @PUT("Users")
     Call<ResponseBody> put(@Body UserPlusModel userPlusModel);
 
     @DELETE("Users/{id}")
     Call<ResponseBody> delete(@Path("id") int id);
-
-
-
-
 
 }

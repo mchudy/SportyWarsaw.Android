@@ -3,6 +3,8 @@ package net.azurewebsites.sportywarsaw.activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,10 +25,15 @@ import net.azurewebsites.sportywarsaw.R;
 import net.azurewebsites.sportywarsaw.fragments.FriendsFragment;
 import net.azurewebsites.sportywarsaw.fragments.MeetingsFragment;
 import net.azurewebsites.sportywarsaw.fragments.SportsFacilitiesFragment;
+import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
+import net.azurewebsites.sportywarsaw.models.UserPlusModel;
+import net.azurewebsites.sportywarsaw.services.UserService;
+import net.azurewebsites.sportywarsaw.utils.BitmapUtils;
 
 import javax.inject.Inject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit.Call;
 
 /**
  * Main activity of the application
@@ -38,7 +46,9 @@ public class MainActivity extends AppCompatActivity{
     private ActionBarDrawerToggle drawerToggle;
     private NavigationView navigationView;
     private TextView usernameTextView;
+    private ImageView profileImage;
 
+    @Inject UserService userService;
     @Inject SharedPreferences preferences;
     private LinearLayout drawerHeader;
 
@@ -65,12 +75,22 @@ public class MainActivity extends AppCompatActivity{
                 .findViewById(R.id.drawer_username);
         usernameTextView.setText(preferences.getString("username", ""));
 
-        //TODO: show user's image
-        CircleImageView profileImageView = (CircleImageView) headerView.findViewById(R.id.profile_image);
-        //profileImageView.setImageBitmap();
+        profileImage = (ImageView) headerView.findViewById(R.id.profile_image);
+        loadImage();
 
         setupDrawerNavigation();
         showInitialFragment();
+    }
+
+    private void loadImage() {
+        Call<UserPlusModel> call = userService.getDetails(preferences.getString("username", ""));
+        call.enqueue(new CustomCallback<UserPlusModel>(this) {
+            @Override
+            public void onSuccess(UserPlusModel model) {
+                Bitmap bitmap = BitmapUtils.decodeBase64(model.getPicture());
+                profileImage.setImageBitmap(bitmap);
+            }
+        });
     }
 
     @Override

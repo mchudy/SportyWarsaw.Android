@@ -1,6 +1,10 @@
 package net.azurewebsites.sportywarsaw.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.okhttp.ResponseBody;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import net.azurewebsites.sportywarsaw.MyApplication;
 import net.azurewebsites.sportywarsaw.R;
@@ -18,17 +24,23 @@ import net.azurewebsites.sportywarsaw.infrastructure.CustomCallback;
 import net.azurewebsites.sportywarsaw.models.FriendshipModel;
 import net.azurewebsites.sportywarsaw.models.UserPlusModel;
 import net.azurewebsites.sportywarsaw.services.UserService;
+import net.azurewebsites.sportywarsaw.utils.BitmapUtils;
 
 import javax.inject.Inject;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit.Call;
 
 public class UserProfileActivity extends AppCompatActivity {
+    private static final int REQUEST_IMAGE_GET = 1;
+    private static final int MAX_IMAGE_SIZE = 500;
+
     private String username;
     private String loggedUsername;
     private UserPlusModel model;
     @Inject UserService service;
     @Inject SharedPreferences preferences;
+
     private Button sendRequestButton;
     private Button acceptRequestButton;
     private Button rejectRequestButton;
@@ -36,6 +48,8 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView friendsView;
     private ProgressBar progressBar;
     private LinearLayout content;
+    private Button changeImageButton;
+    private CircleImageView profileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +61,23 @@ public class UserProfileActivity extends AppCompatActivity {
         content = (LinearLayout) findViewById(R.id.content);
         progressBar.setVisibility(View.VISIBLE);
         content.setVisibility(View.GONE);
+        profileImage = (CircleImageView) findViewById(R.id.profile_image);
 
         username = getIntent().getStringExtra("username");
         loggedUsername = preferences.getString("username", "");
 
         friendsView = (TextView) findViewById(R.id.friends_message);
+
+        setUpButtons();
+        loadData();
+    }
+
+    private void setUpButtons() {
         sendRequestButton = (Button) findViewById(R.id.send_request_button);
         acceptRequestButton = (Button) findViewById(R.id.accept_request_button);
         rejectRequestButton = (Button) findViewById(R.id.reject_request_button);
         removeFriendButton = (Button) findViewById(R.id.remove_friend_button);
+        changeImageButton = (Button) findViewById(R.id.change_image_button);
 
         sendRequestButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,8 +103,6 @@ public class UserProfileActivity extends AppCompatActivity {
                 removeFriend();
             }
         });
-
-        loadData();
     }
 
     private void sendRequest() {
@@ -93,7 +113,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 sendRequestButton.setVisibility(View.GONE);
                 friendsView.setText(R.string.sent_request);
                 friendsView.setVisibility(View.VISIBLE);
-                Toast.makeText(UserProfileActivity.this, "Request has been sent", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserProfileActivity.this, R.string.request_sent, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -105,7 +125,7 @@ public class UserProfileActivity extends AppCompatActivity {
             public void onSuccess(ResponseBody model) {
                 sendRequestButton.setVisibility(View.VISIBLE);
                 rejectRequestButton.setVisibility(View.GONE);
-                Toast.makeText(UserProfileActivity.this, "Request has been rejected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserProfileActivity.this, R.string.request_rejected, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -118,7 +138,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 sendRequestButton.setVisibility(View.VISIBLE);
                 removeFriendButton.setVisibility(View.GONE);
                 friendsView.setVisibility(View.GONE);
-                Toast.makeText(UserProfileActivity.this, "Removed friend", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserProfileActivity.this, R.string.removed_friend, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -133,7 +153,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 acceptRequestButton.setVisibility(View.GONE);
                 rejectRequestButton.setVisibility(View.GONE);
                 removeFriendButton.setVisibility(View.VISIBLE);
-                Toast.makeText(UserProfileActivity.this, "Accepted request", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserProfileActivity.this, R.string.accepted_request, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -153,6 +173,11 @@ public class UserProfileActivity extends AppCompatActivity {
 
                 TextView usernameView = (TextView) findViewById(R.id.username);
                 usernameView.setText(model.getUsername());
+
+                Bitmap bitmap = BitmapUtils.decodeBase64(model.getPicture());
+                if(bitmap != null) {
+                    profileImage.setImageBitmap(bitmap);
+                }
             }
             @Override
             public void always() {
@@ -163,7 +188,10 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void checkFriendshipStatus() {
-        if(model.getUsername().equals(loggedUsername)) return;
+        if(model.getUsername().equals(loggedUsername)){
+            handleLoggedUser();
+            return;
+        }
         for (FriendshipModel friendship : model.getFriendshipsInitiated()) {
             if(friendship.getFriendUsername().equals(loggedUsername)) {
                 if(friendship.isConfirmed()) {
@@ -183,7 +211,7 @@ public class UserProfileActivity extends AppCompatActivity {
                     removeFriendButton.setVisibility(View.VISIBLE);
                 } else {
                     friendsView.setVisibility(View.VISIBLE);
-                    friendsView.setText("Friend request sent");
+                    friendsView.setText(R.string.friend_request_sent);
                 }
                 return;
             }
@@ -191,4 +219,57 @@ public class UserProfileActivity extends AppCompatActivity {
         sendRequestButton.setVisibility(View.VISIBLE);
     }
 
+    private void handleLoggedUser() {
+        changeImageButton.setVisibility(View.VISIBLE);
+        changeImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+            }
+        });
+    }
+
+    private void selectImage() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, REQUEST_IMAGE_GET);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_GET && resultCode == RESULT_OK) {
+            Uri selectedImageUri = data.getData();
+            if(selectedImageUri == null) {
+                return;
+            }
+            Picasso.with(this)
+                    .load(selectedImageUri)
+                    .resize(MAX_IMAGE_SIZE, MAX_IMAGE_SIZE)
+                    .centerInside()
+                    .into(profileImage, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            updateProfile();
+                        }
+                        @Override
+                        public void onError() {
+                            Toast.makeText(UserProfileActivity.this, R.string.error_loading_image, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
+    private void updateProfile() {
+        Bitmap bitmap = ((BitmapDrawable)profileImage.getDrawable()).getBitmap();
+        model.setPicture(BitmapUtils.encodeToBase64(bitmap));
+        Call<ResponseBody> call = service.put(model);
+        call.enqueue(new CustomCallback<ResponseBody>(this) {
+            @Override
+            public void onSuccess(ResponseBody model) {
+                Toast.makeText(UserProfileActivity.this, R.string.message_profile_picture_changed, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

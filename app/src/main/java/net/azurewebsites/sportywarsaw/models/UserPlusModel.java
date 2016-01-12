@@ -9,7 +9,7 @@ import java.util.List;
 public class UserPlusModel {
     private String firstName;
     private String lastName;
-    private byte[] picture;
+    private String picture;
     private String username;
     private List<MeetingModel> meetings = new ArrayList<>();
     private List<FriendshipModel> friendshipsInitiated = new ArrayList<>();
@@ -39,11 +39,11 @@ public class UserPlusModel {
         this.username = username;
     }
 
-    public byte[] getPicture() {
+    public String getPicture() {
         return picture;
     }
 
-    public void setPicture(byte[] picture) {
+    public void setPicture(String picture) {
         this.picture = picture;
     }
 
