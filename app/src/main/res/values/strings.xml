@@ -69,7 +69,7 @@
     <string name="volleyball">Volleyball</string>
     <string name="swimming">Swimming</string>
     <string name="handball">Handball</string>
-    <string name="badminton" translatable="false">Badminton</string>
+    <string name="badminton">Badminton</string>
     <string name="squash" translatable="false">Squash</string>
     <string name="message_meeting_added">Meeting has been added</string>
     <string name="my_meetings">My meetings</string>
@@ -79,7 +79,7 @@
     <string name="sports_facility_type">Type</string>
     <string name="swimming_pool">Swimming pool</string>
     <string name="sports_field">Sports field</string>
-    <string name="error_loading_map">An error occured while showing the map</string>
+    <string name="error_loading_map">An error occurred while showing the map</string>
     <string name="participants">Participants</string>
     <string name="free">Free</string>
     <string name="organizer">Organizer</string>

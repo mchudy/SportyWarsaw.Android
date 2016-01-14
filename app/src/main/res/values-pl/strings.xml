@@ -71,7 +71,7 @@
     <string name="handball">Piłka ręczna</string>
     <string name="sports_facility">Obiekt sportowy</string>
     <string name="address">Adres</string>
-    <string name="badminton" translatable="false"></string>
+    <string name="badminton" translatable="false">Badminton</string>
     <string name="swimming_pool">Basen</string>
     <string name="sports_field">Boisko sportowe</string>
     <string name="sports_facility_type">Typ obiektu</string>
@@ -93,4 +93,12 @@
     <string name="last_name">Nazwisko</string>
     <string name="first_name">Imię</string>
     <string name="search_users">Szukaj użytkowników</string>
+    <string name="accepted_request">Zaakceptowano prośbę</string>
+    <string name="change_image">Zmień zdjęcie</string>
+    <string name="error_loading_image">Nie można było załadować zdjęcia</string>
+    <string name="friend_request_sent">Wysłano prośbę o znajomość</string>
+    <string name="message_profile_picture_changed">Zmieniono zdjęcie profilowe</string>
+    <string name="removed_friend">Usunięto ze znajomych</string>
+    <string name="request_rejected">Odrzucono prośbę o znajomość</string>
+    <string name="request_sent">Wysłano prośbę o znajomość</string>
 </resources>
