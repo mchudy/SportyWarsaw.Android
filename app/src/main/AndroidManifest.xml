@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.azurewebsites.sportywarsaw">
+    package="pl.sportywarsaw">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".MyApplication"
+        android:name="pl.sportywarsaw.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.MainActivity"
+            android:name="pl.sportywarsaw.activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.LoginActivity">
+        <activity android:name="pl.sportywarsaw.activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,27 +23,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.RegisterActivity"
-            android:parentActivityName=".activities.LoginActivity" />
+            android:name="pl.sportywarsaw.activities.RegisterActivity"
+            android:parentActivityName="pl.sportywarsaw.activities.LoginActivity" />
         <activity
-            android:name=".activities.SportsFacilityDetailsActivity"
+            android:name="pl.sportywarsaw.activities.SportsFacilityDetailsActivity"
             android:label="@string/details"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName="pl.sportywarsaw.activities.MainActivity" />
         <activity
-            android:name=".activities.AddMeetingActivity"
+            android:name="pl.sportywarsaw.activities.AddMeetingActivity"
             android:label="@string/action_add_meeting"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName="pl.sportywarsaw.activities.MainActivity" />
         <activity
-            android:name=".activities.MeetingDetailsActivity"
+            android:name="pl.sportywarsaw.activities.MeetingDetailsActivity"
             android:label=""
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName="pl.sportywarsaw.activities.MainActivity" />
         <activity
-            android:name=".activities.UserProfileActivity"
+            android:name="pl.sportywarsaw.activities.UserProfileActivity"
             android:label="@string/profile"
-            android:parentActivityName=".activities.MainActivity" />
-        <activity android:name=".activities.SearchFriendsActivity"
+            android:parentActivityName="pl.sportywarsaw.activities.MainActivity" />
+        <activity android:name="pl.sportywarsaw.activities.SearchFriendsActivity"
             android:label="@string/action_searchfriends"
-            android:parentActivityName=".activities.MainActivity">
+            android:parentActivityName="pl.sportywarsaw.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
