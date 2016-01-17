@@ -84,7 +84,9 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onSuccess(UserPlusModel model) {
                 Bitmap bitmap = BitmapUtils.decodeBase64(model.getPicture());
-                profileImage.setImageBitmap(bitmap);
+                if(bitmap!= null) {
+                    profileImage.setImageBitmap(bitmap);
+                }
             }
         });
     }
