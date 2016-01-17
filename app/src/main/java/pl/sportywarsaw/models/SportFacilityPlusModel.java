@@ -18,8 +18,8 @@ public class SportFacilityPlusModel implements Serializable{
     private String phoneNumber;
     private String website;
     private List<String> emails = new ArrayList<>();
-    // // TODO: add position clas
-   // private Position Position { get; set; } = new Position();
+    private PositionModel position;
+
     private SportsFacilityType type;
 
     public int getId() {
@@ -88,5 +88,9 @@ public class SportFacilityPlusModel implements Serializable{
 
     public void setType(SportsFacilityType type) {
         this.type = type;
+    }
+
+    public PositionModel getPosition() {
+        return position;
     }
 }

@@ -22,8 +22,10 @@ import javax.inject.Inject;
 import pl.sportywarsaw.MyApplication;
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.infrastructure.CustomCallback;
+import pl.sportywarsaw.models.PositionModel;
 import pl.sportywarsaw.models.SportFacilityPlusModel;
 import pl.sportywarsaw.services.SportsFacilitiesService;
+import pl.sportywarsaw.utils.MapUtils;
 import retrofit.Call;
 
 public class SportsFacilityDetailsActivity extends AppCompatActivity {
@@ -86,17 +88,7 @@ public class SportsFacilityDetailsActivity extends AppCompatActivity {
         mapImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String address = getAddressString(model) + ", Warsaw, Poland";
-                try {
-                    String query = URLEncoder.encode(address, "utf-8");
-                    Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + query);
-                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                    startActivity(mapIntent);
-                } catch (UnsupportedEncodingException e) {
-                    Log.e("Map", e.getMessage());
-                    Toast.makeText(SportsFacilityDetailsActivity.this, R.string.error_loading_map,
-                            Toast.LENGTH_SHORT).show();
-                }
+                MapUtils.showMap(model, SportsFacilityDetailsActivity.this);
             }
         });
 

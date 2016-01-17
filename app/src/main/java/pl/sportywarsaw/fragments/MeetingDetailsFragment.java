@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ import pl.sportywarsaw.infrastructure.CustomCallback;
 import pl.sportywarsaw.models.MeetingPlusModel;
 import pl.sportywarsaw.models.SportFacilityPlusModel;
 import pl.sportywarsaw.services.MeetingsService;
+import pl.sportywarsaw.utils.MapUtils;
 import retrofit.Call;
 
 /**
@@ -161,7 +163,9 @@ public class MeetingDetailsFragment extends Fragment {
 
         TextView description = (TextView) view.findViewById(R.id.sports_facility_description);
         description.setText(facility.getDescription());
-        description.setOnClickListener(new View.OnClickListener() {
+
+        RelativeLayout sportsFacilityLayout = (RelativeLayout) view.findViewById(R.id.sports_facility_layout);
+        sportsFacilityLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SportsFacilityDetailsActivity.class);
@@ -184,14 +188,7 @@ public class MeetingDetailsFragment extends Fragment {
         mapView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    String query = URLEncoder.encode(addressString, "utf-8");
-                    Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + query);
-                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                    startActivity(mapIntent);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
+                MapUtils.showMap(model.getSportsFacility(), getActivity());
             }
         });
     }

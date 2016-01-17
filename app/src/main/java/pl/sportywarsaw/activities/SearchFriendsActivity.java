@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
 
@@ -35,7 +36,6 @@ public class SearchFriendsActivity extends AppCompatActivity {
         friendView.setThreshold(0);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar_friend_autocomplete);
         friendView.setProgressBar(progressBar);
-        // ma byc fragment_user_item
         adapter = new SearchFriendsAdapter(this, R.layout.fragment_user_item, service);
         friendView.setAdapter(adapter);
         friendView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -47,6 +47,10 @@ public class SearchFriendsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // bring up the keyboard
+        friendView.requestFocus();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 
 }
