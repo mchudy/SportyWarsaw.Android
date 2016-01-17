@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.squareup.okhttp.ResponseBody;
 
+import org.w3c.dom.Text;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DateFormat;
@@ -148,6 +150,9 @@ public class MeetingDetailsFragment extends Fragment {
 
         TextView addressView = (TextView) view.findViewById(R.id.sports_facility_address);
         addressView.setText(addressString);
+
+        TextView descriptionView = (TextView) view.findViewById(R.id.description);
+        descriptionView.setText(model.getDescription());
 
         TextView sportTypeView = (TextView) view.findViewById(R.id.sport_type);
         sportTypeView.setText(model.getSportType().toString());
