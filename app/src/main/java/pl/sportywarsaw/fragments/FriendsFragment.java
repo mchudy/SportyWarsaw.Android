@@ -15,6 +15,11 @@ import android.widget.Toast;
 
 import com.squareup.okhttp.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import pl.sportywarsaw.MyApplication;
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.activities.SearchFriendsActivity;
@@ -24,12 +29,6 @@ import pl.sportywarsaw.infrastructure.CustomCallback;
 import pl.sportywarsaw.models.UserModel;
 import pl.sportywarsaw.services.UserService;
 import pl.sportywarsaw.utils.DividerItemDecoration;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import retrofit.Call;
 
 public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdapter.RemoveFriendCallback{
@@ -85,49 +84,23 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
         adapter.setOnLoadMoreListener(new SportsFacilitiesRecyclerViewAdapter.OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                loadNextPage(adapter);
+                loadFriends(adapter);
             }
         });
         recyclerView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
-        loadNextPage(adapter);
 
-       // loadFriends(adapter);
+        loadFriends(adapter);
         return view;
     }
 
-
-    private void loadNextPage(final FriendsRecyclerViewAdapter adapter) {
-        if (allPagesLoaded) return;
-        adapter.showProgressBar();
-        Call<List<UserModel>> call = service.getPage(currentPage, PAGE_SIZE);
-        call.enqueue(new CustomCallback<List<UserModel>>(getActivity()) {
-            @Override
-            public void onSuccess(List<UserModel> models) {
-                adapter.hideProgressBar();
-                if (models.size() < PAGE_SIZE) {
-                    allPagesLoaded = true;
-                }
-                for (UserModel model : models) {
-                    items.add(model);
-                    adapter.notifyItemInserted(items.size());
-                }
-                adapter.setLoaded();
-                if(currentPage == 1) {
-                    recyclerView.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.GONE);
-                }
-                currentPage++;
-            }
-        });
-    }
+    //TODO: pagination
     private void loadFriends(final FriendsRecyclerViewAdapter adapter) {
         adapter.showProgressBar();
         Call<List<UserModel>> call = service.getMyFriends();
         call.enqueue(new CustomCallback<List<UserModel>>(getActivity()) {
             @Override
             public void onSuccess(List<UserModel> models) {
-                // w razie sukcesu dodawanie przyjaciół
                 adapter.hideProgressBar();
                 for (UserModel model : models) {
                     items.add(model);
@@ -135,7 +108,6 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
                 }
                 adapter.setLoaded();
             }
-
             @Override
             public void always() {
                 hideProgressBar();
@@ -156,7 +128,6 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
     @Override
     public void removeFriend(final String username, final int position) {
         showProgressBar();
-        // // TODO: nie dziala
         Call<ResponseBody> call = service.removeFriend(username);
         call.enqueue(new CustomCallback<ResponseBody>(getActivity()) {
             @Override

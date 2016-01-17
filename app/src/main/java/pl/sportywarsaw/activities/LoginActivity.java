@@ -14,14 +14,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+import javax.inject.Inject;
+
 import pl.sportywarsaw.MyApplication;
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.infrastructure.CustomCallback;
 import pl.sportywarsaw.models.AccessTokenModel;
 import pl.sportywarsaw.services.AccountService;
-
-import javax.inject.Inject;
-
 import retrofit.Call;
 import retrofit.Response;
 import retrofit.Retrofit;

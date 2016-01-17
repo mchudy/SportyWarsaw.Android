@@ -11,13 +11,6 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
-import pl.sportywarsaw.services.AccountService;
-import pl.sportywarsaw.services.CommentsService;
-import pl.sportywarsaw.services.MeetingsService;
-import pl.sportywarsaw.services.SportsFacilitiesService;
-import pl.sportywarsaw.services.UserService;
-import pl.sportywarsaw.utils.NullStringToEmptyAdapterFactory;
-
 import java.io.IOException;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -26,6 +19,12 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import pl.sportywarsaw.services.AccountService;
+import pl.sportywarsaw.services.CommentsService;
+import pl.sportywarsaw.services.MeetingsService;
+import pl.sportywarsaw.services.SportsFacilitiesService;
+import pl.sportywarsaw.services.UserService;
+import pl.sportywarsaw.utils.NullStringToEmptyAdapterFactory;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 

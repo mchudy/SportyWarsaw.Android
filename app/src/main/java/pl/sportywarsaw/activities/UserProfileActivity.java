@@ -18,6 +18,9 @@ import com.squareup.okhttp.ResponseBody;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import javax.inject.Inject;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import pl.sportywarsaw.MyApplication;
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.infrastructure.CustomCallback;
@@ -25,15 +28,13 @@ import pl.sportywarsaw.models.FriendshipModel;
 import pl.sportywarsaw.models.UserPlusModel;
 import pl.sportywarsaw.services.UserService;
 import pl.sportywarsaw.utils.BitmapUtils;
-
-import javax.inject.Inject;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit.Call;
 
 public class UserProfileActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_GET = 1;
     private static final int MAX_IMAGE_SIZE = 300;
+
+    public static final String USERNAME_KEY = "username";
 
     private String username;
     private String loggedUsername;
@@ -63,7 +64,7 @@ public class UserProfileActivity extends AppCompatActivity {
         content.setVisibility(View.GONE);
         profileImage = (CircleImageView) findViewById(R.id.profile_image);
 
-        username = getIntent().getStringExtra("username");
+        username = getIntent().getStringExtra(USERNAME_KEY);
         loggedUsername = preferences.getString("username", "");
 
         friendsView = (TextView) findViewById(R.id.friends_message);

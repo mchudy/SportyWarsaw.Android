@@ -2,14 +2,13 @@ package pl.sportywarsaw.services;
 
 import com.squareup.okhttp.ResponseBody;
 
+import java.util.List;
+
 import pl.sportywarsaw.models.AddMeetingModel;
 import pl.sportywarsaw.models.ChangeMeetingModel;
 import pl.sportywarsaw.models.MeetingModel;
 import pl.sportywarsaw.models.MeetingPlusModel;
 import pl.sportywarsaw.models.UserModel;
-
-import java.util.List;
-
 import retrofit.Call;
 import retrofit.http.Body;
 import retrofit.http.DELETE;

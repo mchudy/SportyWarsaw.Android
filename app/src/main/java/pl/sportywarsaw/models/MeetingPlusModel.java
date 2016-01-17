@@ -1,9 +1,9 @@
 package pl.sportywarsaw.models;
 
-import pl.sportywarsaw.enums.SportType;
-
 import java.io.Serializable;
 import java.util.Date;
+
+import pl.sportywarsaw.enums.SportType;
 
 /**
  * Created by Jan Kierzkowski on 04.01.2016.

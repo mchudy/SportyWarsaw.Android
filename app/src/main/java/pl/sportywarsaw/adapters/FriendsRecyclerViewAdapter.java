@@ -1,5 +1,6 @@
 package pl.sportywarsaw.adapters;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,10 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import pl.sportywarsaw.R;
-import pl.sportywarsaw.models.UserModel;
-
 import java.util.List;
+
+import pl.sportywarsaw.R;
+import pl.sportywarsaw.activities.UserProfileActivity;
+import pl.sportywarsaw.models.UserModel;
 
 
 public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserModel> {
@@ -45,12 +47,11 @@ public class FriendsRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserMod
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO: show profile
+                    Intent intent = new Intent(fragment.getActivity(), UserProfileActivity.class);
+                    intent.putExtra(UserProfileActivity.USERNAME_KEY, item.getUsername());
+                    fragment.startActivity(intent);
                 }
             });
-
-
-
 
             viewHolder.removeFriendButton.setOnClickListener(new View.OnClickListener() {
                 @Override

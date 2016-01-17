@@ -1,8 +1,8 @@
 package pl.sportywarsaw.models;
 
-import pl.sportywarsaw.enums.SportType;
-
 import java.util.Date;
+
+import pl.sportywarsaw.enums.SportType;
 
 public class MeetingModel {
     private int id;

@@ -16,6 +16,12 @@ import android.widget.Toast;
 
 import com.squareup.okhttp.ResponseBody;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.inject.Inject;
+
 import pl.sportywarsaw.MyApplication;
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.adapters.SearchFacilityArrayAdapter;
@@ -27,13 +33,6 @@ import pl.sportywarsaw.services.SportsFacilitiesService;
 import pl.sportywarsaw.utils.DelayAutoCompleteTextView;
 import pl.sportywarsaw.utils.EditTextDatePicker;
 import pl.sportywarsaw.utils.EditTextTimePicker;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.inject.Inject;
-
 import retrofit.Call;
 
 public class AddMeetingActivity extends AppCompatActivity {

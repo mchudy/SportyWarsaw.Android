@@ -10,6 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import pl.sportywarsaw.MyApplication;
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.adapters.UsersRecyclerViewAdapter;
@@ -18,12 +23,6 @@ import pl.sportywarsaw.models.MeetingPlusModel;
 import pl.sportywarsaw.models.UserModel;
 import pl.sportywarsaw.services.MeetingsService;
 import pl.sportywarsaw.utils.DividerItemDecoration;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import retrofit.Call;
 
 /**

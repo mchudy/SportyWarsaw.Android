@@ -7,13 +7,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
 
+import javax.inject.Inject;
+
 import pl.sportywarsaw.MyApplication;
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.adapters.SearchFriendsAdapter;
 import pl.sportywarsaw.services.UserService;
 import pl.sportywarsaw.utils.DelayAutoCompleteTextView;
-
-import javax.inject.Inject;
 
 public class SearchFriendsActivity extends AppCompatActivity {
 

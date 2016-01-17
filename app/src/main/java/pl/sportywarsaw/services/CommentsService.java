@@ -2,11 +2,10 @@ package pl.sportywarsaw.services;
 
 import com.squareup.okhttp.ResponseBody;
 
-import pl.sportywarsaw.models.AddCommentModel;
-import pl.sportywarsaw.models.CommentModel;
-
 import java.util.List;
 
+import pl.sportywarsaw.models.AddCommentModel;
+import pl.sportywarsaw.models.CommentModel;
 import retrofit.Call;
 import retrofit.http.Body;
 import retrofit.http.DELETE;

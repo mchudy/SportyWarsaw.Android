@@ -1,5 +1,8 @@
 package pl.sportywarsaw.infrastructure;
 
+import javax.inject.Singleton;
+
+import dagger.Component;
 import pl.sportywarsaw.activities.AddMeetingActivity;
 import pl.sportywarsaw.activities.LoginActivity;
 import pl.sportywarsaw.activities.MainActivity;
@@ -14,10 +17,6 @@ import pl.sportywarsaw.fragments.MeetingDetailsFragment;
 import pl.sportywarsaw.fragments.MeetingParticipantsFragment;
 import pl.sportywarsaw.fragments.MeetingsTabFragment;
 import pl.sportywarsaw.fragments.SportsFacilitiesFragment;
-
-import javax.inject.Singleton;
-
-import dagger.Component;
 
 /**
  * Component injecting dependencies from {@link RestServicesModule}

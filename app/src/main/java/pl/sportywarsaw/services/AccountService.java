@@ -4,7 +4,6 @@ import com.squareup.okhttp.ResponseBody;
 
 import pl.sportywarsaw.models.AccessTokenModel;
 import pl.sportywarsaw.models.RegisterAccountModel;
-
 import retrofit.Call;
 import retrofit.http.Body;
 import retrofit.http.Field;

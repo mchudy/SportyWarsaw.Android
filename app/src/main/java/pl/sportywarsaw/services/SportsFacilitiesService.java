@@ -2,11 +2,10 @@ package pl.sportywarsaw.services;
 
 import com.squareup.okhttp.ResponseBody;
 
-import pl.sportywarsaw.models.SportFacilityPlusModel;
-import pl.sportywarsaw.models.SportsFacilityModel;
-
 import java.util.List;
 
+import pl.sportywarsaw.models.SportFacilityPlusModel;
+import pl.sportywarsaw.models.SportsFacilityModel;
 import retrofit.Call;
 import retrofit.http.Body;
 import retrofit.http.DELETE;

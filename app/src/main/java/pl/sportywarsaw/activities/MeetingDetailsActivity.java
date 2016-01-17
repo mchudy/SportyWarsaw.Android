@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import javax.inject.Inject;
+
 import pl.sportywarsaw.MyApplication;
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.fragments.MeetingDetailsFragment;
@@ -17,9 +19,6 @@ import pl.sportywarsaw.fragments.MeetingParticipantsFragment;
 import pl.sportywarsaw.infrastructure.CustomCallback;
 import pl.sportywarsaw.models.MeetingPlusModel;
 import pl.sportywarsaw.services.MeetingsService;
-
-import javax.inject.Inject;
-
 import retrofit.Call;
 
 public class MeetingDetailsActivity extends AppCompatActivity {

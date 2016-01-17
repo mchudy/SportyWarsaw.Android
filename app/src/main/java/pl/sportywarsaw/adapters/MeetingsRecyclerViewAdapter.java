@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.activities.MeetingDetailsActivity;
 import pl.sportywarsaw.models.MeetingModel;
-
-import java.util.List;
 
 /**
  * Adapter for the meetings {@link RecyclerView}

@@ -19,16 +19,15 @@ import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.squareup.okhttp.ResponseBody;
 
+import java.io.IOException;
+
+import javax.inject.Inject;
+
 import pl.sportywarsaw.MyApplication;
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.infrastructure.CustomCallback;
 import pl.sportywarsaw.models.RegisterAccountModel;
 import pl.sportywarsaw.services.AccountService;
-
-import java.io.IOException;
-
-import javax.inject.Inject;
-
 import retrofit.Call;
 import retrofit.Response;
 import retrofit.Retrofit;

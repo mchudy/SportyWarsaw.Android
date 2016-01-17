@@ -8,11 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.activities.UserProfileActivity;
 import pl.sportywarsaw.models.UserModel;
-
-import java.util.List;
 
 public class UsersRecyclerViewAdapter extends EndlessScrollBaseAdapter<UserModel> {
     private Fragment fragment;

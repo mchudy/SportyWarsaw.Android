@@ -16,13 +16,6 @@ import android.widget.Toast;
 
 import com.squareup.okhttp.ResponseBody;
 
-import pl.sportywarsaw.MyApplication;
-import pl.sportywarsaw.R;
-import pl.sportywarsaw.infrastructure.CustomCallback;
-import pl.sportywarsaw.models.MeetingPlusModel;
-import pl.sportywarsaw.models.SportFacilityPlusModel;
-import pl.sportywarsaw.services.MeetingsService;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DateFormat;
@@ -31,6 +24,13 @@ import java.text.SimpleDateFormat;
 
 import javax.inject.Inject;
 
+import pl.sportywarsaw.MyApplication;
+import pl.sportywarsaw.R;
+import pl.sportywarsaw.activities.SportsFacilityDetailsActivity;
+import pl.sportywarsaw.infrastructure.CustomCallback;
+import pl.sportywarsaw.models.MeetingPlusModel;
+import pl.sportywarsaw.models.SportFacilityPlusModel;
+import pl.sportywarsaw.services.MeetingsService;
 import retrofit.Call;
 
 /**
@@ -161,6 +161,14 @@ public class MeetingDetailsFragment extends Fragment {
 
         TextView description = (TextView) view.findViewById(R.id.sports_facility_description);
         description.setText(facility.getDescription());
+        description.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SportsFacilityDetailsActivity.class);
+                intent.putExtra("sportsFacilityId", model.getSportsFacility().getId());
+                startActivity(intent);
+            }
+        });
 
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 

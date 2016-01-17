@@ -9,14 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
 
-import pl.sportywarsaw.R;
-import pl.sportywarsaw.models.SportsFacilityModel;
-import pl.sportywarsaw.services.SportsFacilitiesService;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.sportywarsaw.R;
+import pl.sportywarsaw.models.SportsFacilityModel;
+import pl.sportywarsaw.services.SportsFacilitiesService;
 import retrofit.Call;
 import retrofit.Response;
 

@@ -1,9 +1,10 @@
 package pl.sportywarsaw.models;
-import pl.sportywarsaw.enums.SportsFacilityType;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import pl.sportywarsaw.enums.SportsFacilityType;
 
 /**
  * Created by Jan Kierzkowski on 04.01.2016.

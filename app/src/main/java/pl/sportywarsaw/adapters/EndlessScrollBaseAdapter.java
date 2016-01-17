@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import pl.sportywarsaw.R;
-
 import java.util.List;
+
+import pl.sportywarsaw.R;
 
 /**
  * Base adapter for views supporting endless scrolling

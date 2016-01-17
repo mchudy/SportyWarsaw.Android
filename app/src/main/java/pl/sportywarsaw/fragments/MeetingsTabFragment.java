@@ -10,6 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import pl.sportywarsaw.MyApplication;
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.adapters.MeetingsRecyclerViewAdapter;
@@ -17,11 +21,6 @@ import pl.sportywarsaw.infrastructure.CustomCallback;
 import pl.sportywarsaw.models.MeetingModel;
 import pl.sportywarsaw.services.MeetingsService;
 import pl.sportywarsaw.utils.DividerItemDecoration;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
 import retrofit.Call;
 
 public class MeetingsTabFragment extends Fragment {

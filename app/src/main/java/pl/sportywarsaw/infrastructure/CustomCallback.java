@@ -9,7 +9,6 @@ import android.preference.PreferenceManager;
 
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.activities.LoginActivity;
-
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;

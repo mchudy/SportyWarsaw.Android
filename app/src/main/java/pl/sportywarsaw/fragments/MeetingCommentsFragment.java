@@ -12,6 +12,11 @@ import android.widget.ProgressBar;
 
 import com.squareup.okhttp.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import pl.sportywarsaw.MyApplication;
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.adapters.CommentsRecyclerViewAdapter;
@@ -20,12 +25,6 @@ import pl.sportywarsaw.models.AddCommentModel;
 import pl.sportywarsaw.models.CommentModel;
 import pl.sportywarsaw.models.MeetingPlusModel;
 import pl.sportywarsaw.services.CommentsService;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import retrofit.Call;
 
 /**

@@ -14,17 +14,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import pl.sportywarsaw.MyApplication;
-import pl.sportywarsaw.R;
-import pl.sportywarsaw.infrastructure.CustomCallback;
-import pl.sportywarsaw.models.SportFacilityPlusModel;
-import pl.sportywarsaw.services.SportsFacilitiesService;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import javax.inject.Inject;
 
+import pl.sportywarsaw.MyApplication;
+import pl.sportywarsaw.R;
+import pl.sportywarsaw.infrastructure.CustomCallback;
+import pl.sportywarsaw.models.SportFacilityPlusModel;
+import pl.sportywarsaw.services.SportsFacilitiesService;
 import retrofit.Call;
 
 public class SportsFacilityDetailsActivity extends AppCompatActivity {
@@ -120,8 +119,6 @@ public class SportsFacilityDetailsActivity extends AppCompatActivity {
         descriptionView.setText(model.getDescription());
         TextView phoneNumberView = (TextView) findViewById(R.id.phone_number);
         phoneNumberView.setText(model.getPhoneNumber());
-        TextView numberView = (TextView) findViewById(R.id.phone_number);
-        numberView.setText(model.getPhoneNumber());
         TextView websiteView = (TextView) findViewById(R.id.website);
         websiteView.setText(model.getWebsite());
         TextView addressView = (TextView) findViewById(R.id.address);

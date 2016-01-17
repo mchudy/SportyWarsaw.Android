@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import javax.inject.Inject;
+
 import pl.sportywarsaw.MyApplication;
 import pl.sportywarsaw.R;
 import pl.sportywarsaw.fragments.FriendsFragment;
@@ -27,9 +29,6 @@ import pl.sportywarsaw.infrastructure.CustomCallback;
 import pl.sportywarsaw.models.UserPlusModel;
 import pl.sportywarsaw.services.UserService;
 import pl.sportywarsaw.utils.BitmapUtils;
-
-import javax.inject.Inject;
-
 import retrofit.Call;
 
 /**
