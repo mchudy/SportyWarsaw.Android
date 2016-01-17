@@ -49,7 +49,7 @@ public class RestServicesModule {
     OkHttpClient provideOkHttpClient(final SharedPreferences preferences) {
         OkHttpClient client = new OkHttpClient();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         client.interceptors().add(interceptor);
         client.networkInterceptors().add(new Interceptor() {
             @Override
