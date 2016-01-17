@@ -71,7 +71,7 @@
     <string name="handball">Piłka ręczna</string>
     <string name="sports_facility">Obiekt sportowy</string>
     <string name="address">Adres</string>
-    <string name="badminton" translatable="false">Badminton</string>
+    <string name="badminton">Badminton</string>
     <string name="swimming_pool">Basen</string>
     <string name="sports_field">Boisko sportowe</string>
     <string name="sports_facility_type">Typ obiektu</string>
