@@ -246,7 +246,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:enabled="false"
-                        android:text="Leave" />
+                        android:text="@string/leave" />
 
                     <Button
                         android:id="@+id/join_button"
@@ -255,7 +255,7 @@
                         android:layout_height="wrap_content"
                         android:layout_toLeftOf="@id/leave_button"
                         android:enabled="false"
-                        android:text="Join" />
+                        android:text="@string/join" />
                 </RelativeLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>

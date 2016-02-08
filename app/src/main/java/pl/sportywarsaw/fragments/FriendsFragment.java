@@ -81,12 +81,6 @@ public class FriendsFragment extends Fragment implements FriendsRecyclerViewAdap
             }
         });
         showProgressBar();
-        adapter.setOnLoadMoreListener(new SportsFacilitiesRecyclerViewAdapter.OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                loadFriends(adapter);
-            }
-        });
         recyclerView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
 

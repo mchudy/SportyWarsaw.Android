@@ -102,4 +102,6 @@
     <string name="request_rejected">Request has been rejected</string>
     <string name="removed_friend">Removed friend</string>
     <string name="accepted_request">Accepted request</string>
+    <string name="join">Join</string>
+    <string name="leave">Leave</string>
 </resources>

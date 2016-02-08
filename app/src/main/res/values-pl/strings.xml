@@ -101,4 +101,6 @@
     <string name="removed_friend">Usunięto ze znajomych</string>
     <string name="request_rejected">Odrzucono prośbę o znajomość</string>
     <string name="request_sent">Wysłano prośbę o znajomość</string>
+    <string name="join">Dołącz</string>
+    <string name="leave">Opuść</string>
 </resources>
